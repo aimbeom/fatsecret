@@ -50,4 +50,41 @@
 		, NOW()
   	)	
   </insert> 
+  
+   	<select id="selectUser" resultType="com.fatsecret.user.model.User">
+  	SELECT
+  		*
+  	FROM
+  		`user`
+  	ORDER BY
+  	ID
+  	DESC
+  	LIMIT 1
+  	</select> 
+  	
+  	<select id="selectUserByEmailPassword" parameterType="map" resultType="com.fatsecret.user.model.User">
+	  	SELECT
+		  	`id`
+	  		,`gender`
+	  		, `name`
+	  		, `weight`
+	  		, `height`
+	  		, `birth`
+	  		, `amountOfActivity`
+	  		, `purpose`
+	  		, `targetWeight`
+	  		, `nickname`
+	  		, `password`
+	  		, `email`
+	  		, `content`
+	  		, `imagePath`
+	  		, `createdAt`
+	  		, `updatedAt`
+	  	FROM
+	  		`user`
+	  	WHERE
+	  		`email` = #{email}
+	  	AND
+	  		`password` = #{password}	
+  </select> 
  </mapper>

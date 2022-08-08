@@ -24,8 +24,12 @@
               	,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
                 ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
                 ,changeYear: true //option값 년 선택 가능
-                ,changeMonth: true //option값  월 선택 가능                
+                ,changeMonth: true //option값  월 선택 가능  
+                ,minDate: new Date('1990-01-01')
+         		,maxDate: new Date('2022-12-31')
          });
+         
+         $('#datepicker').datepicker('setDate', 'today');
       });
 </script>
 </head>

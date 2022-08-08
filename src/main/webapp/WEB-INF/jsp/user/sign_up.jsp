@@ -203,6 +203,8 @@ $(document).ready(function(){
 	//회원가입 버튼 클릭
 	$('#signUpBtn').on('click', function(e){
 		//alert('test');
+		$('#pwCheckFalse').addClass('d-none');
+		$('#pwCheckCollect').addClass('d-none');
 		
 		//validation
 		//내 세부정보
@@ -246,6 +248,22 @@ $(document).ready(function(){
 			alert('이메일을 입력해주세요');
 			return;
 		}
+		let password = $('#password').val().trim();
+		if(password == ""){
+			alert('비밀번호를 입력해주세요');
+			return;
+		}
+		let passwordConfirm = $('#passwordConfirm').val().trim();
+		if(passwordConfirm == ""){
+			alert('비밀번호를 확인해주세요');
+			return;
+		}
+		if(password != passwordConfirm){
+			$('#pwCheckFalse').removeClass('d-none');
+			alert('비밀번호가 일치하지 않습니다');
+		}			
+		
+		
 		//자기소개
 		let content = $('#content').val();
 		
@@ -260,6 +278,7 @@ $(document).ready(function(){
 		formData.append("purpose", purpose);
 		formData.append("targetWeight", targetWeight);
 		formData.append("nickname", nickname);
+		formData.append("password", password);
 		formData.append("email", email);
 		formData.append("content", content);
 		formData.append("file", $('#file')[0].files[0]);

@@ -1,5 +1,7 @@
 package com.fatsecret.user;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,9 +51,33 @@ public class UserController {
 //	http://localhost:8080/user/kcal_informed_view
 	@RequestMapping("/kcal_informed_view")
 	public String kcalInformedView(Model model) {
+		
+		int recommendedKcal = userBO.calculateKcal();
+		
 		model.addAttribute("viewName", "user/kcal_informed");
+		model.addAttribute("recommendedKcal", recommendedKcal);
 		
 		return "template/layout";
 	}
+	
+	/**
+	 * 로그아웃
+	 * @param session
+	 * @return
+	 */
+//	http://localhost:8080/user/sign_out
+	@RequestMapping("/sign_out")
+	public String signOut(HttpSession session) {
+		session.removeAttribute("userId");
+		session.removeAttribute("userEamil");
+		session.removeAttribute("userName");
+		session.removeAttribute("userWeight");
+		session.removeAttribute("userpurposeWeight");
+		session.removeAttribute("recommendedKcal");
+		
+		return "redirect:/timeline/timeline_view";
+	}
+	
+	
 	
 }

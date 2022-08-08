@@ -25,4 +25,11 @@ public interface UserDAO {
 			@Param ("content") String content,
 			@Param ("imagePath") String imagePath
 			);
+	
+	public User selectUser();
+	
+	public User selectUserByEmailPassword(
+			@Param ("email") String email,
+			@Param ("password") String password
+			);
 }
