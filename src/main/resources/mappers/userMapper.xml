@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.fatsecret.user.dao.UserDAO">
+ 	<select id="selectUserByNickName" parameterType="String" resultType="boolean">
+  	SELECT
+  		COUNT(*)
+  	FROM
+  		`user`
+  	WHERE
+  		`nickname` = #{nickname}	
+  	</select> 
+  	
+  <insert id="insertUser" parameterType="map">
+  	INSERT INTO `user`
+  	(
+  		`gender`
+  		, `name`
+  		, `weight`
+  		, `height`
+  		, `birth`
+  		, `amountOfActivity`
+  		, `purpose`
+  		, `targetWeight`
+  		, `nickname`
+  		, `password`
+  		, `email`
+  		, `content`
+  		, `imagePath`
+  		, `createdAt`
+  		, `updatedAt`
+  	)
+  	VALUES
+  	(
+  		#{gender}
+  		, #{name}
+  		, #{weight}
+  		, #{height}
+  		, #{birth}
+  		, #{amountOfActivity}
+  		, #{purpose}
+  		, #{targetWeight}
+  		, #{nickname}
+  		, #{password}
+  		, #{email}
+  		, #{content}
+  		, #{imagePath}
+		, NOW()
+		, NOW()
+  	)	
+  </insert> 
+ </mapper>
