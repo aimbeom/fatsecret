@@ -73,11 +73,25 @@ public class UserController {
 		session.removeAttribute("userName");
 		session.removeAttribute("userWeight");
 		session.removeAttribute("userpurposeWeight");
+		session.removeAttribute("userImage");
 		session.removeAttribute("recommendedKcal");
 		
 		return "redirect:/timeline/timeline_view";
 	}
 	
+	
+	/**
+	 * 마이 페이지
+	 * @param model
+	 * @return
+	 */
+//	http://localhost:8080/user/my_page
+	@RequestMapping("/my_page")
+	public String myPage(Model model) {
+		model.addAttribute("viewName", "user/my_page");
+		
+		return "template/layout";
+	}
 	
 	
 }

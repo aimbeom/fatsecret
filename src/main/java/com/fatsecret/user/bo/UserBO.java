@@ -90,4 +90,12 @@ public class UserBO {
 		
 		return userDAO.selectUserByEmailPassword(email, password);
 	}
+	
+	//CardtView와 CommentCard에 뿌려줄 userList 가져오기 id값을 매개로 받아온다
+	public User getUserByUserId(int id) {
+		
+		return userDAO.selectUserByUserId(id);
+	}
+	
+
 }

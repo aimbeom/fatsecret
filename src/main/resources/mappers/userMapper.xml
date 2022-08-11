@@ -86,5 +86,30 @@
 	  		`email` = #{email}
 	  	AND
 	  		`password` = #{password}	
+  </select>
+  
+  <select id="selectUserByUserId" parameterType="int" resultType="com.fatsecret.user.model.User">
+	  	SELECT
+		  	`id`
+	  		,`gender`
+	  		, `name`
+	  		, `weight`
+	  		, `height`
+	  		, `birth`
+	  		, `amountOfActivity`
+	  		, `purpose`
+	  		, `targetWeight`
+	  		, `nickname`
+	  		, `password`
+	  		, `email`
+	  		, `content`
+	  		, `imagePath`
+	  		, `createdAt`
+	  		, `updatedAt`
+	  	FROM
+	  		`user`
+	  	WHERE
+	  		`id` = #{id}
   </select> 
+ 
  </mapper>

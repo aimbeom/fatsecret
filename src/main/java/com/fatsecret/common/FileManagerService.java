@@ -13,14 +13,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class FileManagerService {
+	
 	public final static String FILE_UPLOAD_PATH =  "/Users/jojoonbeom/FatSecret/workspace/images/";
 	 //input : MultipartFile, userLoginId
 	 //output : String path
-		public String saveFile(String userLoginId, MultipartFile file) {
+		public String saveFile(String userNickname, MultipartFile file) {
 			// 파일명이 겹치지 않게 하기 위해 userLoginId, 현재시간을 경로에 붙여준다.
 			// 파일 디렉토리(폴더) 경로 예: userLoginId_현재시간/이미지파일 명 = aaaa_135465413/sun.png
 			
-			String directoryName = userLoginId + "_" + System.currentTimeMillis() + "/";
+			String directoryName = userNickname + "_" + System.currentTimeMillis() + "/";
 			String filePath= FILE_UPLOAD_PATH + directoryName;
 			
 			// 디렉토리 만들기
@@ -45,11 +46,11 @@ public class FileManagerService {
 			return null;
 		}
 		
-		public String saveProfileFile(String nickname, MultipartFile file) {
+		public String saveProfileFile(String userNickname, MultipartFile file) {
 			// 파일명이 겹치지 않게 하기 위해 userLoginId, 현재시간을 경로에 붙여준다.
 			// 파일 디렉토리(폴더) 경로 예: userLoginId_현재시간/이미지파일 명 = aaaa_135465413/sun.png
 			
-			String directoryName = nickname + "_" + System.currentTimeMillis() + "/";
+			String directoryName = userNickname + "_" + System.currentTimeMillis() + "/";
 			String filePath= FILE_UPLOAD_PATH + directoryName;
 			
 			// 디렉토리 만들기

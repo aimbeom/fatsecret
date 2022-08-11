@@ -282,7 +282,7 @@ $(document).ready(function(){
 		formData.append("email", email);
 		formData.append("content", content);
 		formData.append("file", $('#file')[0].files[0]);
-		
+		s
 		//ajax form 데이터 전송
 		$.ajax({
 
