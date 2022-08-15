@@ -36,4 +36,41 @@
 	  	FROM
 	  		`post`
  	</select>
+ 	
+ 	<select id="selectPostListByPostId" parameterType="int" resultType="com.fatsecret.post.model.Post">
+		SELECT
+		  	`id`
+	  		,`userId`
+	  		, `title`
+	  		, `content`
+	  		, `imagePath`
+	  		, `createdAt`
+	  		, `updatedAt`
+	  	FROM
+	  		`post`
+		WHERE
+			`id` = #{postId}
+	</select>
+	
+	<delete id="deletePostListByPostId" parameterType="int">
+		DELETE FROM
+			`post`
+		WHERE
+			`id` = #{postId}
+	</delete>
+	
+	 <update id="updatePostByPostIdAndUserId" parameterType="map">
+	  	UPDATE `post`
+	  	SET
+	  		`title` = #{title}
+	  		, `content` = #{content}
+	  		<if test="imagePath != null">	<!-- imagePath가 있을 때만 수정 -->
+	  		, `imagePath` = #{imagePath}
+	  		</if>
+	  		, `updatedAt` = NOW()
+	  	WHERE
+	  		`id` = #{postId}
+	  		AND
+	  		`userId` = #{userId}
+	  </update>
  </mapper>

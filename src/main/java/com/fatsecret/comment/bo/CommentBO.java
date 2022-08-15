@@ -62,4 +62,10 @@ public class CommentBO {
 		
 		commentDAO.deleteCommentById(id);
 	}
+	
+	//timeline card 의 댓글 삭제를 위해 postId로 해당 게시글 댓글 삭제
+	public void deleteCommentByPostId(int postId) {
+		
+		commentDAO.deleteCommentByPostId(postId);
+	}
 }

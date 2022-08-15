@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.fatsecret.like.dao.LikeDAO">
+ 		<select id="existLikeByPostIdAndUserId" parameterType="map" resultType="boolean">
+		SELECT
+			count(1)
+		FROM
+			`like`
+		WHERE
+			`postId` = #{postId}
+			AND
+			`userId` = #{userId}
+	</select>
+	
+	<insert id="insertLike" parameterType="map">
+		INSERT INTO `like`
+		(
+			`postId`
+			, `userId`
+			, `createdAt`
+		)
+		VALUES
+		(
+			#{postId}
+			, #{userId}
+			, NOW()
+		)
+	</insert>
+	
+	<delete id="deleteLikeByPostIdAndUserId" parameterType="map">
+		DELETE
+		FROM
+			`like`
+		WHERE
+			`postId` = #{postId}
+			AND
+			`userId` = #{userId}
+	</delete>
+	
+	<select id="selectLikeByPostIdUserId" parameterType="int" resultType="int">
+		SELECT
+			count(1)
+		FROM
+			`like`
+		WHERE
+			`postId` = #{postId}
+	</select>
+	
+	<delete id="deleteLikeListByPostId" parameterType="int">
+		DELETE
+		FROM
+			`like`
+		WHERE
+			`postId` = #{postId}
+	</delete>
+ </mapper>

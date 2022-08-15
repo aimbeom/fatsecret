@@ -7,7 +7,9 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,6 +55,63 @@ public class PostRestController {
 		postBO.addPost(userId, userNickname, title, content, file);
 		
 		return result;
+	}
+	
+	/**
+	 * 글 삭제
+	 * @param postId
+	 * @param session
+	 * @return
+	 */
+	@DeleteMapping("delete")
+	public Map<String, Object> delete(
+			@RequestParam("postId") int postId,
+			HttpSession session
+			){
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("result", "success");
+		result.put("errorMessage", "실패");
+		
+		int userId = (int) session.getAttribute("userId");
+		postBO.deletePostByPostIdUserId(postId, userId);
+		
+		return result;
+	}
+	
+	/**
+	 * 글 수정
+	 * @param postId
+	 * @param subject
+	 * @param content
+	 * @param file
+	 * @param session
+	 * @return
+	 */
+	@PutMapping("/update")
+	public Map<String, Object> update(
+			@RequestParam("postId") int postId,
+			@RequestParam("title") String title,
+			@RequestParam("content") String content,
+			@RequestParam(value="file", required=false) MultipartFile file,
+			HttpSession session
+			){
+		// 로그인 된 사람만 도달했는지 검사 => 나중에
+		String userNickname = (String)session.getAttribute("userNickname");
+		int userId = (int)session.getAttribute("userId");
+		
+		//db update
+		int row = postBO.updatePost(userId, userNickname, postId, title, content, file);
+		
+		//성공 여부
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "success");
+		if(row < 1) {
+			result.put("result", "fail");
+		}
+		
+		return result;
+		
 	}
 	
 	

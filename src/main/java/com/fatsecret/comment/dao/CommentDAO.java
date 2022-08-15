@@ -22,4 +22,7 @@ public interface CommentDAO {
 	
 	//댓글 삭제
 	public void deleteCommentById(int id);
+	
+	//타임라인 카드 댓글 삭제
+	public void deleteCommentByPostId(int postId);
 }

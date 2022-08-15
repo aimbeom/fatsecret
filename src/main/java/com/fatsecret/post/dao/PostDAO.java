@@ -20,4 +20,19 @@ public interface PostDAO {
 	
 	//timelineBO에 뿌릴 게시글 가져오기
 	public List<Post> selectPostList();
+	
+	//timeline card 삭제를 위해 postId로 리스트 가져오기
+	public Post selectPostListByPostId(int postId);
+	
+	//timeline card 삭제를 위해 postId로 리스트 삭제하기
+	public void deletePostListByPostId(int postId);
+	
+	//글 수정
+	public int updatePostByPostIdAndUserId(
+			@Param("postId") int postId,
+			@Param("userId") int userId,
+			@Param("title") String title,
+			@Param("content") String content,
+			@Param("imagePath") String imagePath
+			);
 }
