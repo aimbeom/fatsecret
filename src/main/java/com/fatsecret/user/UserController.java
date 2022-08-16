@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fatsecret.post.bo.PostBO;
 import com.fatsecret.user.bo.UserBO;
 
 @RequestMapping("/user")
@@ -15,6 +16,9 @@ public class UserController {
 	
 	@Autowired
 	UserBO userBO;
+	
+	@Autowired
+	PostBO postBO;
 	
 	/**
 	 * 회원가입 페이지
@@ -87,11 +91,19 @@ public class UserController {
 	 */
 //	http://localhost:8080/user/my_page
 	@RequestMapping("/my_page")
-	public String myPage(Model model) {
+	public String myPage(Model model, HttpSession session) {
+		
+		int userId = (int) session.getAttribute("userId");
+		
+		int postCount = postBO.getPostListByUserId(userId);
+		
 		model.addAttribute("viewName", "user/my_page");
+		model.addAttribute("postCount", postCount);
 		
 		return "template/layout";
 	}
+	
+	
 	
 	
 }

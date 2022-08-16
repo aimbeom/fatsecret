@@ -31,6 +31,6 @@ public class TimelineController {
 		model.addAttribute("viewName", "/timeline/timeline");
 		model.addAttribute("cardList", cardList);
 		
-		return	"template/layout";
+		return	"template/layout2";
 	}
 }

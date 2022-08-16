@@ -73,4 +73,13 @@
 	  		AND
 	  		`userId` = #{userId}
 	  </update>
+	  
+	  <select id="getPostListByUserId" parameterType="int" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+	  	FROM
+	  		`post`
+	  	WHERE
+	  		`id` = #{userId}	
+ 	</select>
  </mapper>

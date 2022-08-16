@@ -39,7 +39,7 @@
 			<jsp:include page="../include/gnb2.jsp" />
 		</header>
 		<section class="content">
-			<jsp:include page="../${viewName2}.jsp" />
+			<jsp:include page="../${viewName}.jsp" />
 		</section>
 	</div>
 </body>

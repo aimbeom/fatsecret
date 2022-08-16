@@ -90,7 +90,7 @@ public class UserRestController {
 			// 로그인 ok
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", user.getId());
-			session.setAttribute("userEamil", user.getEmail());
+			session.setAttribute("userEmail", user.getEmail());
 			session.setAttribute("userName", user.getName());
 			session.setAttribute("userNickname", user.getNickname());
 			session.setAttribute("userHeight", user.getHeight());
@@ -106,8 +106,6 @@ public class UserRestController {
 		
 		return result;
 	}
-	
-	
 	
 	
 ////	http://localhost:8080/user/test

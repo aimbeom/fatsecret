@@ -13,7 +13,7 @@
 
 						</div>
 						<div class="d-flex justify-content-center">
-							<span style="color: black">${userEamil}</span>
+							<span style="color: black">${userEmail}</span>
 						</div>
 					</div>
 				</div>
@@ -23,7 +23,7 @@
 						<span style="font-size: 15px">게시글</span>
 					</div>
 					<div class="mb-3">
-						<span style="font-size: 15px">${userName }</span>
+						<span style="font-size: 15px">${postCount }</span>
 					</div>
 					<div class="mb-3">
 						<span style="font-size: 15px">팔로잉</span>
