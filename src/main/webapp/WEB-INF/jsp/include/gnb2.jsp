@@ -4,7 +4,7 @@
 <div class="wrap bg-success">
 	<div class="d-flex align-items-center mr-5 justify-content-end">
 		<c:if test="${not empty userName}">
-			<span> <a href="/user/my_page"><span style="color: white">${userNickname}님
+			<span> <a href="/user/my_page_view"><span style="color: white">${userNickname}님
 						안녕하세요</span></a> <span style="color: white">| </span> <a
 				href="/post/write_view"><span style="color: white">게시하기</span></a> <span
 				style="color: white">| </span> <span style="color: white">나의
@@ -26,12 +26,12 @@
 	</div>
 	<hr>
 	<nav id="topMenu" class="d-flex justify-content-center my-2">
-		<ul>
-			<li><a class="menuLink" href="/diary/diet_view">다이어트 캘린더</a></li>
-			<li><a class="menuLink" href="#">음식 다이어리</a></li>
+		<ul class="nav-tabs nav-pills nav-justified">
+			<li><a class="menuLink" href="/diary/diet_calendar_view">다이어트 캘린더</a></li>
+			<li><a class="menuLink" href="/diary/food_diary_view">음식 다이어리</a></li>
 			<li><a class="menuLink" href="#">운동 다이어리</a></li>
 			<li><a class="menuLink" href="/timeline/timeline_view">커뮤니티</a></li>
-			<li><a class="menuLink" href="/user/my_page">마이페이지</a></li>
+			<li><a id="myPage" data-user-id="${userId }" class="menuLink" href="/user/my_page_view">마이페이지</a></li>
 		</ul>
 	</nav>
 </div>
@@ -66,3 +66,18 @@ ul li:first-child {
 	border-left: none;
 }
 </style>
+
+<script>
+	$(document).ready(function(){
+/* 		$('#myPage').on('click', function(e){
+			e.preventDefault();
+			//alert('로그인을 해주세요');
+			
+			let userId = $(this).data('user-id');
+			if(userId == ""){
+				alert('로그인을 해주세요');
+				return;
+			}
+		}); */
+	});
+</script>

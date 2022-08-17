@@ -1,5 +1,7 @@
 package com.fatsecret.user;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fatsecret.post.bo.PostBO;
+import com.fatsecret.post.model.Post;
 import com.fatsecret.user.bo.UserBO;
 
 @RequestMapping("/user")
@@ -90,17 +93,17 @@ public class UserController {
 	 * @return
 	 */
 //	http://localhost:8080/user/my_page
-	@RequestMapping("/my_page")
+	@RequestMapping("/my_page_view")
 	public String myPage(Model model, HttpSession session) {
 		
 		int userId = (int) session.getAttribute("userId");
 		
-		int postCount = postBO.getPostListByUserId(userId);
+		List<Post> postList = postBO.getPostListByUserId(userId);
 		
 		model.addAttribute("viewName", "user/my_page");
-		model.addAttribute("postCount", postCount);
+		model.addAttribute("postList", postList);
 		
-		return "template/layout";
+		return "template/layout2";
 	}
 	
 	

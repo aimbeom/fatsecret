@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="wrap w-50 container" style="border: 3px solid">
 	<div class="box1 w-100">
 		<div class="d-flex justify-content-between">
@@ -18,7 +19,7 @@
 					</div>
 				</div>
 				<div class="postInfo m-4">
-				<div></div>
+					<div></div>
 					<div class="mb-3">
 						<span style="font-size: 15px">게시글</span>
 					</div>
@@ -81,6 +82,33 @@
 				<span style="font-size: 30px">${userWeight-userTargetWeight}kg</span>
 				<span style="font-size: 30px">${userWeight}</span> <span
 					style="font-size: 30px">${userTargetWeight-userWeight}kg</span>
+			</div>
+		</div>
+		<div class="d-flex justify-content-center m-3">
+			<div class="w-100">
+				<h1>글 목록</h1>
+				<table class="table hover">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>제목</th>
+							<th>작성날짜</th>
+							<th>수정날짜</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${postList}" var="post">
+							<tr>
+								<td>${post.id}</td>
+								<td>${post.title}</a></td>
+								<td><fmt:formatDate value="${post.createdAt}" pattern="yyyy년 MM월 dd일" /></td>
+								<td><fmt:formatDate value="${post.updatedAt}" pattern="yyyy년 MM월 dd일" /></td>
+								<td><a class="btn btn-success" href="/post/detail_view?postId=${post.id}">수정</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

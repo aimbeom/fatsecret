@@ -36,6 +36,6 @@ public interface PostDAO {
 			@Param("imagePath") String imagePath
 			);
 	
-	//마이페이지에 뿌려줄 게시글의 갯수 리턴
-	public int getPostListByUserId(int userId);
+	//마이페이지에 뿌릴 글목록 가져오기
+	public List<Post> getPostListByUserId(int userId);
 }

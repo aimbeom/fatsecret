@@ -37,6 +37,13 @@ public class CommentRestcontroller {
 			HttpSession session
 			){
 		Map<String, Object> result = new HashMap<>();
+		Object userIdObj = session.getAttribute("userId");
+		if (userIdObj == null) {
+			result.put("result", "fail");
+			result.put("errorMessage", "로그인을 해야 사용할 수 있습니다.");
+			return result;
+		}
+		
 		int userId = (int) session.getAttribute("userId");
 		result.put("result", "success");
 		
