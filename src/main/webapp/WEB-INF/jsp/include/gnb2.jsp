@@ -29,7 +29,7 @@
 		<ul class="nav-tabs nav-pills nav-justified">
 			<li><a class="menuLink" href="/diary/diet_calendar_view">다이어트 캘린더</a></li>
 			<li><a class="menuLink" href="/diary/food_diary_view">음식 다이어리</a></li>
-			<li><a class="menuLink" href="#">운동 다이어리</a></li>
+			<li><a class="menuLink" href="/diary/exercise_diary_view">운동 다이어리</a></li>
 			<li><a class="menuLink" href="/timeline/timeline_view">커뮤니티</a></li>
 			<li><a id="myPage" data-user-id="${userId }" class="menuLink" href="/user/my_page_view">마이페이지</a></li>
 		</ul>

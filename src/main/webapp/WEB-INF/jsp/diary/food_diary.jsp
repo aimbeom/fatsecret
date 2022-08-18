@@ -6,8 +6,8 @@
 	<div class="w-50 my-5">
 		<div class="w-100">
 			<div class="d-flex justify-content-center mb-3">
-				<input type="text" class="datepicker text-center" id="date">
-			</div> 
+				<input type="text" class="datepicker text-center" id="datepicker">
+			</div>
 			<table class="table">
 				<thead class="text-center">
 					<tr>
@@ -17,16 +17,29 @@
 						<th>Cal</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="text-center">
 					<tr>
-						<td></td>
+						<td>${mFoodList.fat + lFoodList.fat + dFoodList.fat}g</td>
+						<td>${mFoodList.carb + lFoodList.carb + dFoodList.carb}g</td>
+						<td>${mFoodList.protein + lFoodList.protein + dFoodList.protein}g</td>
+						<td>${mFoodList.kcal + lFoodList.kcal + dFoodList.kcal}kcal</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div class="input-wrap w-100 mt-3">
+		<div class="input-wrap w-100 mt-5">
 			<div class="m-4">
-				<span style="font-size: 30px">아침 식사</span><br>
+				<div class="d-flex justify-content-between">
+					<span style="font-size: 30px">아침 식사</span>
+					<div class="w-50">
+						<div class="d-flex justify-content-between">
+							<small>지방</small><small>탄수화물</small><small>단백질</small><small>Cal</small>
+						</div>
+						<div class="d-flex justify-content-between">
+							<small>${mFoodList.fat}</small><small>${mFoodList.carb}</small><small>${mFoodList.protein}</small><small>${mFoodList.kcal}</small>
+						</div>
+					</div>
+				</div>
 				<button id="morningBtn" data-user-id="${userId }"
 					class="btn btn-success form-control d-flex justify-content-first">
 					<span style="color: white">+항목 추가하기</span>
@@ -66,7 +79,17 @@
 				</div>
 			</div>
 			<div class="m-4">
-				<span style="font-size: 30px">점심 식사</span><br>
+				<div class="d-flex justify-content-between">
+					<span style="font-size: 30px">점심 식사</span>
+					<div class="w-50">
+						<div class="d-flex justify-content-between">
+							<small>지방</small><small>탄수화물</small><small>단백질</small><small>Cal</small>
+						</div>
+						<div class="d-flex justify-content-between">
+							<small>${lFoodList.fat}</small><small>${lFoodList.carb}</small><small>${lFoodList.protein}</small><small>${lFoodList.kcal}</small>
+						</div>
+					</div>
+				</div>
 				<button id="lunchBtn" data-user-id="${userId }"
 					class="btn btn-success form-control d-flex justify-content-first">
 					<span style="color: white">+항목 추가하기</span>
@@ -106,7 +129,17 @@
 				</div>
 			</div>
 			<div class="m-4">
-				<span style="font-size: 30px">저녁 식사</span><br>
+				<div class="d-flex justify-content-between">
+					<span style="font-size: 30px">저녁 식사</span>
+					<div class="w-50">
+						<div class="d-flex justify-content-between">
+							<small>지방</small><small>탄수화물</small><small>단백질</small><small>Cal</small>
+						</div>
+						<div class="d-flex justify-content-between">
+							<small>${dFoodList.fat}</small><small>${dFoodList.carb}</small><small>${dFoodList.protein}</small><small>${dFoodList.kcal}</small>
+						</div>
+					</div>
+				</div>
 				<button id="dinnerBtn" data-user-id="${userId }"
 					class="btn btn-success form-control d-flex justify-content-first">
 					<span style="color: white">+항목 추가하기</span>
@@ -152,15 +185,15 @@
 				</a>
 			</div> -->
 		</div>
-		<div class="d-flex justify-content-between p-3 w-100"
+		<div class="d-flex justify-content-between w-100"
 			style="background-color: #d7f0bd;">
 			<div class="bg-warning w-50 m-5 d-flex">
-				<span style="font-size: 40px">0%</span>
+				<span style="font-size: 40px">${kcalPercent}%</span>
 				<div class="ml-3">
 					<span style="font-size: 30px">RDI 기준</span><br>
-					<div class="small text-gray">(0kcal)</div>
+					<div class="small"><span style="color:blue; font-size:20px">${recommendedKcal }kcal</span></div>
 				</div>
-				<div class="ml-5">
+				<div class="mr-3">
 					<img
 						src="https://www.iconninja.com/files/214/518/441/heart-icon.png"
 						width="30px" height="30px" alt="empty heart" class="mt-3">
@@ -170,9 +203,9 @@
 				<div>
 					<span style="font-size: 20px">칼로리 분석</span>
 					<div class="ml-2">
-						<div class="small text-gray">탄수화물 : (0kcal)</div>
-						<div class="small text-gray">단백질 : (0kcal)</div>
-						<div class="small text-gray">지방 : (0kcal)</div>
+						<div class="small text-gray">탄수화물 : (${elementPercent.carb }%)</div>
+						<div class="small text-gray">단백질 : (${elementPercent.protein }%)</div>
+						<div class="small text-gray">지방 : (${elementPercent.fat }%)</div>
 					</div>
 				</div>
 				<div class="mr-2 mt-3">
@@ -531,6 +564,18 @@
 				error : function(e) {
 					alert('오류 발생');
 				}
+			});
+		});
+
+		$(function() {
+			$("#datepicker").datepicker();
+
+			$("#datepicker").val();
+
+			$("#datepicker").on("change", function() {
+				var selected = $(this).val();
+				alert(selected);
+
 			});
 		});
 	});
