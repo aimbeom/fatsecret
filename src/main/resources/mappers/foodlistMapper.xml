@@ -51,7 +51,7 @@
  		AND
  			`timeType` = '아침'
  		AND
- 			DATE(`createdAt`) = DATE(NOW())
+ 			DATE(`createdAt`) = DATE(#{date})
  	</select>
  	
  	<delete id="delMorningFoodListById" parameterType="int">
@@ -111,7 +111,7 @@
  		AND
  			`timeType` = '점심'
  		AND
- 			DATE(`createdAt`) = DATE(NOW())
+ 			DATE(`createdAt`) = DATE(#{date})
  	</select>
  	
  	<delete id="delLunchFoodListById" parameterType="int">
@@ -171,7 +171,7 @@
  		AND
  			`timeType` = '저녁'
  		AND
- 			DATE(`createdAt`) = DATE(NOW())
+ 			DATE(`createdAt`) = DATE(#{date})
  	</select>
  	
  	<delete id="delDinnerFoodListById" parameterType="int">

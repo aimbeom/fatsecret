@@ -6,7 +6,7 @@
 	<div class="w-50 my-5">
 		<div class="w-100">
 			<div class="d-flex justify-content-center mb-3">
-				<input type="text" class="datepicker text-center" id="datepicker">
+				<input type="text" class="datepicker text-center" id="datepicker" value="${setDate }">
 			</div>
 			<table class="table">
 				<thead class="text-center">
@@ -567,7 +567,7 @@
 			});
 		});
 
-		$(function() {
+		/* $(function() {
 			$("#datepicker").datepicker();
 
 			$("#datepicker").val();
@@ -577,6 +577,6 @@
 				alert(selected);
 
 			});
-		});
+		}); */
 	});
 </script>

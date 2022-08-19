@@ -1,5 +1,6 @@
 package com.fatsecret.diary;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fatsecret.diary.bo.FoodListBO;
 import com.fatsecret.diary.model.FoodList;
@@ -44,24 +44,28 @@ public class DiaryController {
 	 */
 //	http://localhost:8080/diary/food_diary_view
 	@RequestMapping("/food_diary_view")
-	public String foodDiary(Model model, HttpSession session) {
+	public String foodDiary(
+			@RequestParam(value="date", required=false) String date
+			,Model model
+			,HttpSession session) {
+		
 		int userId = (int) session.getAttribute("userId");
 		int recommendedKcal = (int) session.getAttribute("recommendedKcal");
 		
 		//아,점,저 음식 리스트
-		List<FoodList> morningFoodList = foodListBO.getMorningFoodListByUserIdTimeType(userId);
-		List<FoodList> lunchFoodList = foodListBO.getLunchFoodListByUserIdTimeType(userId);
-		List<FoodList> dinnerFoodList = foodListBO.getDinnerFoodListByUserIdTimeType(userId);
+		List<FoodList> morningFoodList = foodListBO.getMorningFoodListByUserIdTimeType(userId, date);
+		List<FoodList> lunchFoodList = foodListBO.getLunchFoodListByUserIdTimeType(userId, date);
+		List<FoodList> dinnerFoodList = foodListBO.getDinnerFoodListByUserIdTimeType(userId, date);
 		
 		//탄단지칼 토탈
-		FoodList mFoodList = foodListBO.mtotalAmount(userId);
-		FoodList lFoodList = foodListBO.ltotalAmount(userId);
-		FoodList dFoodList = foodListBO.dtotalAmount(userId);
+		FoodList mFoodList = foodListBO.mtotalAmount(userId, date);
+		FoodList lFoodList = foodListBO.ltotalAmount(userId, date);
+		FoodList dFoodList = foodListBO.dtotalAmount(userId, date);
 		
-		int kcalPercent = (int) foodListBO.kcalPercent(userId, recommendedKcal);
+		int kcalPercent = (int) foodListBO.kcalPercent(userId, date,recommendedKcal);
 		
 		//탄단지 달성률
-		FoodList elementPercent = foodListBO.elementPercent(userId, recommendedKcal);
+		FoodList elementPercent = foodListBO.elementPercent(userId, date,recommendedKcal);
 		
 		model.addAttribute("viewName", "diary/food_diary");
 		model.addAttribute("morningFoodList", morningFoodList);
@@ -76,20 +80,29 @@ public class DiaryController {
 
 		model.addAttribute("elementPercent", elementPercent);
 		
+		model.addAttribute("setDate", date);
+		
+		
 		return "template/layout2";
 	}
 	
 	/**
-	 * 운동 다이어리
+	 * 운동/휴식 다이어리
 	 * @param model
 	 * @param session
 	 * @return
 	 */
 //	http://localhost:8080/diary/exercise_diary_view
 	@RequestMapping("/exercise_diary_view")
-	public String exerciseDairy(Model model, HttpSession session) {
+	public String exerciseDairy(
+			@RequestParam(value="date", required=false) String date
+			,Model model
+			,HttpSession session) {
+		
+		
 		
 		model.addAttribute("viewName", "diary/exercise_diary");
+		model.addAttribute("setDate", date);
 		
 		return "template/layout2";
 	}

@@ -173,4 +173,12 @@ public class DiaryRestController {
 		
 		return result;
 	}
+	
+	@PostMapping("/add_exercise")
+	public Map<String, Object> addActivity(){
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "success");
+		
+		return result;
+	}
 }

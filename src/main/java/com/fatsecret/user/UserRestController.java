@@ -78,8 +78,7 @@ public class UserRestController {
 			){
 		Map<String, Object> result = new HashMap<>();
 		
-		//권장 칼로리량
-		int recommendedKcal = userBO.calculateKcal();
+		
 		
 		//패스워드 암호화
 		String encryptPassword = EncryptUtils.md5(password); 
@@ -100,6 +99,10 @@ public class UserRestController {
 			session.setAttribute("userTargetWeight", user.getTargetWeight());
 			session.setAttribute("userImage", user.getImagePath());
 			session.setAttribute("userContent", user.getContent());
+			
+			//권장 칼로리량
+			int recommendedKcal = userBO.calculateKcal(user.getId());
+			
 			session.setAttribute("recommendedKcal", recommendedKcal);
 			result.put("result", "success");
 		}

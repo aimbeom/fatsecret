@@ -43,15 +43,9 @@ public class UserBO {
 		userDAO.insertUser(gender, name, weight, height, birth, amountOfActivity, purpose, targetWeight, nickname, password, email, content, imagePath);
 	}
 	
-	//권장 칼로리 계산을 위해 방금 회원가입한 사람의 정보 가져오기
-	public User getUser() {
-		
-		return userDAO.selectUser();
-	}
-	
 	//권장 칼로리 계산
-	public int calculateKcal() {
-		User user = userDAO.selectUser();
+	public int calculateKcal(int userId) {
+		User user = getUserByUserId(userId);
 		//성별
 		user.getGender();
 		//키
@@ -97,5 +91,4 @@ public class UserBO {
 		return userDAO.selectUserByUserId(id);
 	}
 	
-
 }
