@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fatsecret.diary.dao.SleepDAO">
+	<insert id="addSleepList" parameterType="map">
+		INSERT INTO `sleep`
+		(
+		`userId`
+		, `hour`
+		, `minute`
+		, `kcal`
+		, `createdAt`
+		, `updatedAt`
+		)
+		VALUES
+		(
+		#{userId}
+		, #{hour}
+		, #{minute}
+		, #{kcal}
+		, NOW()
+		, NOW()
+		)
+	</insert>
+	
+	<select id="selectSleepListById" resultType="com.fatsecret.diary.model.Sleep">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+	  		, `hour`
+	  		, `minute`
+	  		, `kcal`
+	  		, `createdAt`
+	  		, `updatedAt`	
+ 		FROM
+ 			`sleep`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		AND
+ 			DATE(`createdAt`) = DATE(NOW())
+ 	</select>
+ 	
+ 	<delete id="deleteSleepListById" parameterType="int">
+ 		DELETE
+		FROM
+			`sleep`
+		WHERE
+			`id` = #{id}
+ 	</delete>
+</mapper>

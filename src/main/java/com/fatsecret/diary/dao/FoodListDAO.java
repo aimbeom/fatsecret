@@ -53,7 +53,7 @@ public interface FoodListDAO {
 	//점심 음식 삭제
 	public void delLunchFoodListById(int id);
 	
-	//점심 음식 추가
+	//저녁 음식 추가
 	public void addDinnerFoodList(
 			@Param("userId") int userId,
 			@Param("timeType") String timeType,
@@ -65,13 +65,13 @@ public interface FoodListDAO {
 			@Param("kcal") int kcal
 			);
 	
-	//점심 음식 리스트 가져오기
+	//저녁 음식 리스트 가져오기
 	public List<FoodList> selectDinnerFoodListByUserIdTimeType(
 			@Param("userId") int userId
 			,@Param("date") String date
 			);
 
-	//점심 음식 삭제
+	//저녁 음식 삭제
 	public void delDinnerFoodListById(int id);
 	
 

@@ -2,5 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.fatsecret.diary.dao.ExerciseDAO">
-  
+  	<insert id="addExerciseList" parameterType="map">
+	  	INSERT INTO `exercise`
+	  	(
+	  		`userId`
+	  		, `name`
+	  		, `hour`
+	  		, `minute`
+	  		, `kcal`
+	  		, `createdAt`
+	  		, `updatedAt`
+	  	)
+	  	VALUES
+	  	(
+	  		#{userId}
+	  		, #{name}
+	  		, #{hour}
+	  		, #{minute}
+	  		, #{kcal}
+			, NOW()
+			, NOW()
+	  	)	
+  </insert>
+  <select id="selectExerciseListByUserId" parameterType="int" resultType="com.fatsecret.diary.model.Exercise">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `name`
+	  		, `hour`
+	  		, `minute`
+	  		, `kcal`
+	  		, `createdAt`
+	  		, `updatedAt`	
+ 		FROM
+ 			`exercise`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		AND
+ 			DATE(`createdAt`) = DATE(NOW())
+ 	</select>
+ 	
+ 	<delete id="deleteExerciseListById" parameterType="int">
+ 		DELETE
+		FROM
+			`exercise`
+		WHERE
+			`id` = #{id}
+ 	</delete>
   </mapper>

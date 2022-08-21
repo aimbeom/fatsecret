@@ -2,11 +2,10 @@ package com.fatsecret.diary.model;
 
 import java.util.Date;
 
-public class Exercise {
+public class Sleep {
 	
 	private int id;
 	private int userId;
-	private String name;
 	private int hour;
 	private int minute;
 	private int kcal;
@@ -24,12 +23,6 @@ public class Exercise {
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public int getHour() {
 		return hour;
@@ -61,7 +54,6 @@ public class Exercise {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
 	
 	
 }

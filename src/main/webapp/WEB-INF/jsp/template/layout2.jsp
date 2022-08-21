@@ -51,11 +51,26 @@
 						alert(date);
 
 						location.href = "/diary/food_diary_view?date=" + date;
+						//location.href = "/diary/exercise_diary_view?date=" + date;
 
-						if (date != null) {
+						if (date == null) {
 							$('#datepicker').datepicker('setDate', 'today');
 						}
 					}
+/* 
+					,
+					onSelect : function() {
+						let date = $.datepicker.formatDate("yy-mm-dd", $("#Edatepicker").datepicker("getDate"));
+						alert(date);
+
+						//location.href = "/diary/food_diary_view?date=" + date;
+						location.href = "/diary/exercise_diary_view?date="
+								+ date;
+
+						if (date == null) {
+							$('#datepicker').datepicker('setDate', 'today');
+						}
+					} */
 
 				});
 	});

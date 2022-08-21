@@ -6,8 +6,8 @@
 	<div class="w-50 my-5">
 		<div class="w-100">
 			<div class="d-flex justify-content-center mb-3">
-				<input type="text" class="datepicker text-center"
-					id="exerciseDatepicker" value="${setDate }">
+				<input type="text" class="Edatepicker text-center"
+					id="datepicker" value="${setDate }">
 			</div>
 			<table class="table">
 				<thead class="text-center">
@@ -18,8 +18,8 @@
 				</thead>
 				<tbody class="text-center">
 					<tr>
-						<td>${mFoodList.fat + lFoodList.fat + dFoodList.fat}</td>
-						<td>${mFoodList.carb + lFoodList.carb + dFoodList.carb}g</td>
+						<td>24시간</td>
+						<td>${2016 - sleep.kcal + exercise.kcal}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -32,8 +32,9 @@
 						<div class="d-flex justify-content-end">
 							<small class="mr-5">시간 소비</small><small class="mr-2">Cal</small>
 						</div>
-						<div class="d-flex justify-content-end mr-3">
-							<span class="mr-5">-</span><span class="ml-4">-</span>
+						<div class="d-flex justify-content-end">
+							<span class="mr-5" style="font-size: 12px;">${exercise.hour }시간
+								${exercise.minute }분</span> <span class="mr-2" style="font-size: 12px">${exercise.kcal }</span>
 						</div>
 					</div>
 				</div>
@@ -45,11 +46,11 @@
 					style="background-color: #d7f0bd;">
 					<div class="d-flex">
 						<div class="w-50 m-3 bg-light">
-							<c:forEach items="${morningFoodList }" var="mlist">
+							<c:forEach items="${exerciseList }" var="exercise">
 								<div class="d-flex justify-content-between my-2">
-									<span class="ml-3">${mlist.foodName}</span> <a href="#"
-										class="exerciseDelBtn" data-mlist-id="${mlist.id }"> <img
-										class="mr-3"
+									<span class="ml-3">${exercise.name}</span> <a href="#"
+										class="exerciseDelBtn" data-exercise-id="${exercise.id }">
+										<img class="mr-3"
 										src="https://www.iconninja.com/files/603/22/506/x-icon.png"
 										width="10px" height="10px">
 									</a>
@@ -59,10 +60,11 @@
 						<%-- exerciseList --%>
 						<div class="w-50 m-3">
 							<input type="text" id="activityName" class="form-control m-1"
-								placeholder="운동명"> <input type="text" id="activityTime"
-								class="form-control m-1" placeholder="운동 시간"> <input
-								type="text" id="activitykCal" class="form-control m-1"
-								placeholder="소비 Cal">
+								placeholder="운동명"> <input type="text" id="activityHour"
+								class="form-control m-1" placeholder="시간"> <input
+								type="text" id="activityMinute" class="form-control m-1"
+								placeholder="분"> <input type="text" id="activitykcal"
+								class="form-control m-1" placeholder="소비 Cal">
 							<div class="d-flex justify-content-between mt-2">
 								<button id="exerciseFoldBtn" class="btn btn-success">접기</button>
 								<button id="exerciseSaveBtn" class="btn btn-success">추가</button>
@@ -79,54 +81,51 @@
 								<small class="mr-5">시간 소비</small><small class="mr-2">Cal</small>
 							</div>
 							<div class="d-flex justify-content-end mr-3">
-								<span class="mr-5">-</span><span class="ml-4">-</span>
+								<span class="mr-5" style="font-size: 12px;">${totalSleepTime.hour }시 ${totalSleepTime.minute }분</span><span class="ml-4" style="font-size: 12px;">${2016 - sleep.kcal }</span>
 							</div>
 						</div>
 					</div>
 					<div class="d-flex justify-content-between w-100 form-control">
-						<a href="#" class="btn" id="sleepBtn"><span>수면</span></a>
-						<div id="exerciseList" class="d-none justify-content-center "
-							style="background-color: #d7f0bd;">
-							<div class="d-flex">
-								<div class="w-50 m-3 bg-light">
-									<c:forEach items="${morningFoodList }" var="mlist">
-										<div class="d-flex justify-content-between my-2">
-											<span class="ml-3">${mlist.foodName}</span> <a href="#"
-												class="exerciseDelBtn" data-mlist-id="${mlist.id }"> <img
-												class="mr-3"
-												src="https://www.iconninja.com/files/603/22/506/x-icon.png"
-												width="10px" height="10px">
-											</a>
-										</div>
-									</c:forEach>
-								</div>
+						<a href="#" class="btn" id="sleepBtn"><span>수면</span></a> <a
+							href="#" class="sleepDelBtn" data-sleep-id="${sleep.id }"> <img
+							class="ml-5"
+							src="https://www.iconninja.com/files/603/22/506/x-icon.png"
+							width="10px" height="10px">
+						</a>
+						<div class="d-flex justify-content-end mr-1">
+							<div class="mr-4">
+								<span>${sleep.hour }시 ${sleep.minute }분</span>
 							</div>
-							<div class="d-flex justify-content-between">
-								<div class="mr-4">-</div>
-								<div>-</div>
-							</div>
+							<div>${sleep.kcal }</div>
 						</div>
 					</div>
 				</div>
 				<div class="w-100 d-none" id="sleepList">
 					<div class="d-flex justify-content-between form-control">
-						<input type="text" id="hour" class="form-control m-1"
-							placeholder="시간"> <input type="text" id="mAmount"
+						<input type="text" id="sleepHour" class="form-control m-1"
+							placeholder="시간"> <input type="text" id="sleepMinute"
 							class="form-control m-1" placeholder="분"> <input
-							type="text" id="minute" class="form-control m-1"
+							type="text" id="sleepKcal" class="form-control m-1"
 							placeholder="소비 Kcal">
 						<div class="d-flex m-2">
 							<button id="sleepFoldBtn" class="btn btn-success mr-2">접기</button>
 							<button id="sleepSaveBtn" class="btn btn-success ml-2">저장</button>
 						</div>
 					</div>
-
 				</div>
 				<div class="d-flex justify-content-between w-100 form-control">
 					<span class="ml-3">휴식</span>
 					<div class="d-flex justify-content-between">
-						<div class="mr-4">24시간</div>
-						<div>2016</div>
+						<c:choose>
+							<c:when test="${sleep.hour == 0}">
+								<div class="mr-4">24시간</div>
+								<div>2016</div>
+							</c:when>
+							<c:otherwise>
+								<div class="mr-4">${24- sleep.hour }시 ${60 - sleep.minute }분</div>
+								<div>${2016 - sleep.kcal }</div>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
@@ -150,27 +149,93 @@
 
 		//운동 리스트 - 추가 버튼
 		$('#exerciseSaveBtn').on('click', function() {
-			alert('test');
+			//alert('test');
 
-			let activityName = $('#activityName').val();
-			let activityTime = $('#activityTime').val();
-			let kcal = $('#mKcal').val().trim();
+			let name = $('#activityName').val();
+			let hour = $('#activityHour').val().trim();
+			let minute = $('#activityMinute').val().trim();
+			let kcal = $('#activitykcal').val();
 
 			//validation
-			if (foodName == "") {
-				alert('음식 이름을 입력해주세요');
+			if (name == "") {
+				alert('활동명을 입력해주세요');
 				return;
 			}
 
-			if (foodName == "") {
-				alert('음식 이름을 입력해주세요');
+			if (hour == "") {
+				alert('시간을 입력해주세요');
+			} else if(hour > 24){
+				alert('최대 24시간까지 입력 가능합니다');
+				return;
+			}	
+			
+			if(minute == ""){
+				alert('분을 입력해주세요');
+			} else if(minute > 59){
+				alert('최대 59분까지 입력 가능합니다');
 				return;
 			}
-
+			
 			if (kcal == "") {
 				alert('칼로리 양을 입력해주세요');
 				return;
 			}
+
+			$.ajax({
+				//request
+				url : "/diary/add_exercise",
+				method : "post",
+				data : {
+					"name" : name,
+					"hour" : hour,
+					"minute" : minute,
+					"kcal" : kcal
+				}
+				//response
+				,
+				success : function(data) {
+					if (data.result == "success") {
+						alert('성공입니다');
+						location.reload(true);
+					} else {
+						alert('저장 실패');
+					}
+				},
+				error : function(e) {
+					alert('통신 오류');
+				}
+			});
+		});
+
+		//운동 리스트 삭제
+		$('.exerciseDelBtn').on('click', function(e) {
+			e.preventDefault();
+
+			//validation
+			let id = $(this).data('exercise-id');
+			//alert(id);
+
+			$.ajax({
+				//request
+				type : "delete",
+				url : "/diary/delete_exercise",
+				data : {
+					"id" : id
+				}
+				//response
+				,
+				success : function(data) {
+					if (data.result == "success") {
+						alert("삭제 성공");
+						location.reload(true);
+					} else {
+						alert('삭제 실패');
+					}
+				},
+				error : function(e) {
+					alert('오류 발생');
+				}
+			});
 		});
 
 		//수면시간 추가하기 버튼
@@ -185,6 +250,88 @@
 			//alert('test');
 			//접기 버튼 클릭 시 다시 접기
 			$('#sleepList').addClass('d-none');
+		});
+
+		//수면 리스트 - 추가 버튼
+		$('#sleepSaveBtn').on('click', function() {
+
+			let hour = $('#sleepHour').val();
+			let minute = $('#sleepMinute').val();
+			let kcal = $('#sleepKcal').val();
+
+			//validation
+			if (hour == "") {
+				alert('수면 시간을 입력해주세요');
+			} else if(hour > 24){
+				alert('최대 24시간까지 입력 가능합니다');
+				return;
+			}
+
+			if (minute == "") {
+				alert('수면 시간을 입력해주세요');
+			} else if(minute > 59){
+				alert('최대 59분까지 입력 가능합니다');
+			}
+
+			if (kcal == "") {
+				alert('칼로리 소모량을 입력해주세요');
+				return;
+			}
+
+			$.ajax({
+				//request
+				url : "/diary/add_sleep",
+				method : "post",
+				data : {
+					"hour" : hour,
+					"minute" : minute,
+					"kcal" : kcal
+				}
+				//response
+				,
+				success : function(data) {
+					if (data.result == "success") {
+						alert('성공입니다');
+						location.reload(true);
+					} else {
+						alert('저장 실패');
+					}
+				},
+				error : function(e) {
+					alert('통신 오류');
+				}
+			});
+		});
+
+		//수면 리스트 삭제
+		$('.sleepDelBtn').on('click', function(e) {
+			e.preventDefault();
+
+			//validation
+			let id = $(this).data('sleep-id');
+			//alert(id);
+
+			$.ajax({
+				//request
+				type : "delete",
+				url : "/diary/delete_sleep",
+				data : {
+					"id" : id
+				}
+				//response
+				,
+				success : function(data) {
+					if (data.result == "success") {
+						alert("삭제 성공");
+						location.reload(true);
+					} else {
+						alert('삭제 실패');
+					}
+				},
+				error : function(e) {
+					alert('오류 발생');
+				}
+			});
 		});
 	});
 </script>

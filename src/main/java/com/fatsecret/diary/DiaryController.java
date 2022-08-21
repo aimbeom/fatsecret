@@ -1,6 +1,5 @@
 package com.fatsecret.diary;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,8 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fatsecret.diary.bo.ExerciseBO;
 import com.fatsecret.diary.bo.FoodListBO;
+import com.fatsecret.diary.bo.SleepBO;
+import com.fatsecret.diary.model.Exercise;
 import com.fatsecret.diary.model.FoodList;
+import com.fatsecret.diary.model.Sleep;
 
 @RequestMapping("/diary")
 @Controller
@@ -20,6 +23,12 @@ public class DiaryController {
 	
 	@Autowired
 	private FoodListBO foodListBO;
+	
+	@Autowired
+	private ExerciseBO exerciseBO;
+	
+	@Autowired
+	private SleepBO sleepBO;
 	
 	/**
 	 * 다이어트 캘린더
@@ -82,7 +91,6 @@ public class DiaryController {
 		
 		model.addAttribute("setDate", date);
 		
-		
 		return "template/layout2";
 	}
 	
@@ -99,13 +107,29 @@ public class DiaryController {
 			,Model model
 			,HttpSession session) {
 		
+		int userId = (int) session.getAttribute("userId");
 		
+		List<Exercise> exerciseList = exerciseBO.getExerciseListByUserId(userId);
+		
+		Exercise exercise = exerciseBO.calculate(userId);
+		
+		Sleep sleep = sleepBO.selectSleepListById(userId);
+		
+		Sleep totalSleepTime = sleepBO.calculate(userId);
 		
 		model.addAttribute("viewName", "diary/exercise_diary");
+		model.addAttribute("exerciseList", exerciseList);
+		model.addAttribute("exercise", exercise);
+		
+		model.addAttribute("sleep", sleep);
+		model.addAttribute("totalSleepTime", totalSleepTime);
+		
 		model.addAttribute("setDate", date);
 		
 		return "template/layout2";
 	}
+	
+	
 	
 	
 	
