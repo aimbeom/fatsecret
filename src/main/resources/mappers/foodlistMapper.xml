@@ -182,5 +182,24 @@
 			`id` = #{id}
  	</delete>
  	
+ 	<select id="selectFoodListByUserId" parameterType="map" resultType="com.fatsecret.diary.model.FoodList">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `timeType`
+	  		, `foodName`
+	  		, `amount`
+	  		, `carb`
+	  		, `protein`
+	  		, `fat`
+	  		, `kcal`
+	  		, `createdAt`
+	  		, `updatedAt`	
+ 		FROM
+ 			`foodlist`
+ 		WHERE
+ 			`userId` = #{userId}
+ 	</select>
+ 	
   </mapper>
  

@@ -74,6 +74,8 @@ public interface FoodListDAO {
 	//저녁 음식 삭제
 	public void delDinnerFoodListById(int id);
 	
+	//userId로 데이터 뽑기
+	public List<FoodList> selectFoodListByUserId(int usreId);
 
 }
 

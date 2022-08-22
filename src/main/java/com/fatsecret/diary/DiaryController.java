@@ -38,7 +38,14 @@ public class DiaryController {
 	 */
 //	http://localhost:8080/diary/diet_calendar_view
 	@RequestMapping("/diet_calendar_view")
-	public String dietDiary(Model model, HttpSession session) {
+	public String dietDiary(
+			@RequestParam(value="date", required=false) String date,
+			@RequestParam(value="type", required=false) String type,
+			Model model,
+			HttpSession session) {
+		
+		int userId = (int) session.getAttribute("userId");
+		int recommendedKcal = (int) session.getAttribute("recommendedKcal");
 		
 		model.addAttribute("viewName", "diary/diet_diary");
 		
@@ -109,20 +116,20 @@ public class DiaryController {
 		
 		int userId = (int) session.getAttribute("userId");
 		
-		List<Exercise> exerciseList = exerciseBO.getExerciseListByUserId(userId);
+		List<Exercise> exerciseList = exerciseBO.getExerciseListByUserIdAndDate(userId, date);
 		
-		Exercise exercise = exerciseBO.calculate(userId);
+		Exercise exercise = exerciseBO.calculate(userId, date);
 		
-		Sleep sleep = sleepBO.selectSleepListById(userId);
+		Sleep sleep = sleepBO.selectSleepListByIdAndDate(userId, date);
 		
-		Sleep totalSleepTime = sleepBO.calculate(userId);
+//		Sleep totalSleepTime = sleepBO.calculate(userId);
 		
 		model.addAttribute("viewName", "diary/exercise_diary");
 		model.addAttribute("exerciseList", exerciseList);
 		model.addAttribute("exercise", exercise);
 		
 		model.addAttribute("sleep", sleep);
-		model.addAttribute("totalSleepTime", totalSleepTime);
+//		model.addAttribute("totalSleepTime", totalSleepTime);
 		
 		model.addAttribute("setDate", date);
 		

@@ -19,7 +19,11 @@ public interface SleepDAO {
 			@Param("kcal") int kcal
 			);
 	
-	public Sleep selectSleepListById(int userId);
+	//userId, date를 매개로 선택한 날짜 데이터 뽑아오기
+	public Sleep selectSleepListByIdAndDate(
+			@Param("userId") int userId,
+			@Param("date") String date
+			);
 	
 	public void deleteSleepListById(int id);
 }

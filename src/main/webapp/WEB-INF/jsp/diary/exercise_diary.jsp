@@ -7,7 +7,7 @@
 		<div class="w-100">
 			<div class="d-flex justify-content-center mb-3">
 				<input type="text" class="Edatepicker text-center"
-					id="datepicker" value="${setDate }">
+					id="Edatepicker" value="${setDate }">
 			</div>
 			<table class="table">
 				<thead class="text-center">
@@ -81,7 +81,7 @@
 								<small class="mr-5">시간 소비</small><small class="mr-2">Cal</small>
 							</div>
 							<div class="d-flex justify-content-end mr-3">
-								<span class="mr-5" style="font-size: 12px;">${totalSleepTime.hour }시 ${totalSleepTime.minute }분</span><span class="ml-4" style="font-size: 12px;">${2016 - sleep.kcal }</span>
+								<span class="mr-5" style="font-size: 12px;">${24 - exercise.hour }시간 ${60- exercise.minute }분</span><span class="ml-4" style="font-size: 12px;">${2016 - sleep.kcal }</span>
 							</div>
 						</div>
 					</div>
@@ -94,7 +94,7 @@
 						</a>
 						<div class="d-flex justify-content-end mr-1">
 							<div class="mr-4">
-								<span>${sleep.hour }시 ${sleep.minute }분</span>
+								<span>${sleep.hour }시간 ${sleep.minute }분</span>
 							</div>
 							<div>${sleep.kcal }</div>
 						</div>
@@ -121,8 +121,12 @@
 								<div class="mr-4">24시간</div>
 								<div>2016</div>
 							</c:when>
+							<c:when test ="${(60 - exercise.minute) - sleep.minute < 0}">
+								<div class="mr-4">${((24 - exercise.hour) - sleep.hour)-1}시간 ${(60 - exercise.minute) - sleep.minute }분</div>
+								<div>${2016 - sleep.kcal }</div>
+							</c:when>
 							<c:otherwise>
-								<div class="mr-4">${24- sleep.hour }시 ${60 - sleep.minute }분</div>
+								<div class="mr-4">${((24 - exercise.hour) - sleep.hour)}시간 ${(60 - exercise.minute) - sleep.minute }분</div>
 								<div>${2016 - sleep.kcal }</div>
 							</c:otherwise>
 						</c:choose>

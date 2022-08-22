@@ -18,10 +18,13 @@ public interface ExerciseDAO {
 			@Param("kcal") int kcal
 			);
 	
-	public List<Exercise> selectExerciseListByUserId(
-			@Param("userId") int userId
+	public List<Exercise> selectExerciseListByUserIdAndDate(
+			@Param("userId") int userId,
+			@Param("date") String date
 			);
 	
 	public void deleteExerciseListById(int id);
+	
+	
 	
 }

@@ -24,7 +24,7 @@
 			, NOW()
 	  	)	
   </insert>
-  <select id="selectExerciseListByUserId" parameterType="int" resultType="com.fatsecret.diary.model.Exercise">
+  <select id="selectExerciseListByUserIdAndDate" parameterType="map" resultType="com.fatsecret.diary.model.Exercise">
  		SELECT
  			`id`
  			, `userId`
@@ -39,7 +39,7 @@
  		WHERE
  			`userId` = #{userId}
  		AND
- 			DATE(`createdAt`) = DATE(NOW())
+ 			DATE(`createdAt`) = DATE(#{date})
  	</select>
  	
  	<delete id="deleteExerciseListById" parameterType="int">

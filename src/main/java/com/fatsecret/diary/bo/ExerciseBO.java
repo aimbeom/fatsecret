@@ -25,9 +25,9 @@ public class ExerciseBO {
 	}
 
 	// userId로 선택한 날짜 운동 리스트 가져오기
-	public List<Exercise> getExerciseListByUserId(int userId) {
+	public List<Exercise> getExerciseListByUserIdAndDate(int userId, String date) {
 
-		return exerciseDAO.selectExerciseListByUserId(userId);
+		return exerciseDAO.selectExerciseListByUserIdAndDate(userId, date);
 	}
 	
 	// 운동 리스트 삭제하기
@@ -37,13 +37,13 @@ public class ExerciseBO {
 	}
 	
 	// userId로 해당 유저의 운동 리스트들 가져와 합산 계산
-	public Exercise calculate(int userId) {
+	public Exercise calculate(int userId, String date) {
 		
 		int totalHour = 0;
 		int totalMinute = 0;
 		int totalKcal = 0;
 
-		List<Exercise> exerciseList = getExerciseListByUserId(userId);
+		List<Exercise> exerciseList = getExerciseListByUserIdAndDate(userId, date);
 		
 		Exercise exercise = new Exercise();
 		for (int i = 0; i < exerciseList.size(); i++) {

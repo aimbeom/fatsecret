@@ -243,5 +243,10 @@ public class FoodListBO {
 		
 		return foodList;
 	}
+	
+//	public List<FoodList> getFoodListByUserId(int userId){
+//		
+//		FoodListDAO.selectFoodListByUserId(usreId);
+//	}
 
 }

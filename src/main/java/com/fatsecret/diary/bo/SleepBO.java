@@ -24,10 +24,10 @@ public class SleepBO {
 		sleepDAO.addSleepList(userId, hour, minute, kcal);
 	}
 	
-	//유저 아이디로 오늘 날짜 수면 리스트 가져오기
-	public Sleep selectSleepListById(int userId) {
+	//유저 아이디, 선택한 날짜를 매개로 수면 리스트 가져오기
+	public Sleep selectSleepListByIdAndDate(int userId, String date) {
 		
-		return sleepDAO.selectSleepListById(userId);
+		return sleepDAO.selectSleepListByIdAndDate(userId, date);
 	}
 	
 	//오늘 날짜 리스트 삭제하기
@@ -35,29 +35,34 @@ public class SleepBO {
 		sleepDAO.deleteSleepListById(id);
 	}
 	
-	//총 수면 소비시간
-	public Sleep calculate(int userId) {
-		//유저id와 오늘 날짜를 매개로 리스트 가져오기
-		Sleep sleepList = selectSleepListById(userId);
-
-		int totalSleepHour = 0;
-		int totalSleepMinute = 0;
-		
-		int sleepHour = sleepList.getHour();
-		int sleepMinute = sleepList.getMinute();
-		
-		if(sleepMinute == 0) {
-			totalSleepHour = 24 - sleepHour;
-			logger.info("totalSleepHour:{}", totalSleepHour);
-		} else {
-			totalSleepHour = 23 - sleepHour;
-			logger.info("totalSleepHour:{}", totalSleepHour);
-			totalSleepMinute = 60 - sleepMinute;
-			logger.info("totalSleepMinute:{}", totalSleepMinute);
-		}
-		sleepList.setHour(totalSleepHour);
-		sleepList.setMinute(totalSleepMinute);
-		
-		return sleepList;
-	}
+//	//총 수면 소비시간
+//	public Sleep calculate(int userId) {
+//		//유저id와 오늘 날짜를 매개로 리스트 가져오기
+//		Sleep sleepList = selectSleepListById(userId);
+//		
+//		if(sleepList == null) {
+//
+//			return sleepList;
+//		}
+//		
+//		int totalSleepHour = 0;
+//		int totalSleepMinute = 0;
+//		
+//		int sleepHour = sleepList.getHour();
+//		int sleepMinute = sleepList.getMinute();
+//		
+//		if(sleepMinute == 0) {
+//			totalSleepHour = 24 - sleepHour;
+//			logger.info("totalSleepHour:{}", totalSleepHour);
+//		} else {
+//			totalSleepHour = 23 - sleepHour;
+//			logger.info("totalSleepHour:{}", totalSleepHour);
+//			totalSleepMinute = 60 - sleepMinute;
+//			logger.info("totalSleepMinute:{}", totalSleepMinute);
+//		}
+//		sleepList.setHour(totalSleepHour);
+//		sleepList.setMinute(totalSleepMinute);
+//		
+//		return sleepList;
+//	}
 }

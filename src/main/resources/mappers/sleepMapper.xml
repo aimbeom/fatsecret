@@ -23,7 +23,7 @@
 		)
 	</insert>
 	
-	<select id="selectSleepListById" resultType="com.fatsecret.diary.model.Sleep">
+	<select id="selectSleepListByIdAndDate" parameterType="map" resultType="com.fatsecret.diary.model.Sleep">
  		SELECT
  			`id`
  			, `userId`
@@ -37,7 +37,7 @@
  		WHERE
  			`userId` = #{userId}
  		AND
- 			DATE(`createdAt`) = DATE(NOW())
+ 			DATE(`createdAt`) = DATE(#{date})
  	</select>
  	
  	<delete id="deleteSleepListById" parameterType="int">
