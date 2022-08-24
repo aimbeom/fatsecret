@@ -61,24 +61,25 @@ public class DiaryController {
 //	http://localhost:8080/diary/food_diary_view
 	@RequestMapping("/food_diary_view")
 	public String foodDiary(
-			@RequestParam(value="date", required=false) String date
-			,Model model
-			,HttpSession session) {
+			@RequestParam(value="date", required=false) String date,
+			Model model,
+			HttpSession session) {
 		
 		int userId = (int) session.getAttribute("userId");
 		int recommendedKcal = (int) session.getAttribute("recommendedKcal");
-		
+			
 		//아,점,저 음식 리스트
-		List<FoodList> morningFoodList = foodListBO.getMorningFoodListByUserIdTimeType(userId, date);
-		List<FoodList> lunchFoodList = foodListBO.getLunchFoodListByUserIdTimeType(userId, date);
-		List<FoodList> dinnerFoodList = foodListBO.getDinnerFoodListByUserIdTimeType(userId, date);
+		List<FoodList> morningFoodList = foodListBO.getFoodListByUserIdTimeTypeDate(userId,"아침",date);
+		List<FoodList> lunchFoodList = foodListBO.getFoodListByUserIdTimeTypeDate(userId, "점심", date);
+		List<FoodList> dinnerFoodList = foodListBO.getFoodListByUserIdTimeTypeDate(userId, "저녁",  date);
 		
 		//탄단지칼 토탈
-		FoodList mFoodList = foodListBO.mtotalAmount(userId, date);
-		FoodList lFoodList = foodListBO.ltotalAmount(userId, date);
-		FoodList dFoodList = foodListBO.dtotalAmount(userId, date);
+		FoodList mTotalFoodList = foodListBO.totalAmount(userId, "아침" ,date);
+		FoodList lTotalFoodList = foodListBO.totalAmount(userId, "점심" ,date);
+		FoodList dTotalFoodList = foodListBO.totalAmount(userId, "저녁" ,date);
 		
-		int kcalPercent = (int) foodListBO.kcalPercent(userId, date,recommendedKcal);
+		//당일 섭취량 백분율
+		int kcalPercent = (int) foodListBO.kcalPercent(userId, date, recommendedKcal);
 		
 		//탄단지 달성률
 		FoodList elementPercent = foodListBO.elementPercent(userId, date,recommendedKcal);
@@ -87,10 +88,11 @@ public class DiaryController {
 		model.addAttribute("morningFoodList", morningFoodList);
 		model.addAttribute("lunchFoodList", lunchFoodList);
 		model.addAttribute("dinnerFoodList", dinnerFoodList);
+//		model.addAttribute("foodList", foodList);
 		
-		model.addAttribute("mFoodList", mFoodList);
-		model.addAttribute("lFoodList", lFoodList);
-		model.addAttribute("dFoodList", dFoodList);
+		model.addAttribute("mTotalFoodList", mTotalFoodList);
+		model.addAttribute("lTotalFoodList", lTotalFoodList);
+		model.addAttribute("dTotalFoodList", dTotalFoodList);
 		
 		model.addAttribute("kcalPercent", kcalPercent);
 

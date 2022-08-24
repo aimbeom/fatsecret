@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.fatsecret.diary.dao.FoodListDAO">
-  	<insert id="addMorningFoodList" parameterType="map">
+  	<insert id="addFoodList" parameterType="map">
   	INSERT INTO `foodlist`
   	(
   		`userId`
@@ -31,7 +31,7 @@
   	)	
   </insert> 
   
-  <select id="selectMorningFoodListByUserIdTimeType" parameterType="map" resultType="com.fatsecret.diary.model.FoodList">
+  <select id="selectFoodListByUserIdTimeTypeDate" parameterType="map" resultType="com.fatsecret.diary.model.FoodList">
  		SELECT
  			`id`
  			, `userId`
@@ -49,157 +49,16 @@
  		WHERE
  			`userId` = #{userId}
  		AND
- 			`timeType` = '아침'
+ 			`timeType` = #{timeType}
  		AND
  			DATE(`createdAt`) = DATE(#{date})
  	</select>
  	
- 	<delete id="delMorningFoodListById" parameterType="int">
+ 	<delete id="delFoodById" parameterType="int">
  		DELETE
 		FROM
 			`foodlist`
 		WHERE
 			`id` = #{id}
  	</delete>
- 	
- 	<insert id="addLunchFoodList" parameterType="map">
-  	INSERT INTO `foodlist`
-  	(
-  		`userId`
-  		, `timeType`
-  		, `foodName`
-  		, `amount`
-  		, `carb`
-  		, `protein`
-  		, `fat`
-  		, `kcal`
-  		, `createdAt`
-  		, `updatedAt`
-  	)
-  	VALUES
-  	(
-  		#{userId}
-  		, #{timeType}
-  		, #{foodName}
-  		, #{amount}
-  		, #{carb}
-  		, #{protein}
-  		, #{fat}
-  		, #{kcal}
-		, NOW()
-		, NOW()
-  	)	
-  </insert> 
-  
-  <select id="selectLunchFoodListByUserIdTimeType" parameterType="map" resultType="com.fatsecret.diary.model.FoodList">
- 		SELECT
- 			`id`
- 			, `userId`
- 			, `timeType`
-	  		, `foodName`
-	  		, `amount`
-	  		, `carb`
-	  		, `protein`
-	  		, `fat`
-	  		, `kcal`
-	  		, `createdAt`
-	  		, `updatedAt`	
- 		FROM
- 			`foodlist`
- 		WHERE
- 			`userId` = #{userId}
- 		AND
- 			`timeType` = '점심'
- 		AND
- 			DATE(`createdAt`) = DATE(#{date})
- 	</select>
- 	
- 	<delete id="delLunchFoodListById" parameterType="int">
- 		DELETE
-		FROM
-			`foodlist`
-		WHERE
-			`id` = #{id}
- 	</delete>
- 	
- 	<insert id="addDinnerFoodList" parameterType="map">
-  	INSERT INTO `foodlist`
-  	(
-  		`userId`
-  		, `timeType`
-  		, `foodName`
-  		, `amount`
-  		, `carb`
-  		, `protein`
-  		, `fat`
-  		, `kcal`
-  		, `createdAt`
-  		, `updatedAt`
-  	)
-  	VALUES
-  	(
-  		#{userId}
-  		, #{timeType}
-  		, #{foodName}
-  		, #{amount}
-  		, #{carb}
-  		, #{protein}
-  		, #{fat}
-  		, #{kcal}
-		, NOW()
-		, NOW()
-  	)	
-  </insert> 
-  
-  <select id="selectDinnerFoodListByUserIdTimeType" parameterType="map" resultType="com.fatsecret.diary.model.FoodList">
- 		SELECT
- 			`id`
- 			, `userId`
- 			, `timeType`
-	  		, `foodName`
-	  		, `amount`
-	  		, `carb`
-	  		, `protein`
-	  		, `fat`
-	  		, `kcal`
-	  		, `createdAt`
-	  		, `updatedAt`	
- 		FROM
- 			`foodlist`
- 		WHERE
- 			`userId` = #{userId}
- 		AND
- 			`timeType` = '저녁'
- 		AND
- 			DATE(`createdAt`) = DATE(#{date})
- 	</select>
- 	
- 	<delete id="delDinnerFoodListById" parameterType="int">
- 		DELETE
-		FROM
-			`foodlist`
-		WHERE
-			`id` = #{id}
- 	</delete>
- 	
- 	<select id="selectFoodListByUserId" parameterType="map" resultType="com.fatsecret.diary.model.FoodList">
- 		SELECT
- 			`id`
- 			, `userId`
- 			, `timeType`
-	  		, `foodName`
-	  		, `amount`
-	  		, `carb`
-	  		, `protein`
-	  		, `fat`
-	  		, `kcal`
-	  		, `createdAt`
-	  		, `updatedAt`	
- 		FROM
- 			`foodlist`
- 		WHERE
- 			`userId` = #{userId}
- 	</select>
- 	
   </mapper>
- 

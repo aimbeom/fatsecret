@@ -6,7 +6,8 @@
 	<div class="w-50 my-5">
 		<div class="w-100">
 			<div class="d-flex justify-content-center mb-3">
-				<input type="text" class="datepicker text-center" id="datepicker" value="${setDate }">
+				<input type="text" class="datepicker text-center" id="datepicker"
+					value="${setDate }">
 			</div>
 			<table class="table">
 				<thead class="text-center">
@@ -19,10 +20,10 @@
 				</thead>
 				<tbody class="text-center">
 					<tr>
-						<td>${mFoodList.fat + lFoodList.fat + dFoodList.fat}g</td>
-						<td>${mFoodList.carb + lFoodList.carb + dFoodList.carb}g</td>
-						<td>${mFoodList.protein + lFoodList.protein + dFoodList.protein}g</td>
-						<td>${mFoodList.kcal + lFoodList.kcal + dFoodList.kcal}kcal</td>
+						<td>${mTotalFoodList.fat + lTotalFoodList.fat + dTotalFoodList.fat}g</td>
+						<td>${mTotalFoodList.carb + lTotalFoodList.carb + dTotalFoodList.carb}g</td>
+						<td>${mTotalFoodList.protein + lTotalFoodList.protein + dTotalFoodList.protein}g</td>
+						<td>${mTotalFoodList.kcal + lTotalFoodList.kcal + dTotalFoodList.kcal}kcal</td>
 					</tr>
 				</tbody>
 			</table>
@@ -36,7 +37,7 @@
 							<small>지방</small><small>탄수화물</small><small>단백질</small><small>Cal</small>
 						</div>
 						<div class="d-flex justify-content-between">
-							<small>${mFoodList.fat}</small><small>${mFoodList.carb}</small><small>${mFoodList.protein}</small><small>${mFoodList.kcal}</small>
+							<small>${mTotalFoodList.fat}g</small><small>${mTotalFoodList.carb}g</small><small>${mTotalFoodList.protein}g</small><small>${mTotalFoodList.kcal}</small>
 						</div>
 					</div>
 				</div>
@@ -50,9 +51,12 @@
 						<div class="w-50 m-3 bg-light">
 							<c:forEach items="${morningFoodList }" var="mlist">
 								<div class="d-flex justify-content-between my-2">
-									<span class="ml-3">${mlist.foodName}</span> <a href="#"
-										class="moringFoodDelBtn" data-mlist-id="${mlist.id }"> <img
-										class="mr-3"
+									<div>
+										<a href="#" class="mFoodUpdateBtn"><span class="ml-3">${mlist.foodName}</span></a>
+										<span class="ml-3">${mlist.amount}</span>
+									</div>
+									<a href="#" class="moringFoodDelBtn"
+										data-mlist-id="${mlist.id }"> <img class="mr-3"
 										src="https://www.iconninja.com/files/603/22/506/x-icon.png"
 										width="10px" height="10px">
 									</a>
@@ -86,7 +90,7 @@
 							<small>지방</small><small>탄수화물</small><small>단백질</small><small>Cal</small>
 						</div>
 						<div class="d-flex justify-content-between">
-							<small>${lFoodList.fat}</small><small>${lFoodList.carb}</small><small>${lFoodList.protein}</small><small>${lFoodList.kcal}</small>
+							<small>${lTotalFoodList.fat}g</small><small>${lTotalFoodList.carb}g</small><small>${lTotalFoodList.protein}g</small><small>${lTotalFoodList.kcal}</small>
 						</div>
 					</div>
 				</div>
@@ -136,7 +140,7 @@
 							<small>지방</small><small>탄수화물</small><small>단백질</small><small>Cal</small>
 						</div>
 						<div class="d-flex justify-content-between">
-							<small>${dFoodList.fat}</small><small>${dFoodList.carb}</small><small>${dFoodList.protein}</small><small>${dFoodList.kcal}</small>
+							<small>${dTotalFoodList.fat}g</small><small>${dTotalFoodList.carb}g</small><small>${dTotalFoodList.protein}g</small><small>${dTotalFoodList.kcal}</small>
 						</div>
 					</div>
 				</div>
@@ -191,7 +195,9 @@
 				<span style="font-size: 40px">${kcalPercent}%</span>
 				<div class="ml-3">
 					<span style="font-size: 30px">RDI 기준</span><br>
-					<div class="small"><span style="color:blue; font-size:20px">${recommendedKcal }kcal</span></div>
+					<div class="small">
+						<span style="color: blue; font-size: 20px">${recommendedKcal }kcal</span>
+					</div>
 				</div>
 				<div class="mr-3">
 					<img
@@ -276,7 +282,7 @@
 
 			$.ajax({
 				//request
-				url : "/diary/add_morning_food",
+				url : "/diary/add_food",
 				method : "post",
 				data : {
 					"timeType" : timeType,
@@ -314,7 +320,7 @@
 			$.ajax({
 				//request
 				type : "delete",
-				url : "/diary/delete_morning_food",
+				url : "/diary/delete_food",
 				data : {
 					"id" : id
 				}
@@ -394,7 +400,7 @@
 
 			$.ajax({
 				//request
-				url : "/diary/add_lunch_food",
+				url : "/diary/add_food",
 				method : "post",
 				data : {
 					"timeType" : timeType,
@@ -432,7 +438,7 @@
 			$.ajax({
 				//request
 				type : "delete",
-				url : "/diary/delete_lunch_food",
+				url : "/diary/delete_food",
 				data : {
 					"id" : id
 				}
@@ -459,13 +465,14 @@
 			//경고 문구 안보이게 초기화
 			$('#dinnerFoodList').removeClass('d-none');
 		});
+
 		//저녁 식사 리스트 - 접기 버튼
 		$('#dinnerFoldBtn').on('click', function() {
 			//alert('test');
 			//접기 버튼 클릭 시 다시 접기
 			$('#dinnerFoodList').addClass('d-none');
 		});
-		//점심식사 리스트 - 추가 버튼
+		//저녁식사 리스트 - 추가 버튼
 		$('#dinnerSaveBtn').on('click', function() {
 			//alert('test');
 			let timeType = $(this).data('time-type');
@@ -509,7 +516,7 @@
 
 			$.ajax({
 				//request
-				url : "/diary/add_dinner_food",
+				url : "/diary/add_food",
 				method : "post",
 				data : {
 					"timeType" : timeType,
@@ -546,7 +553,7 @@
 			$.ajax({
 				//request
 				type : "delete",
-				url : "/diary/delete_dinner_food",
+				url : "/diary/delete_food",
 				data : {
 					"id" : id
 				}
@@ -566,17 +573,5 @@
 				}
 			});
 		});
-
-		/* $(function() {
-			$("#datepicker").datepicker();
-
-			$("#datepicker").val();
-
-			$("#datepicker").on("change", function() {
-				var selected = $(this).val();
-				alert(selected);
-
-			});
-		}); */
 	});
 </script>

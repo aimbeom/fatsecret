@@ -26,4 +26,14 @@ public interface SleepDAO {
 			);
 	
 	public void deleteSleepListById(int id);
+	
+	public boolean existSleep(int id);
+	
+	public void updateSleep(
+			@Param("id") int id,
+			@Param("userId") int userId,
+			@Param("hour") int hour,
+			@Param("minute") int minute,
+			@Param("kcal") int kcal
+			);
 }

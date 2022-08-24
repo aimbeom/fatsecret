@@ -47,4 +47,32 @@
 		WHERE
 			`id` = #{id}
  	</delete>
+ 	
+ 	<select id="existSleep" parameterType="int" resultType="boolean">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+	  		, `hour`
+	  		, `minute`
+	  		, `kcal`
+	  		, `createdAt`
+	  		, `updatedAt`	
+ 		FROM
+ 			`sleep`
+ 		WHERE
+ 			`id` = #{id}
+ 	</select>
+ 	
+ 	<update id="updateSleep" parameterType="map">
+	  	UPDATE `sleep`
+	  	SET
+	  		`hour` = #{hour}
+	  		, `minute` = #{minute}
+	  		, `kcal` = #{kcal}
+	  		, `updatedAt` = NOW()
+	  	WHERE
+	  		`id` = #{id}
+	  	AND
+	  		`userId` = #{userId}	
+	  </update>
 </mapper>

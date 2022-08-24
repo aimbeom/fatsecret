@@ -1,6 +1,6 @@
 package com.fatsecret.diary.bo;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -19,194 +19,80 @@ public class FoodListBO {
 	@Autowired
 	private FoodListDAO foodListDAO;
 
-	// 아침 음식 추가
-	public void addMorningFoodList(int userId, String timeType, String foodName, String amount, int carb, int protein,
-			int fat, int kcal) {
+	// 음식 추가
+	public void addFoodList(int userId, String timeType, String foodName, String amount, int carb, int protein, int fat,
+			int kcal) {
 
-		foodListDAO.addMorningFoodList(userId, timeType, foodName, amount, carb, protein, fat, kcal);
+		foodListDAO.addFoodList(userId, timeType, foodName, amount, carb, protein, fat, kcal);
 	}
 
-	// userId,date로 선택한 날짜 아침 음식 리스트 가져오기
-	public List<FoodList> getMorningFoodListByUserIdTimeType(int userId, String date) {
-
-		return foodListDAO.selectMorningFoodListByUserIdTimeType(userId, date);
+	// 음식 리스트 가져오기
+	public List<FoodList> getFoodListByUserIdTimeTypeDate(int userId, String timeType, String date) {
+		
+		return foodListDAO.selectFoodListByUserIdTimeTypeDate(userId, timeType, date);
 	}
 
-	// 아침식사 리스트 삭제
-	public void delMorningFoodListById(int id) {
+	//음식 리스트 삭제
+	public void delFoodById(int id) {
 
-		foodListDAO.delMorningFoodListById(id);
+		foodListDAO.delFoodById(id);
 	}
 
-	// 점심 음식 추가
-	public void addLunchFoodList(int userId, String timeType, String foodName, String amount, int carb, int protein,
-			int fat, int kcal) {
-
-		foodListDAO.addLunchFoodList(userId, timeType, foodName, amount, carb, protein, fat, kcal);
-	}
-
-	// userId 점심 음식 리스트 가져오기
-	public List<FoodList> getLunchFoodListByUserIdTimeType(int userId, String date) {
-
-		return foodListDAO.selectLunchFoodListByUserIdTimeType(userId, date);
-	}
-
-	// 점심식사 리스트 삭제
-	public void delLunchFoodListById(int id) {
-
-		foodListDAO.delLunchFoodListById(id);
-	}
-
-	// 저녁 음식 추가
-	public void addDinnerFoodList(int userId, String timeType, String foodName, String amount, int carb, int protein,
-			int fat, int kcal) {
-
-		foodListDAO.addDinnerFoodList(userId, timeType, foodName, amount, carb, protein, fat, kcal);
-	}
-
-	// userId 저녁 음식 리스트 가져오기
-	public List<FoodList> getDinnerFoodListByUserIdTimeType(int userId, String date) {
-
-		return foodListDAO.selectDinnerFoodListByUserIdTimeType(userId, date);
-	}
-
-	// 점심식사 리스트 삭제
-	public void delDinnerFoodListById(int id) {
-
-		foodListDAO.delDinnerFoodListById(id);
-	}
-
-	// 아침 탄단지칼 합산 구하기
-	public FoodList mtotalAmount(int userId, String date) {
+	//탄단지칼 합산 구하기
+	public FoodList totalAmount(int userId, String timeType ,String date) {
 		int totalCarb = 0;
 		int totalProtein = 0;
 		int totalFat = 0;
 		int totalKcal = 0;
 
-		FoodList foodList = new FoodList();
+		FoodList food = new FoodList();
 
-		// 아침 리스트
-		List<FoodList> morningList = getMorningFoodListByUserIdTimeType(userId, date);
+		// 음식 리스트
+		List<FoodList> foodList = getFoodListByUserIdTimeTypeDate(userId, timeType ,date);
 
-		for (int i = 0; i < morningList.size(); i++) {
+		for (int i = 0; i < foodList.size(); i++) {
 
-			int carb = morningList.get(i).getCarb();
+			int carb = foodList.get(i).getCarb();
 			totalCarb += carb;
 			logger.info("totalCarb:{}", totalCarb);
 
-			int protein = morningList.get(i).getProtein();
+			int protein = foodList.get(i).getProtein();
 			totalProtein += protein;
 			logger.info("totalProtein:{}", totalProtein);
 
-			int fat = morningList.get(i).getFat();
+			int fat = foodList.get(i).getFat();
 			totalFat += fat;
 			logger.info("totalFat:{}", totalFat);
 
-			int kcal = morningList.get(i).getKcal();
+			int kcal = foodList.get(i).getKcal();
 			totalKcal += kcal;
 			logger.info("totalKcal:{}", totalKcal);
 
-			foodList.setCarb(totalCarb);
-			foodList.setProtein(totalProtein);
-			foodList.setFat(totalFat);
-			foodList.setKcal(kcal);
+			food.setCarb(totalCarb);
+			food.setProtein(totalProtein);
+			food.setFat(totalFat);
+			food.setKcal(kcal);
 		}
-		return foodList;
+		return food;
 	}
 
-	// 점심 탄단지칼 합산 구하기
-	public FoodList ltotalAmount(int userId, String date) {
-		int totalCarb = 0;
-		int totalProtein = 0;
-		int totalFat = 0;
-		int totalKcal = 0;
-
-		FoodList foodList = new FoodList();
-
-		// 점심 리스트
-		List<FoodList> lunchList = getLunchFoodListByUserIdTimeType(userId, date);
-
-		for (int i = 0; i < lunchList.size(); i++) {
-
-			int carb = lunchList.get(i).getCarb();
-			totalCarb += carb;
-			logger.info("totalCarb:{}", totalCarb);
-
-			int protein = lunchList.get(i).getProtein();
-			totalProtein += protein;
-			logger.info("totalProtein:{}", totalProtein);
-
-			int fat = lunchList.get(i).getFat();
-			totalFat += fat;
-			logger.info("totalFat:{}", totalFat);
-
-			int kcal = lunchList.get(i).getKcal();
-			totalKcal += kcal;
-			logger.info("totalKcal:{}", totalKcal);
-
-			foodList.setCarb(totalCarb);
-			foodList.setProtein(totalProtein);
-			foodList.setFat(totalFat);
-			foodList.setKcal(kcal);
-		}
-		return foodList;
-	}
-
-	// 저녁 탄단지칼 합산 구하기
-	public FoodList dtotalAmount(int userId, String date) {
-		int totalCarb = 0;
-		int totalProtein = 0;
-		int totalFat = 0;
-		int totalKcal = 0;
-
-		FoodList foodList = new FoodList();
-
-		// 점심 리스트
-		List<FoodList> dinnerList = getDinnerFoodListByUserIdTimeType(userId, date);
-
-		for (int i = 0; i < dinnerList.size(); i++) {
-
-			int carb = dinnerList.get(i).getCarb();
-			totalCarb += carb;
-			logger.info("totalCarb:{}", totalCarb);
-
-			int protein = dinnerList.get(i).getProtein();
-			totalProtein += protein;
-			logger.info("totalProtein:{}", totalProtein);
-
-			int fat = dinnerList.get(i).getFat();
-			totalFat += fat;
-			logger.info("totalFat:{}", totalFat);
-
-			int kcal = dinnerList.get(i).getKcal();
-			totalKcal += kcal;
-			logger.info("totalKcal:{}", totalKcal);
-
-			foodList.setCarb(totalCarb);
-			foodList.setProtein(totalProtein);
-			foodList.setFat(totalFat);
-			foodList.setKcal(kcal);
-		}
-		return foodList;
-	}
-	
 	//당일 섭취량 백분율 구하기
-	public float kcalPercent(int userId, String date ,int recommendedKcal) {
-		
-		FoodList mfoodList = mtotalAmount(userId, date);
-		FoodList lfoodList = ltotalAmount(userId, date);
-		FoodList dfoodList = dtotalAmount(userId, date);
-		
-		float totalKcal = mfoodList.getKcal() + lfoodList.getKcal() + dfoodList.getKcal();
-		
-		float kcalPercent = (totalKcal/recommendedKcal)*100;
-		
-		logger.info("kcalPercent:{}", kcalPercent);
-		
-		return kcalPercent;
-	}
-	
-	//탄단지 섭취 비율 백분율 구하기
+		public float kcalPercent(int userId ,String date ,int recommendedKcal) {
+			
+			FoodList mfoodList = totalAmount(userId, "아침" ,date);
+			FoodList lfoodList = totalAmount(userId, "점심" ,date);
+			FoodList dfoodList = totalAmount(userId, "점심" ,date);
+			
+			float totalKcal = mfoodList.getKcal() + lfoodList.getKcal() + dfoodList.getKcal();
+			
+			float kcalPercent = (totalKcal/recommendedKcal)*100;
+			
+			logger.info("kcalPercent:{}", kcalPercent);
+			
+			return kcalPercent;
+		}
+
+	// 탄단지 섭취 비율 백분율 구하기
 	public FoodList elementPercent(int userId, String date, int recommendedKcal){
 		
 		FoodList foodList = new FoodList();
@@ -221,9 +107,9 @@ public class FoodListBO {
 		logger.info("------------recommendProtein:{}", recommendProtein);
 		
 		//섭취한 탄단지 백분율 구하기
-		FoodList mfoodList = mtotalAmount(userId, date);
-		FoodList lfoodList = ltotalAmount(userId, date);
-		FoodList dfoodList = dtotalAmount(userId, date);
+		FoodList mfoodList = totalAmount(userId, "아침" ,date);
+		FoodList lfoodList = totalAmount(userId, "점심" ,date);
+		FoodList dfoodList = totalAmount(userId, "저녁" ,date);
 		
 		int totalCarb = mfoodList.getCarb() + lfoodList.getCarb() + dfoodList.getCarb();
 		int totalProtein = mfoodList.getProtein() + lfoodList.getProtein() + dfoodList.getProtein();
@@ -243,10 +129,4 @@ public class FoodListBO {
 		
 		return foodList;
 	}
-	
-//	public List<FoodList> getFoodListByUserId(int userId){
-//		
-//		FoodListDAO.selectFoodListByUserId(usreId);
-//	}
-
 }

@@ -51,8 +51,8 @@
 						alert(date);
 						let type = "food";
 
-						location.href = "/diary/food_diary_view?date&type=" + date + type;
-
+						location.href = "/diary/food_diary_view?date=" + date + "&type="  + type;
+						
 						if (date == null) {
 							$('#datepicker').datepicker('setDate', 'today');
 						}
@@ -81,7 +81,7 @@
 						alert(date);
 						let type = "exercise";
 
-						location.href = "/diary/exercise_diary_view?date&type="+ date + type;
+						location.href = "/diary/exercise_diary_view?date=" + date + "&type="  + type;
 
 						if (date == null) {
 							$('#Edatepicker').datepicker('setDate', 'today');
