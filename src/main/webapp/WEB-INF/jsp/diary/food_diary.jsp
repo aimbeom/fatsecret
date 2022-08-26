@@ -25,8 +25,19 @@
 						<td>${mTotalFoodList.protein + lTotalFoodList.protein + dTotalFoodList.protein}g</td>
 						<td>${mTotalFoodList.kcal + lTotalFoodList.kcal + dTotalFoodList.kcal}kcal</td>
 					</tr>
+
 				</tbody>
 			</table>
+			<div class="d-flex justify-content-end">
+				<c:choose>
+					<c:when test="${totalFoodList == null }">
+						<button class="btn btn-success" id="saveTotalFoodInfo">기록</button>
+					</c:when>
+					<c:otherwise>
+						<button class="btn btn-success" id="updateTotalFoodInfo" data-totalFoodList-id="${totalFoodList.id}">수정</button>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
 		<div class="input-wrap w-100 mt-5">
 			<div class="m-4">
@@ -223,355 +234,448 @@
 </div>
 
 <script>
-	$(document).ready(function() {
-		//아침 식사 추가하기 버튼
-		$('#morningBtn').on('click', function() {
-			//경고 문구 안보이게 초기화
-			$('#morningFoodList').removeClass('d-none');
-		});
+	$(document).ready(
+			function() {
+				//아침 식사 추가하기 버튼
+				$('#morningBtn').on('click', function() {
+					//경고 문구 안보이게 초기화
+					$('#morningFoodList').removeClass('d-none');
+				});
 
-		//아침식사 리스트 - 접기 버튼
-		$('#moringFoldBtn').on('click', function() {
-			//alert('test');
-			//접기 버튼 클릭 시 다시 접기
-			$('#morningFoodList').addClass('d-none');
-		});
+				//아침식사 리스트 - 접기 버튼
+				$('#moringFoldBtn').on('click', function() {
+					//alert('test');
+					//접기 버튼 클릭 시 다시 접기
+					$('#morningFoodList').addClass('d-none');
+				});
 
-		//아침식사 리스트 - 추가 버튼
-		$('#morningSaveBtn').on('click', function() {
-			//alert('test');
+				//아침식사 리스트 - 추가 버튼
+				$('#morningSaveBtn').on('click', function() {
+					//alert('test');
 
-			let timeType = $(this).data('time-type');
-			let foodName = $('#mFoodName').val();
-			let amount = $('#mAmount').val();
-			let carb = $('#mCarb').val().trim();
-			let protein = $('#mProtein').val().trim();
-			let fat = $('#mFat').val().trim();
-			let kcal = $('#mKcal').val().trim();
+					let timeType = $(this).data('time-type');
+					let foodName = $('#mFoodName').val();
+					let amount = $('#mAmount').val();
+					let carb = $('#mCarb').val().trim();
+					let protein = $('#mProtein').val().trim();
+					let fat = $('#mFat').val().trim();
+					let kcal = $('#mKcal').val().trim();
 
-			//validation
-			if (foodName == "") {
-				alert('음식 이름을 입력해주세요');
-				return;
-			}
-
-			if (amount == "") {
-				alert('양을 입력해주세요');
-				return;
-			}
-
-			if (carb == "") {
-				alert('탄수화물 양을 입력해주세요');
-				return;
-			}
-
-			if (protein == "") {
-				alert('단백질 양을 입력해주세요');
-				return;
-			}
-
-			if (fat == "") {
-				alert('지방 양을 입력해주세요');
-				return;
-			}
-
-			if (kcal == "") {
-				alert('칼로리 양을 입력해주세요');
-				return;
-			}
-
-			$.ajax({
-				//request
-				url : "/diary/add_food",
-				method : "post",
-				data : {
-					"timeType" : timeType,
-					"foodName" : foodName,
-					"amount" : amount,
-					"carb" : carb,
-					"protein" : protein,
-					"fat" : fat,
-					"kcal" : kcal
-				}
-				//response
-				,
-				success : function(data) {
-					if (data.result == "success") {
-						alert('성공입니다');
-						location.reload(true);
-					} else {
-						alert('저장 실패');
+					//validation
+					if (foodName == "") {
+						alert('음식 이름을 입력해주세요');
+						return;
 					}
-				},
-				error : function(e) {
-					alert('통신 오류');
-				}
-			});
-		});
 
-		//아침 음식리스트 삭제
-		$('.moringFoodDelBtn').on('click', function(e) {
-			e.preventDefault();
-
-			//validation
-			let id = $(this).data('mlist-id');
-			alert(id);
-
-			$.ajax({
-				//request
-				type : "delete",
-				url : "/diary/delete_food",
-				data : {
-					"id" : id
-				}
-
-				//response
-				,
-				success : function(data) {
-					if (data.result == "success") {
-						alert("삭제 성공");
-						location.reload(true);
-					} else {
-						alert('삭제 실패');
+					if (amount == "") {
+						alert('양을 입력해주세요');
+						return;
 					}
-				},
-				error : function(e) {
-					alert('오류 발생');
-				}
-			});
-		});
 
-		//점심 식사 추가하기 버튼
-		$('#lunchBtn').on('click', function() {
-			//alert('test');
-			//경고 문구 안보이게 초기화
-			$('#lunchFoodList').removeClass('d-none');
-		});
-
-		//점심식사 리스트 - 접기 버튼
-		$('#lunchFoldBtn').on('click', function() {
-			//alert('test');
-			//접기 버튼 클릭 시 다시 접기
-			$('#lunchFoodList').addClass('d-none');
-		});
-
-		//점심식사 리스트 - 추가 버튼
-		$('#lunchSaveBtn').on('click', function() {
-			//alert('test');
-
-			let timeType = $(this).data('time-type');
-			let foodName = $('#lFoodName').val();
-			let amount = $('#lAmount').val();
-			let carb = $('#lCarb').val().trim();
-			let protein = $('#lProtein').val().trim();
-			let fat = $('#lFat').val().trim();
-			let kcal = $('#lKcal').val().trim();
-
-			//validation
-			if (foodName == "") {
-				alert('음식 이름을 입력해주세요');
-				return;
-			}
-
-			if (amount == "") {
-				alert('양을 입력해주세요');
-				return;
-			}
-
-			if (carb == "") {
-				alert('탄수화물 양을 입력해주세요');
-				return;
-			}
-
-			if (protein == "") {
-				alert('단백질 양을 입력해주세요');
-				return;
-			}
-
-			if (fat == "") {
-				alert('지방 양을 입력해주세요');
-				return;
-			}
-
-			if (kcal == "") {
-				alert('칼로리 양을 입력해주세요');
-				return;
-			}
-
-			$.ajax({
-				//request
-				url : "/diary/add_food",
-				method : "post",
-				data : {
-					"timeType" : timeType,
-					"foodName" : foodName,
-					"amount" : amount,
-					"carb" : carb,
-					"protein" : protein,
-					"fat" : fat,
-					"kcal" : kcal
-				}
-				//response
-				,
-				success : function(data) {
-					if (data.result == "success") {
-						alert('성공입니다');
-						location.reload(true);
-					} else {
-						alert('저장 실패');
+					if (carb == "") {
+						alert('탄수화물 양을 입력해주세요');
+						return;
 					}
-				},
-				error : function(e) {
-					alert('통신 오류');
-				}
-			});
-		});
 
-		//점심 음식리스트 삭제
-		$('.lunchFoodDelBtn').on('click', function(e) {
-			e.preventDefault();
-
-			//validation
-			let id = $(this).data('llist-id');
-			//alert(id);
-
-			$.ajax({
-				//request
-				type : "delete",
-				url : "/diary/delete_food",
-				data : {
-					"id" : id
-				}
-
-				//response
-				,
-				success : function(data) {
-					if (data.result == "success") {
-						alert("삭제 성공");
-						location.reload(true);
-					} else {
-						alert('삭제 실패');
+					if (protein == "") {
+						alert('단백질 양을 입력해주세요');
+						return;
 					}
-				},
-				error : function(e) {
-					alert('오류 발생');
-				}
-			});
-		});
 
-		//저녁 식사 추가하기 버튼
-		$('#dinnerBtn').on('click', function() {
-			//alert('test');
-			//경고 문구 안보이게 초기화
-			$('#dinnerFoodList').removeClass('d-none');
-		});
-
-		//저녁 식사 리스트 - 접기 버튼
-		$('#dinnerFoldBtn').on('click', function() {
-			//alert('test');
-			//접기 버튼 클릭 시 다시 접기
-			$('#dinnerFoodList').addClass('d-none');
-		});
-		//저녁식사 리스트 - 추가 버튼
-		$('#dinnerSaveBtn').on('click', function() {
-			//alert('test');
-			let timeType = $(this).data('time-type');
-			let foodName = $('#dFoodName').val();
-			let amount = $('#dAmount').val();
-			let carb = $('#dCarb').val().trim();
-			let protein = $('#dProtein').val().trim();
-			let fat = $('#dFat').val().trim();
-			let kcal = $('#dKcal').val().trim();
-
-			//validation
-			if (foodName == "") {
-				alert('음식 이름을 입력해주세요');
-				return;
-			}
-
-			if (amount == "") {
-				alert('양을 입력해주세요');
-				return;
-			}
-
-			if (carb == "") {
-				alert('탄수화물 양을 입력해주세요');
-				return;
-			}
-
-			if (protein == "") {
-				alert('단백질 양을 입력해주세요');
-				return;
-			}
-
-			if (fat == "") {
-				alert('지방 양을 입력해주세요');
-				return;
-			}
-
-			if (kcal == "") {
-				alert('칼로리 양을 입력해주세요');
-				return;
-			}
-
-			$.ajax({
-				//request
-				url : "/diary/add_food",
-				method : "post",
-				data : {
-					"timeType" : timeType,
-					"foodName" : foodName,
-					"amount" : amount,
-					"carb" : carb,
-					"protein" : protein,
-					"fat" : fat,
-					"kcal" : kcal
-				}
-				//response
-				,
-				success : function(data) {
-					if (data.result == "success") {
-						alert('성공입니다');
-						location.reload(true);
-					} else {
-						alert('저장 실패');
+					if (fat == "") {
+						alert('지방 양을 입력해주세요');
+						return;
 					}
-				},
-				error : function(e) {
-					alert('통신 오류');
-				}
-			});
-		});
-		//저녁 음식리스트 삭제
-		$('.dinnerFoodDelBtn').on('click', function(e) {
-			e.preventDefault();
 
-			//validation
-			let id = $(this).data('dlist-id');
-			//alert(id);
-
-			$.ajax({
-				//request
-				type : "delete",
-				url : "/diary/delete_food",
-				data : {
-					"id" : id
-				}
-
-				//response
-				,
-				success : function(data) {
-					if (data.result == "success") {
-						alert("삭제 성공");
-						location.reload(true);
-					} else {
-						alert('삭제 실패');
+					if (kcal == "") {
+						alert('칼로리 양을 입력해주세요');
+						return;
 					}
-				},
-				error : function(e) {
-					alert('오류 발생');
-				}
+
+					$.ajax({
+						//request
+						url : "/diary/add_food",
+						method : "post",
+						data : {
+							"timeType" : timeType,
+							"foodName" : foodName,
+							"amount" : amount,
+							"carb" : carb,
+							"protein" : protein,
+							"fat" : fat,
+							"kcal" : kcal
+						}
+						//response
+						,
+						success : function(data) {
+							if (data.result == "success") {
+								alert('성공입니다');
+								location.reload(true);
+							} else {
+								alert('저장 실패');
+							}
+						},
+						error : function(e) {
+							alert('통신 오류');
+						}
+					});
+				});
+
+				//아침 음식리스트 삭제
+				$('.moringFoodDelBtn').on('click', function(e) {
+					e.preventDefault();
+
+					//validation
+					let id = $(this).data('mlist-id');
+					alert(id);
+
+					$.ajax({
+						//request
+						type : "delete",
+						url : "/diary/delete_food",
+						data : {
+							"id" : id
+						}
+
+						//response
+						,
+						success : function(data) {
+							if (data.result == "success") {
+								alert("삭제 성공");
+								location.reload(true);
+							} else {
+								alert('삭제 실패');
+							}
+						},
+						error : function(e) {
+							alert('오류 발생');
+						}
+					});
+				});
+
+				//점심 식사 추가하기 버튼
+				$('#lunchBtn').on('click', function() {
+					//alert('test');
+					//경고 문구 안보이게 초기화
+					$('#lunchFoodList').removeClass('d-none');
+				});
+
+				//점심식사 리스트 - 접기 버튼
+				$('#lunchFoldBtn').on('click', function() {
+					//alert('test');
+					//접기 버튼 클릭 시 다시 접기
+					$('#lunchFoodList').addClass('d-none');
+				});
+
+				//점심식사 리스트 - 추가 버튼
+				$('#lunchSaveBtn').on('click', function() {
+					//alert('test');
+
+					let timeType = $(this).data('time-type');
+					let foodName = $('#lFoodName').val();
+					let amount = $('#lAmount').val();
+					let carb = $('#lCarb').val().trim();
+					let protein = $('#lProtein').val().trim();
+					let fat = $('#lFat').val().trim();
+					let kcal = $('#lKcal').val().trim();
+
+					//validation
+					if (foodName == "") {
+						alert('음식 이름을 입력해주세요');
+						return;
+					}
+
+					if (amount == "") {
+						alert('양을 입력해주세요');
+						return;
+					}
+
+					if (carb == "") {
+						alert('탄수화물 양을 입력해주세요');
+						return;
+					}
+
+					if (protein == "") {
+						alert('단백질 양을 입력해주세요');
+						return;
+					}
+
+					if (fat == "") {
+						alert('지방 양을 입력해주세요');
+						return;
+					}
+
+					if (kcal == "") {
+						alert('칼로리 양을 입력해주세요');
+						return;
+					}
+
+					$.ajax({
+						//request
+						url : "/diary/add_food",
+						method : "post",
+						data : {
+							"timeType" : timeType,
+							"foodName" : foodName,
+							"amount" : amount,
+							"carb" : carb,
+							"protein" : protein,
+							"fat" : fat,
+							"kcal" : kcal
+						}
+						//response
+						,
+						success : function(data) {
+							if (data.result == "success") {
+								alert('성공입니다');
+								location.reload(true);
+							} else {
+								alert('저장 실패');
+							}
+						},
+						error : function(e) {
+							alert('통신 오류');
+						}
+					});
+				});
+
+				//점심 음식리스트 삭제
+				$('.lunchFoodDelBtn').on('click', function(e) {
+					e.preventDefault();
+
+					//validation
+					let id = $(this).data('llist-id');
+					//alert(id);
+
+					$.ajax({
+						//request
+						type : "delete",
+						url : "/diary/delete_food",
+						data : {
+							"id" : id
+						}
+
+						//response
+						,
+						success : function(data) {
+							if (data.result == "success") {
+								alert("삭제 성공");
+								location.reload(true);
+							} else {
+								alert('삭제 실패');
+							}
+						},
+						error : function(e) {
+							alert('오류 발생');
+						}
+					});
+				});
+
+				//저녁 식사 추가하기 버튼
+				$('#dinnerBtn').on('click', function() {
+					//alert('test');
+					//경고 문구 안보이게 초기화
+					$('#dinnerFoodList').removeClass('d-none');
+				});
+
+				//저녁 식사 리스트 - 접기 버튼
+				$('#dinnerFoldBtn').on('click', function() {
+					//alert('test');
+					//접기 버튼 클릭 시 다시 접기
+					$('#dinnerFoodList').addClass('d-none');
+				});
+				//저녁식사 리스트 - 추가 버튼
+				$('#dinnerSaveBtn').on('click', function() {
+					//alert('test');
+					let timeType = $(this).data('time-type');
+					let foodName = $('#dFoodName').val();
+					let amount = $('#dAmount').val();
+					let carb = $('#dCarb').val().trim();
+					let protein = $('#dProtein').val().trim();
+					let fat = $('#dFat').val().trim();
+					let kcal = $('#dKcal').val().trim();
+
+					//validation
+					if (foodName == "") {
+						alert('음식 이름을 입력해주세요');
+						return;
+					}
+
+					if (amount == "") {
+						alert('양을 입력해주세요');
+						return;
+					}
+
+					if (carb == "") {
+						alert('탄수화물 양을 입력해주세요');
+						return;
+					}
+
+					if (protein == "") {
+						alert('단백질 양을 입력해주세요');
+						return;
+					}
+
+					if (fat == "") {
+						alert('지방 양을 입력해주세요');
+						return;
+					}
+
+					if (kcal == "") {
+						alert('칼로리 양을 입력해주세요');
+						return;
+					}
+
+					$.ajax({
+						//request
+						url : "/diary/add_food",
+						method : "post",
+						data : {
+							"timeType" : timeType,
+							"foodName" : foodName,
+							"amount" : amount,
+							"carb" : carb,
+							"protein" : protein,
+							"fat" : fat,
+							"kcal" : kcal
+						}
+						//response
+						,
+						success : function(data) {
+							if (data.result == "success") {
+								alert('성공입니다');
+								location.reload(true);
+							} else {
+								alert('저장 실패');
+							}
+						},
+						error : function(e) {
+							alert('통신 오류');
+						}
+					});
+				});
+				//저녁 음식리스트 삭제
+				$('.dinnerFoodDelBtn').on('click', function(e) {
+					e.preventDefault();
+
+					//validation
+					let id = $(this).data('dlist-id');
+					//alert(id);
+
+					$.ajax({
+						//request
+						type : "delete",
+						url : "/diary/delete_food",
+						data : {
+							"id" : id
+						}
+
+						//response
+						,
+						success : function(data) {
+							if (data.result == "success") {
+								alert("삭제 성공");
+								location.reload(true);
+							} else {
+								alert('삭제 실패');
+							}
+						},
+						error : function(e) {
+							alert('오류 발생');
+						}
+					});
+				});
+
+				$('#saveTotalFoodInfo').on('click',function(e) {
+
+					let totalFat = ${mTotalFoodList.fat + lTotalFoodList.fat + dTotalFoodList.fat};
+					
+					let totalCarb = ${mTotalFoodList.carb + lTotalFoodList.carb + dTotalFoodList.carb}
+					
+					let totalProtein = ${mTotalFoodList.protein + lTotalFoodList.protein + dTotalFoodList.protein}
+					
+					let totalKcal = ${mTotalFoodList.kcal + lTotalFoodList.kcal + dTotalFoodList.kcal}
+					
+					let kcalPercent = ${kcalPercent};
+					
+					//alert(kcalPercent);
+
+							$.ajax({
+								//request
+								type : "post",
+								url : "/diary/add_total_food",
+								data : {
+									"totalFat" : totalFat,
+									"totalCarb" : totalCarb,
+									"totalProtein" : totalProtein,
+									"totalKcal" : totalKcal,
+									"kcalPercent" : kcalPercent
+								}
+
+								//response
+								,
+								success : function(data) {
+									if (data.result == "success") {
+										alert("입력 성공");
+										location.reload(true);
+									} else {
+										alert('입력 실패');
+									}
+								},
+								error : function(e) {
+									alert('오류 발생');
+								}
+							});
+						});
+
+			 	$('#updateTotalFoodInfo').on(
+						'click',
+						function(e) {
+
+							let id = ${totalFoodList.id};
+							
+							//let id = $('.sleepDelBtn').data('sleep-id');
+							
+							let totalFat = ${mTotalFoodList.fat + lTotalFoodList.fat + dTotalFoodList.fat};
+							
+							let totalCarb = ${mTotalFoodList.carb + lTotalFoodList.carb + dTotalFoodList.carb}
+							
+							let totalProtein = ${mTotalFoodList.protein + lTotalFoodList.protein + dTotalFoodList.protein}
+							
+							let totalKcal = ${mTotalFoodList.kcal + lTotalFoodList.kcal + dTotalFoodList.kcal}
+							
+							let kcalPercent = ${kcalPercent};
+							//alert(id);
+							
+							$.ajax({
+								//request
+								type : "post",
+								url : "/diary/update_total_food",
+								data : {
+									"id" : id,
+									"totalCarb" : totalCarb,
+									"totalProtein" : totalProtein,
+									"totalFat" : totalFat,
+									"totalKcal" : totalKcal,
+									"kcalPercent" : kcalPercent
+								}
+
+								//response
+								,
+								success : function(data) {
+									if (data.result == "success") {
+										alert("수정 성공");
+										location.reload(true);
+									} else {
+										alert('수정 실패');
+									}
+								},
+								error : function(e) {
+									alert('오류 발생');
+								}
+							});
+
+						}); 
+
 			});
-		});
-	});
 </script>

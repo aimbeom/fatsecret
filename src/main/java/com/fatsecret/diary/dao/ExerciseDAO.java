@@ -25,6 +25,6 @@ public interface ExerciseDAO {
 	
 	public void deleteExerciseListById(int id);
 	
-	
+	public List<Exercise> selectExerciseList(int userId);
 	
 }

@@ -61,4 +61,46 @@
 		WHERE
 			`id` = #{id}
  	</delete>
+ 	
+ 	<select id="selectFoodListByUserId" parameterType="int" resultType="com.fatsecret.diary.model.FoodList">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `timeType`
+	  		, `foodName`
+	  		, `amount`
+	  		, `carb`
+	  		, `protein`
+	  		, `fat`
+	  		, `kcal`
+	  		, `createdAt`
+	  		, `updatedAt`	
+ 		FROM
+ 			`foodlist`
+ 		WHERE
+ 			`userId` = #{userId}
+ 	</select>
+ 	
+ 	<select id="selectFoodListDesc" parameterType="int" resultType="com.fatsecret.diary.model.FoodList">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `timeType`
+	  		, `foodName`
+	  		, `amount`
+	  		, `carb`
+	  		, `protein`
+	  		, `fat`
+	  		, `kcal`
+	  		, `createdAt`
+	  		, `updatedAt`	
+ 		FROM
+ 			`foodlist`
+ 		WHERE
+ 			`userId` = #{userId}	
+ 		ORDER BY
+ 			`createdAt`
+ 		DESC	
+ 		
+ 	</select>
   </mapper>

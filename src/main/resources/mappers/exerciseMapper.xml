@@ -49,4 +49,20 @@
 		WHERE
 			`id` = #{id}
  	</delete>
+ 	
+ 	<select id="selectExerciseList" parameterType="int" resultType="com.fatsecret.diary.model.Exercise">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `name`
+	  		, `hour`
+	  		, `minute`
+	  		, `kcal`
+	  		, `createdAt`
+	  		, `updatedAt`	
+ 		FROM
+ 			`exercise`
+ 		WHERE
+ 			`userId` = #{userId}
+ 	</select>
   </mapper>

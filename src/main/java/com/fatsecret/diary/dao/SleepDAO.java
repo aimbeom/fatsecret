@@ -36,4 +36,6 @@ public interface SleepDAO {
 			@Param("minute") int minute,
 			@Param("kcal") int kcal
 			);
+	
+	public List<Sleep> selectSleepList(int userId);
 }

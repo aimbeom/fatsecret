@@ -23,6 +23,9 @@
 					</tr>
 				</tbody>
 			</table>
+			<div class="d-flex justify-content-end">
+				<button class="btn btn-success" id="saveTotalFoodInfo">기록</button>
+			</div>
 		</div>
 		<div class="input-wrap w-100 mt-5">
 			<div class="m-4">
@@ -88,12 +91,12 @@
 						</div>
 					</div>
 					<div class="d-flex justify-content-between w-100 form-control">
-						<a href="#" class="btn" id="sleepBtn"><span>수면</span></a> 
+						<a href="#" class="btn" id="sleepBtn"><span>수면</span></a>
 						<c:if test="${sleep != null }">
-							<a href="#" class="sleepDelBtn" data-sleep-id="${sleep.id }"> <img
-							class="ml-5"
-							src="https://www.iconninja.com/files/603/22/506/x-icon.png"
-							width="10px" height="10px">
+							<a href="#" class="sleepDelBtn" data-sleep-id="${sleep.id }">
+								<img class="ml-5"
+								src="https://www.iconninja.com/files/603/22/506/x-icon.png"
+								width="10px" height="10px">
 							</a>
 						</c:if>
 						<div class="d-flex justify-content-end mr-1">
@@ -278,7 +281,7 @@
 
 		//수면 리스트 - 추가 / 수정 버튼
 		$('#sleepSaveBtn').on('click', function() {
-			
+
 			let hour = $('#sleepHour').val();
 			let minute = $('#sleepMinute').val();
 			let kcal = $('#sleepKcal').val();
@@ -357,18 +360,18 @@
 				}
 			});
 		});
-		
+
 		//수면 리스트 수정
 		$('#sleepUpdateBtn').on('click', function(e) {
 			e.preventDefault();
-			
+
 			let id = $('.sleepDelBtn').data('sleep-id');
 			let hour = $('#sleepHour').val();
 			let minute = $('#sleepMinute').val();
 			let kcal = $('#sleepKcal').val();
 			//alert(date);
-			
-		 	$.ajax({
+
+			$.ajax({
 				//request
 				type : "post",
 				url : "/diary/update_sleep",
@@ -393,5 +396,6 @@
 				}
 			});
 		});
+
 	});
 </script>

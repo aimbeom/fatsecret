@@ -38,4 +38,9 @@ public class SleepBO {
 
 		sleepDAO.updateSleep(id, userId, hour, minute, kcal);
 	}
+	
+	public List<Sleep> getSleepList(int userId){
+		
+		return sleepDAO.selectSleepList(userId);
+	}
 }

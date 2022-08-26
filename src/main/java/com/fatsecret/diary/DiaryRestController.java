@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fatsecret.diary.bo.ExerciseBO;
 import com.fatsecret.diary.bo.FoodListBO;
 import com.fatsecret.diary.bo.SleepBO;
+import com.fatsecret.diary.bo.TotalFoodListBO;
 
 @RequestMapping("/diary")
 @RestController
@@ -29,6 +29,9 @@ public class DiaryRestController {
 	
 	@Autowired
 	private SleepBO sleepBO;
+	
+	@Autowired
+	private TotalFoodListBO totalFoodListBO;
 	
 	/**
 	 * 식사 추가
@@ -198,6 +201,69 @@ public class DiaryRestController {
 		Map<String, Object> result = new HashMap<>();
 		
 		sleepBO.updateSleep(id, userId, hour, minute, kcal);
+		
+		result.put("result", "success");
+		
+		return result;
+	}
+	
+	/**
+	 * 음식 총 리스트 추가
+	 * @param timeType
+	 * @param foodName
+	 * @param amount
+	 * @param carb
+	 * @param protein
+	 * @param fat
+	 * @param kcal
+	 * @param session
+	 * @return
+	 */
+	@PostMapping("/add_total_food")
+	public Map<String, Object> addTotalFood(
+			@RequestParam("totalCarb") int totalCarb
+			, @RequestParam("totalProtein") int totalProtein
+			, @RequestParam("totalFat") int totalFat
+			, @RequestParam("totalKcal") int totalKcal
+			, @RequestParam("kcalPercent") int kcalPercent
+			, HttpSession session
+			){
+		
+		Map<String, Object> result = new HashMap<>();
+		int userId = (int) session.getAttribute("userId");
+		
+		totalFoodListBO.addTotalFoodList(userId, totalCarb, totalProtein, totalFat, totalKcal, kcalPercent);
+		
+		result.put("result", "success");
+		
+		return result;
+	}
+	
+	/**
+	 * 총 음식 리스트 수정
+	 * @param id
+	 * @param totalCarb
+	 * @param totalProtein
+	 * @param totalFat
+	 * @param totalKcal
+	 * @param session
+	 * @return
+	 */
+	@PostMapping("/update_total_food")
+	public Map<String, Object> updateTotalFood(
+			@RequestParam("id") int id
+			, @RequestParam("totalCarb") int totalCarb
+			, @RequestParam("totalProtein") int totalProtein
+			, @RequestParam("totalFat") int totalFat
+			, @RequestParam("totalKcal") int totalKcal
+			, @RequestParam("kcalPercent") int kcalPercent
+			, HttpSession session
+			){
+		
+		Map<String, Object> result = new HashMap<>();
+		int userId = (int) session.getAttribute("userId");
+		
+		totalFoodListBO.updateTotalFoodList(id, userId, totalCarb, totalProtein, totalFat, totalKcal, kcalPercent);
 		
 		result.put("result", "success");
 		

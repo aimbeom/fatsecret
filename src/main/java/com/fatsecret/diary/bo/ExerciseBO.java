@@ -75,4 +75,9 @@ public class ExerciseBO {
 		return exercise;
 	}
 	
+	public List<Exercise> getExerciseList(int userId){
+		
+		return exerciseDAO.selectExerciseList(userId);
+	}
+	
 }

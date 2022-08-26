@@ -75,4 +75,19 @@
 	  	AND
 	  		`userId` = #{userId}	
 	  </update>
+	  
+	  <select id="selectSleepList" parameterType="int" resultType="com.fatsecret.diary.model.Sleep">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+	  		, `hour`
+	  		, `minute`
+	  		, `kcal`
+	  		, `createdAt`
+	  		, `updatedAt`	
+ 		FROM
+ 			`sleep`
+ 		WHERE
+ 			`id` = #{id}
+ 	</select>
 </mapper>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fatsecret.diary.dao.TotalFoodListDAO">
+	<insert id="insertTotalFoodList" parameterType="map">
+		INSERT INTO `total_foodlist`
+		(
+		`userId`
+		, `carb`
+		, `protein`
+		, `fat`
+		, `kcal`
+		, `kcalPercent`
+		, `createdAt`
+		, `updatedAt`
+		)
+		VALUES
+		(
+		#{userId}
+		, #{carb}
+		, #{protein}
+		, #{fat}
+		, #{kcal}
+		, #{kcalPercent}
+		, NOW()
+		, NOW()
+		)
+	</insert>
+	
+	<select id="selectTotalFoodByUserIdDate" parameterType="map" resultType="com.fatsecret.diary.model.TotalFoodList">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+	  		, `carb`
+	  		, `protein`
+	  		, `fat`
+	  		, `kcal`
+	  		, `kcalPercent`
+	  		, `createdAt`
+	  		, `updatedAt`	
+ 		FROM
+ 			`total_foodlist`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		AND
+ 			DATE(`createdAt`) = DATE(#{date})
+ 	</select>
+ 	
+ 	<update id="updateTotalFoodList" parameterType="map">
+	  	UPDATE `total_foodlist`
+	  	SET
+	  		`carb` = #{carb}
+	  		, `protein` = #{protein}
+	  		, `fat` = #{fat}
+	  		, `kcal` = #{kcal}
+	  		, `kcalPercent` = #{kcalPercent}
+	  		, `updatedAt` = NOW()
+	  	WHERE
+	  		`id` = #{id}
+	  	AND
+	  		`userId` = #{userId}	
+	  </update>
+	  
+	  <select id="selectTotalFoodListByUserIdDate" parameterType="int" resultType="com.fatsecret.diary.model.TotalFoodList">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+	  		, `carb`
+	  		, `protein`
+	  		, `fat`
+	  		, `kcal`
+	  		, `kcalPercent`
+	  		, `createdAt`
+	  		, `updatedAt`	
+ 		FROM
+ 			`total_foodlist`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		ORDER BY
+ 			`createdAt`
+ 		DESC	
+ 	</select>
+</mapper>

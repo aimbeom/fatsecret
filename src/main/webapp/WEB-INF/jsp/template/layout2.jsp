@@ -27,6 +27,47 @@
 <!-- stylesheet yml로 사용할 땐 /static을 붙여준다-->
 <link rel="stylesheet" type="text/css" href="/static/css/fatSecret.css">
 
+<!-- fullcalender -->
+<link href="/static/fullcalendar-5.11.3/lib/main.css" rel="stylesheet" />
+<script src="/static/fullcalendar-5.11.3/lib/main.js"></script>
+
+<!-- <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    	 var calendarEl = document.getElementById('calendar');
+         var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        	
+         /*  ,events: function(start,end,time,callback){
+        		  var sStart = start._d.getFullYear()+'-'+(start._d.getMonth()+1)+'-'+start._d.getDate()+' 00:00:00';
+        		  var sEnd = end._d.getFullYear()+'-'+(end._d.getMonth()+1)+'-'+end._d.getDate()+' 23:59:59';
+
+        		  // console.log(start._d.getFullYear()+'-'+(start._d.getMonth()+1)+'-'+start._d.getDate()+' 00:00:00');
+        		  // console.log(end._d.getFullYear()+'-'+(end._d.getMonth()+1)+'-'+end._d.getDate()+' 23:59:59')
+        		  var sConfirm='all';
+
+        		  aParame = {'start_date': sStart,'end_date':sEnd,'mode':'select','calendar_status':sConfirm};
+        		  $.ajax({
+        		  	url: "/test/action.php",
+        		  	type: 'POST',
+        		  	cache: false,
+        		  	data: aParame,
+        		  	dataType:'JSON',
+        		  	success: function (result) {
+        		  	callback(result);
+        		  },
+        		  	error: function (request, status, error) {
+        		  	console.log(error);
+        		  	}
+        		  });
+
+        		  } */
+        });
+         
+        calendar.render();
+      });
+</script> -->
+
+
 <script>
 	$(function() {
 		$('.datepicker').datepicker(
@@ -41,7 +82,7 @@
 					,
 					changeMonth : true //option값  월 선택 가능  
 					,
-					minDate : new Date('1990-01-01'),
+					minDate : new Date('1950-01-01'),
 					maxDate : new Date('2022-12-31')
 
 					,
@@ -51,14 +92,15 @@
 						alert(date);
 						let type = "food";
 
-						location.href = "/diary/food_diary_view?date=" + date + "&type="  + type;
-						
+						location.href = "/diary/food_diary_view?date=" + date
+								+ "&type=" + type;
+
 						if (date == null) {
 							$('#datepicker').datepicker('setDate', 'today');
 						}
 					}
 				});
-		
+
 		$('.Edatepicker').datepicker(
 				{
 					dateFormat : 'yy-mm-dd' //달력 날짜 형태
@@ -71,7 +113,7 @@
 					,
 					changeMonth : true //option값  월 선택 가능  
 					,
-					minDate : new Date('1990-01-01'),
+					minDate : new Date('1950-01-01'),
 					maxDate : new Date('2022-12-31')
 
 					,
@@ -81,7 +123,8 @@
 						alert(date);
 						let type = "exercise";
 
-						location.href = "/diary/exercise_diary_view?date=" + date + "&type="  + type;
+						location.href = "/diary/exercise_diary_view?date="
+								+ date + "&type=" + type;
 
 						if (date == null) {
 							$('#Edatepicker').datepicker('setDate', 'today');
