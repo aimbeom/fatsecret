@@ -628,9 +628,7 @@
 							});
 						});
 
-			 	$('#updateTotalFoodInfo').on(
-						'click',
-						function(e) {
+			 	$('#updateTotalFoodInfo').on('click',function(e) {
 
 							let id = ${totalFoodList.id};
 							

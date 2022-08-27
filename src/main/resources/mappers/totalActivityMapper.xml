@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fatsecret.diary.dao.TotalActivityListDAO">
+	<insert id="insertTotalActivityList" parameterType="map">
+		INSERT INTO `total_activity`
+		(
+		`userId`
+		, `kcal`
+		, `createdAt`
+		, `updatedAt`
+		)
+		VALUES
+		(
+		#{userId}
+		, #{kcal}
+		, NOW()
+		, NOW()
+		)
+	</insert>
+
+	<select id="selectTotalActivity" parameterType="map" resultType="com.fatsecret.diary.model.TotalActivityList">
+		SELECT
+			*
+		FROM
+			`total_activity`
+		WHERE
+			`userId` = #{userId}
+		AND
+			DATE(`createdAt`) = DATE(#{date})
+	</select>
+	
+	 <select id="selectTotalActivityList" parameterType="int" resultType="com.fatsecret.diary.model.TotalActivityList">
+ 		SELECT
+ 			*
+ 		FROM
+ 			`total_activity`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		ORDER BY
+ 			`createdAt`
+ 		DESC	
+ 	</select>
+
+	<!-- <update id="updateTotalFoodList" parameterType="map">
+		UPDATE `total_foodlist`
+		SET
+		`carb` = #{carb}
+		, `protein` = #{protein}
+		, `fat` = #{fat}
+		, `kcal` = #{kcal}
+		, `kcalPercent` = #{kcalPercent}
+		, `updatedAt` = NOW()
+		WHERE
+		`id` = #{id}
+		AND
+		`userId` = #{userId}
+	</update> -->
+</mapper>

@@ -1,6 +1,5 @@
 package com.fatsecret.diary.bo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fatsecret.diary.dao.FoodListDAO;
-import com.fatsecret.diary.model.DietCalendar;
 import com.fatsecret.diary.model.FoodList;
 
 @Service

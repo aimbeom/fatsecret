@@ -24,7 +24,14 @@
 				</tbody>
 			</table>
 			<div class="d-flex justify-content-end">
-				<button class="btn btn-success" id="saveTotalFoodInfo">기록</button>
+				<c:choose>
+					<c:when test="${totalActivity == null}">
+						<button class="btn btn-success" id="saveTotalActivityInfo">기록</button>
+					</c:when>
+					<c:otherwise>
+						<button class="btn btn-success" id="updateTotalActivityInfo">수정</button>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<div class="input-wrap w-100 mt-5">
@@ -393,6 +400,34 @@
 				},
 				error : function(e) {
 					alert('오류 발생');
+				}
+			});
+		});
+
+		//수면 리스트 - 추가 / 수정 버튼
+		$('#saveTotalActivityInfo').on('click', function() {
+
+			let kcal = ${2016 - sleep.kcal + exercise.kcal};
+
+			$.ajax({
+				//request
+				url : "/diary/add_total_activity",
+				method : "post",
+				data : {
+					"kcal" : kcal
+				}
+				//response
+				,
+				success : function(data) {
+					if (data.result == "success") {
+						alert('성공입니다');
+						location.reload(true);
+					} else {
+						alert('저장 실패');
+					}
+				},
+				error : function(e) {
+					alert('통신 오류');
 				}
 			});
 		});

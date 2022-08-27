@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fatsecret.diary.bo.ExerciseBO;
 import com.fatsecret.diary.bo.FoodListBO;
 import com.fatsecret.diary.bo.SleepBO;
+import com.fatsecret.diary.bo.TotalActivityListBO;
 import com.fatsecret.diary.bo.TotalFoodListBO;
 
 @RequestMapping("/diary")
@@ -32,6 +33,9 @@ public class DiaryRestController {
 	
 	@Autowired
 	private TotalFoodListBO totalFoodListBO;
+	
+	@Autowired
+	private TotalActivityListBO totalActivityListBO;
 	
 	/**
 	 * 식사 추가
@@ -264,6 +268,32 @@ public class DiaryRestController {
 		int userId = (int) session.getAttribute("userId");
 		
 		totalFoodListBO.updateTotalFoodList(id, userId, totalCarb, totalProtein, totalFat, totalKcal, kcalPercent);
+		
+		result.put("result", "success");
+		
+		return result;
+	}
+	
+	/**
+	 * 총 운동 리스트 추가
+	 * @param totalCarb
+	 * @param totalProtein
+	 * @param totalFat
+	 * @param totalKcal
+	 * @param kcalPercent
+	 * @param session
+	 * @return
+	 */
+	@PostMapping("/add_total_activity")
+	public Map<String, Object> addTotalActivity(
+			@RequestParam("kcal") int kcal
+			, HttpSession session
+			){
+		
+		Map<String, Object> result = new HashMap<>();
+		int userId = (int) session.getAttribute("userId");
+		
+		totalActivityListBO.addTotalActivityList(userId, kcal);
 		
 		result.put("result", "success");
 		
