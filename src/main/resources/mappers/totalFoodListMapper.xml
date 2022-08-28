@@ -27,7 +27,7 @@
 		)
 	</insert>
 	
-	<select id="selectTotalFoodByUserIdDate" parameterType="map" resultType="com.fatsecret.diary.model.TotalFoodList">
+	<select id="selectTotalFoodByUserId" parameterType="int" resultType="com.fatsecret.diary.model.TotalFoodList">
  		SELECT
  			`id`
  			, `userId`
@@ -42,8 +42,11 @@
  			`total_foodlist`
  		WHERE
  			`userId` = #{userId}
- 		AND
- 			DATE(`createdAt`) = DATE(#{date})
+ 		ORDER BY
+ 			`createdAt`
+ 		DESC	
+ 		LIMIT
+ 		1	
  	</select>
  	
  	<update id="updateTotalFoodList" parameterType="map">

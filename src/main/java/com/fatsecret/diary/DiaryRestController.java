@@ -299,4 +299,21 @@ public class DiaryRestController {
 		
 		return result;
 	}
+	
+	@PostMapping("/update_total_activity")
+	public Map<String, Object> updateTotalActivity(
+			@RequestParam("id") int id,
+			@RequestParam("kcal") int kcal
+			, HttpSession session
+			){
+		
+		Map<String, Object> result = new HashMap<>();
+		int userId = (int) session.getAttribute("userId");
+		
+		totalActivityListBO.updateTotalActivityByUserId(userId, id, kcal);
+		
+		result.put("result", "success");
+		
+		return result;
+	}
 }

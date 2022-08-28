@@ -19,13 +19,18 @@ public class TotalActivityListBO {
 		totalActivityListDAO.insertTotalActivityList(userId, kcal);
 	}
 
-	public TotalActivityList getTotalActivity(int userId, String date) {
+	public TotalActivityList getTotalActivityByUserId(int userId) {
 
-		return totalActivityListDAO.selectTotalActivity(userId, date);
+		return totalActivityListDAO.selectTotalActivityByUserId(userId);
 	}
 
-	public List<TotalActivityList> getTotalActivityList(int userId) {
+	public List<TotalActivityList> getTotalActivityListByUserId(int userId) {
 
-		return totalActivityListDAO.selectTotalActivityList(userId);
+		return totalActivityListDAO.selectTotalActivityListByUserId(userId);
+	}
+	
+	public void updateTotalActivityByUserId(int id, int userId, int kcal) {
+		
+		totalActivityListDAO.updateTotalActivityByUserId(id, userId, kcal);
 	}
 }

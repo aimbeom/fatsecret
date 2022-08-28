@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="diaryWrap d-flex justify-content-center"
 	style="height: 800px">
 	<div class="w-50 my-5">
@@ -24,14 +25,15 @@
 				</tbody>
 			</table>
 			<div class="d-flex justify-content-end">
-				<c:choose>
-					<c:when test="${totalActivity == null}">
-						<button class="btn btn-success" id="saveTotalActivityInfo">기록</button>
-					</c:when>
-					<c:otherwise>
-						<button class="btn btn-success" id="updateTotalActivityInfo">수정</button>
-					</c:otherwise>
-				</c:choose>
+				<fmt:formatDate var="resultRegDt" value="${totalActivity.createdAt }" pattern="yyyy-MM-dd" />
+					<c:choose>
+						<c:when test="${resultRegDt != setDate }">
+							<button class="btn btn-success" id="saveTotalActivityInfo">기록</button>
+						</c:when>
+						<c:when test="${resultRegDt == setDate }">
+							<button class="btn btn-success" id="updateTotalActivityInfo">수정</button>
+						</c:when>
+					</c:choose>
 			</div>
 		</div>
 		<div class="input-wrap w-100 mt-5">
@@ -404,7 +406,7 @@
 			});
 		});
 
-		//수면 리스트 - 추가 / 수정 버튼
+		//총 활동 리스트 - 추가
 		$('#saveTotalActivityInfo').on('click', function() {
 
 			let kcal = ${2016 - sleep.kcal + exercise.kcal};
@@ -431,6 +433,38 @@
 				}
 			});
 		});
+		
+		$('#updateTotalActivityInfo').on('click',function(e) {
+				
+			let id = ${totalActivity.id};
+			let kcal = ${2016 - sleep.kcal + exercise.kcal};
+			//alert(id);
+			
+			$.ajax({
+				//request
+				type : "post",
+				url : "/diary/update_total_activity",
+				data : {
+					"id" : id,
+					"kcal" : kcal
+				}
+
+				//response
+				,
+				success : function(data) {
+					if (data.result == "success") {
+						alert("수정 성공");
+						location.reload(true);
+					} else {
+						alert('수정 실패');
+					}
+				},
+				error : function(e) {
+					alert('오류 발생');
+				}
+			});
+
+		}); 
 
 	});
 </script>

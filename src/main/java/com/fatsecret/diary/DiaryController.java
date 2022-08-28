@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +26,9 @@ import com.fatsecret.diary.model.TotalFoodList;
 @RequestMapping("/diary")
 @Controller
 public class DiaryController {
-
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private FoodListBO foodListBO;
 
@@ -58,7 +62,7 @@ public class DiaryController {
 		List<FoodList> foodList = foodListBO.getFoodListDesc(userId);
 		
 		List<TotalFoodList> totalFoodList = totalFoodListBO.getTotalFoodListByUserIdDate(userId);
-		List<TotalActivityList> totalActivityList = totalActivityListBO.getTotalActivityList(userId);
+		List<TotalActivityList> totalActivityList = totalActivityListBO.getTotalActivityListByUserId(userId);
 		
 		
 		model.addAttribute("viewName", "diary/diet_diary");
@@ -82,8 +86,9 @@ public class DiaryController {
 			@RequestParam(value = "date", required = false) String date, 
 			Model model,
 			HttpSession session) {
-
+		
 		int userId = (int) session.getAttribute("userId");
+		
 		int recommendedKcal = (int) session.getAttribute("recommendedKcal");
 
 		// 아,점,저 음식 리스트
@@ -97,9 +102,9 @@ public class DiaryController {
 		FoodList dTotalFoodList = foodListBO.totalAmount(userId, "저녁", date);
 		
 		// 아점저 탄단지칼 토탈
-		TotalFoodList totalFoodList = totalFoodListBO.getTotalFoodByUserIdDate(userId, date);
+		TotalFoodList totalFoodList = totalFoodListBO.getTotalFoodByUserId(userId);
 		
-		TotalActivityList totalActivity = totalActivityListBO.getTotalActivity(userId, date);
+		
 		
 		// 당일 섭취량 백분율
 		int kcalPercent = (int) foodListBO.kcalPercent(userId, date, recommendedKcal);
@@ -117,7 +122,6 @@ public class DiaryController {
 		model.addAttribute("dTotalFoodList", dTotalFoodList);
 		
 		model.addAttribute("totalFoodList", totalFoodList);
-		model.addAttribute("totalActivity", totalActivity);
 
 		model.addAttribute("kcalPercent", kcalPercent);
 
@@ -147,13 +151,18 @@ public class DiaryController {
 		Exercise exercise = exerciseBO.calculate(userId, date);
 
 		Sleep sleep = sleepBO.selectSleepListByIdAndDate(userId, date);
-
+		
+		// 활동 토탈 소모 칼로리
+		TotalActivityList totalActivity = totalActivityListBO.getTotalActivityByUserId(userId);
+		
 //		Sleep totalSleepTime = sleepBO.calculate(userId);
 
 		model.addAttribute("viewName", "diary/exercise_diary");
 		model.addAttribute("exerciseList", exerciseList);
 		model.addAttribute("exercise", exercise);
 
+		model.addAttribute("totalActivity", totalActivity);
+		
 		model.addAttribute("sleep", sleep);
 //		model.addAttribute("totalSleepTime", totalSleepTime);
 
@@ -165,14 +174,15 @@ public class DiaryController {
 ////	http://localhost:8080/diary/test
 //	@ResponseBody
 //	@RequestMapping("/test")
-//	public List<FoodList> test(Model model, HttpSession session) {
+//	public List<TotalActivityList> test(Model model, HttpSession session) {
 //		int userId = (int) session.getAttribute("userId");
-//	
-//		List<FoodList> morningFoodList = foodListBO.getMorningFoodListByUserIdTimeType(userId);
-//		model.addAttribute("viewName", "diary/food_diary");
-//		model.addAttribute("morningFoodList", morningFoodList);
 //		
-//		return morningFoodList;
+//		List<TotalActivityList> totalActivity = totalActivityListBO.getTotalActivityList(userId);
+//		
+//		model.addAttribute("viewName", "diary/food_diary");
+//		model.addAttribute("totalActivity", totalActivity);
+//		
+//		return totalActivity;
 //	}
 
 }

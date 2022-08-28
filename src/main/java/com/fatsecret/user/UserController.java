@@ -94,7 +94,7 @@ public class UserController {
 	 * @param model
 	 * @return
 	 */
-//	http://localhost:8080/user/my_page
+//	http://localhost:8080/user/my_page_view
 	@RequestMapping("/my_page_view")
 	public String myPage(Model model, HttpSession session) {
 		

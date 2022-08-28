@@ -14,10 +14,15 @@ public interface TotalActivityListDAO {
 			@Param("userId") int userId,
 			@Param("kcal") int kcal);
 	
-	public TotalActivityList selectTotalActivity(
-			@Param("userId") int userId,
-			@Param("date") String date);
-	
-	public List<TotalActivityList> selectTotalActivityList(
+	public TotalActivityList selectTotalActivityByUserId(
 			@Param("userId") int userId);
+	
+	public List<TotalActivityList> selectTotalActivityListByUserId(
+			@Param("userId") int userId);
+	
+	public void updateTotalActivityByUserId(
+			@Param("id") int id
+			,@Param("userId") int userId
+			,@Param("kcal") int kcal
+			);
 }

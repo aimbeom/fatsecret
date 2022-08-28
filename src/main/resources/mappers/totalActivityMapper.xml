@@ -19,18 +19,21 @@
 		)
 	</insert>
 
-	<select id="selectTotalActivity" parameterType="map" resultType="com.fatsecret.diary.model.TotalActivityList">
+	<select id="selectTotalActivityByUserId" parameterType="int" resultType="com.fatsecret.diary.model.TotalActivityList">
 		SELECT
 			*
 		FROM
 			`total_activity`
 		WHERE
 			`userId` = #{userId}
-		AND
-			DATE(`createdAt`) = DATE(#{date})
+		ORDER BY
+			`createdAt`
+		DESC
+		LIMIT
+		1	
 	</select>
 	
-	 <select id="selectTotalActivityList" parameterType="int" resultType="com.fatsecret.diary.model.TotalActivityList">
+	 <select id="selectTotalActivityListByUserId" parameterType="int" resultType="com.fatsecret.diary.model.TotalActivityList">
  		SELECT
  			*
  		FROM
@@ -41,19 +44,15 @@
  			`createdAt`
  		DESC	
  	</select>
-
-	<!-- <update id="updateTotalFoodList" parameterType="map">
-		UPDATE `total_foodlist`
-		SET
-		`carb` = #{carb}
-		, `protein` = #{protein}
-		, `fat` = #{fat}
-		, `kcal` = #{kcal}
-		, `kcalPercent` = #{kcalPercent}
-		, `updatedAt` = NOW()
-		WHERE
-		`id` = #{id}
-		AND
-		`userId` = #{userId}
-	</update> -->
+ 	
+ 	<update id="updateTotalActivityByUserId" parameterType="map">
+	  	UPDATE `total_activity`
+	  	SET
+	  		, `kcal` = #{kcal}
+	  		, `updatedAt` = NOW()
+	  	WHERE
+	  		`id` = #{id}
+	  	AND
+	  		`userId` = #{userId}	
+	  </update>
 </mapper>

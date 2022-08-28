@@ -19,9 +19,8 @@ public interface TotalFoodListDAO {
 			@Param("kcalPercent") int kcalPercent
 			);
 	
-	public TotalFoodList selectTotalFoodByUserIdDate(
-			@Param("userId") int userId,
-			@Param("date") String date
+	public TotalFoodList selectTotalFoodByUserId(
+			@Param("userId") int userId
 			);
 	
 	public void updateTotalFoodList(

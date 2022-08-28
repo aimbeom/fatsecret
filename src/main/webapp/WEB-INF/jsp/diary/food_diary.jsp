@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="diaryWrap d-flex justify-content-center"
 	style="height: 800px">
 	<div class="w-50 my-5">
@@ -29,13 +30,14 @@
 				</tbody>
 			</table>
 			<div class="d-flex justify-content-end">
+				<fmt:formatDate var="resultRegDt" value="${totalFoodList.createdAt }" pattern="yyyy-MM-dd" />
 				<c:choose>
-					<c:when test="${totalFoodList == null }">
+					<c:when test="${resultRegDt != setDate }">
 						<button class="btn btn-success" id="saveTotalFoodInfo">기록</button>
 					</c:when>
-					<c:otherwise>
-						<button class="btn btn-success" id="updateTotalFoodInfo" data-totalFoodList-id="${totalFoodList.id}">수정</button>
-					</c:otherwise>
+					<c:when test="${resultRegDt == setDate }">
+						<button class="btn btn-success" id="updateTotalFoodInfo">수정</button>
+					</c:when>
 				</c:choose>
 			</div>
 		</div>
@@ -512,7 +514,7 @@
 					}
 
 					if (protein == "") {
-						alert('단백질 양을 입력해주세요');
+						alert('단백질 양을 ㄴ입력해주세요');
 						return;
 					}
 
@@ -585,9 +587,11 @@
 						}
 					});
 				});
-
+				
+				//totalFoodList 추가
 				$('#saveTotalFoodInfo').on('click',function(e) {
-
+					$('#saveTotalFoodInfo').addClass('d-none');
+					
 					let totalFat = ${mTotalFoodList.fat + lTotalFoodList.fat + dTotalFoodList.fat};
 					
 					let totalCarb = ${mTotalFoodList.carb + lTotalFoodList.carb + dTotalFoodList.carb}
@@ -617,6 +621,7 @@
 								success : function(data) {
 									if (data.result == "success") {
 										alert("입력 성공");
+										$('#updateTotalFoodInfo').removeClass('d-none');
 										location.reload(true);
 									} else {
 										alert('입력 실패');
@@ -627,12 +632,10 @@
 								}
 							});
 						});
-
+				
 			 	$('#updateTotalFoodInfo').on('click',function(e) {
-
-							let id = ${totalFoodList.id};
-							
-							//let id = $('.sleepDelBtn').data('sleep-id');
+			 				
+			 				let id = ${totalFoodList.id};
 							
 							let totalFat = ${mTotalFoodList.fat + lTotalFoodList.fat + dTotalFoodList.fat};
 							
@@ -674,6 +677,5 @@
 							});
 
 						}); 
-
 			});
 </script>

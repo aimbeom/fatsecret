@@ -21,13 +21,9 @@
 					</tr>
 				</thead>
 				<tbody class="text-center">
-					<tr>
-						<td>2022년 08월</td>
-					</tr>
 					<c:forEach items="${totalFoodList }" var="totalFoodList">
 						<tr>
-							<fmt:formatDate var="resultRegDt"
-								value="${totalFoodList.createdAt }" pattern="yyyy-MM-dd" />
+							<fmt:formatDate var="resultRegDt" value="${totalFoodList.createdAt }" pattern="yyyy-MM-dd" />
 							<td>${resultRegDt}</td>
 							<c:choose>
 								<c:when test="${totalFoodList.kcal == null}">
@@ -54,7 +50,6 @@
 									</div>
 								</div>
 							</td>
-							<td><a href="/diary/exercise_diary_view">항목 추가하기</a></td>
 							<c:forEach items="${totalActivityList }" var="totalActivityList">
 								<c:choose>
 									<c:when test="${totalActivityList.kcal == null}">
@@ -64,10 +59,10 @@
 										<td>${totalActivityList.kcal}kcal</td>
 									</c:otherwise>
 								</c:choose>
+								<td>${totalActivityList.kcal + totalFoodList.kcal}kcal</td>
 							</c:forEach>
-							<td>-</td>
-						</tr>
 					</c:forEach>
+					
 				</tbody>
 			</table>
 		</div>
