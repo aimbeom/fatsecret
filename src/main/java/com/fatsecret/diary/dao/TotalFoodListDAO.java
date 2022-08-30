@@ -33,7 +33,7 @@ public interface TotalFoodListDAO {
 			@Param("kcalPercent") int kcalPercent
 			);
 	
-	public List<TotalFoodList> selectTotalFoodListByUserIdDate(
+	public List<TotalFoodList> selectTotalFoodListByUserId(
 			@Param("userId") int userId
 			);
 }

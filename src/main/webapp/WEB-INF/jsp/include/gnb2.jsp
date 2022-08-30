@@ -8,8 +8,9 @@
 						안녕하세요</span></a> <span style="color: white">| </span> <a
 				href="/post/write_view"><span style="color: white">게시하기</span></a> <span
 				style="color: white">| </span> <span style="color: white">나의
-					체중 ${userWeight}kg</span> <span style="color: white">|</span> <a
-				href="/user/sign_out"><span style="color: white">로그아웃</span></a>
+					체중 ${user.weight}kg</span> <span style="color: white">|</span> 
+					<a href="/user/my_weight_update_view"><span style="color:white">지금 체중재기</span></a> <span style="color: white">|</span> 
+					<a href="/user/sign_out"><span style="color: white">로그아웃</span></a>
 			</span>
 		</c:if>
 		<c:if test="${userName == null }">
@@ -27,11 +28,11 @@
 	<hr>
 	<nav id="topMenu" class="d-flex justify-content-center my-2">
 		<ul class="nav-tabs nav-pills nav-justified">
-			<li><a class="menuLink" href="/diary/diet_calendar_view">다이어트 캘린더</a></li>
-			<li><a class="menuLink" href="/diary/food_diary_view">음식 다이어리</a></li>
-			<li><a class="menuLink" href="/diary/exercise_diary_view">운동 다이어리</a></li>
-			<li><a class="menuLink" href="/timeline/timeline_view">커뮤니티</a></li>
-			<li><a id="myPage" data-user-id="${userId }" class="menuLink" href="/user/my_page_view">마이페이지</a></li>
+			<li><a class="menuLink" id="dietCalendarView" href="/diary/diet_calendar_view">다이어트 캘린더</a></li>
+			<li><a class="menuLink" id="foodDiaryView" href="/diary/food_diary_view">음식 다이어리</a></li>
+			<li><a class="menuLink" id="activityDairyView" href="/diary/exercise_diary_view">운동 다이어리</a></li>
+			<li><a class="menuLink" id="timelineView" href="/timeline/timeline_view">커뮤니티</a></li>
+			<li><a id="myPage" id="myPageView" data-user-id="${userId }" class="menuLink" href="/user/my_page_view">마이페이지</a></li>
 		</ul>
 	</nav>
 </div>
@@ -66,18 +67,3 @@ ul li:first-child {
 	border-left: none;
 }
 </style>
-
-<script>
-	$(document).ready(function(){
-/* 		$('#myPage').on('click', function(e){
-			e.preventDefault();
-			//alert('로그인을 해주세요');
-			
-			let userId = $(this).data('user-id');
-			if(userId == ""){
-				alert('로그인을 해주세요');
-				return;
-			}
-		}); */
-	});
-</script>

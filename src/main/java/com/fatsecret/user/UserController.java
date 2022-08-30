@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fatsecret.post.bo.PostBO;
 import com.fatsecret.post.model.Post;
 import com.fatsecret.user.bo.UserBO;
+import com.fatsecret.user.model.User;
 
 @RequestMapping("/user")
 @Controller
@@ -102,12 +103,25 @@ public class UserController {
 		
 		List<Post> postList = postBO.getPostListByUserId(userId);
 		
+		User user = userBO.getUserByUserId(userId);
+		
 		model.addAttribute("viewName", "user/my_page");
 		model.addAttribute("postList", postList);
+		model.addAttribute("user", user);
 		
 		return "template/layout2";
 	}
 	
+//	http://localhost:8080/user/my_wight_update_view
+	@RequestMapping("/my_weight_update_view")
+	public String weightUpdatePage(Model model, HttpSession session) {
+		
+		int userId = (int) session.getAttribute("userId");
+		
+		model.addAttribute("viewName", "user/weight_update");
+		
+		return "template/layout2";
+	}
 	
 	
 	

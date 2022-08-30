@@ -26,24 +26,21 @@ public class PermissionInterceptor implements HandlerInterceptor{
 		
 		// 세션이 있는지 확인 -> 있으면 로그인 된 상태
 		HttpSession session = request.getSession();
-		Integer userId = (Integer) session.getAttribute("userId");
-//		if(userLoginId == null) {
-//			return false;
-//		}
+		String userNickname = (String) session.getAttribute("userNickname");
 		
 		// URL path 확인
 		String uri = request.getRequestURI();
 		logger.info("####################### uri:{}", uri);
 		// 비로그인 && /post / diary => 로그인 페이지로 리다이렉트		2000k 400 302
-		if(userId == null && uri.startsWith("post") && uri.startsWith("diary")) {
+		if(userNickname == null && uri.startsWith("/post") && uri.startsWith("/diary") && uri.startsWith("/timeline") && uri.startsWith("/user")) {
 			response.sendRedirect("/user/sign_in_view");
 			return false;
 		}
-//		// 로그인 && /user => 글 목록 페이지로 리다이렉트
-//		if(userId != null && uri.startsWith("/user")) {
-//			response.sendRedirect("/timeline/_view");
-//			return false;
-//		}
+		// 로그인 && /user
+		if(userNickname != null && uri.startsWith("/user") && uri.startsWith("/post") && uri.startsWith("/diary")) {
+			response.sendRedirect("/timeline/timeline_view");
+			return false;
+		}
 		
 		return true;	//요청된 path로 컨트롤러 수행
 	}

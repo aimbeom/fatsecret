@@ -10,78 +10,65 @@
 					<img src="${userImage }" width="250px" height="250px">
 					<div>
 						<div class="d-flex justify-content-center">
-							<span style="color: black">${userName}</span>
+							<span style="color: black">${userNickname}</span>
 
 						</div>
 						<div class="d-flex justify-content-center">
 							<span style="color: black">${userEmail}</span>
 						</div>
-					</div>
-				</div>
-				<div class="postInfo m-4">
-					<div></div>
-					<div class="mb-3">
-						<span style="font-size: 15px">게시글</span>
-					</div>
-					<div class="mb-3">
-						<span style="font-size: 15px">${postCount }</span>
-					</div>
-					<div class="mb-3">
-						<span style="font-size: 15px">팔로잉</span>
-					</div>
-					<div class="mb-3">
-						<span style="font-size: 15px">${userName }</span>
-					</div>
-					<div class="mb-3">
-						<span style="font-size: 15px">팔로워</span>
-					</div>
-					<div class="mb-0">
-						<span style="font-size: 15px">${userName }</span>
+						<div>
+							<a class="btn btn-success form-control" href="/user/my_weight_update_view">바이오 업데이트 </a>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="info m-4">
-				<div class="d-flex justify-content-between m-4">
-					<span style="font-size: 15px">이름 :</span> <span
-						style="font-size: 15px">${userName }</span>
+			<div class="info m-4 w-100">
+				<div class="d-flex justify-content-between mx-5">
+					<span style="font-size: 20px" >이름 :</span>
+					<span style="font-size: 20px" >${userName }</span>
 				</div>
-				<div class="d-flex justify-content-between m-4">
-					<span style="font-size: 15px">신장 :</span> <span
-						style="font-size: 15px">${userHeight }cm</span>
+				<div class="d-flex justify-content-between m-5">
+					<span style="font-size: 20px">신장 :</span> <span
+						style="font-size: 20px">${userHeight }cm</span>
 				</div>
-				<div class="d-flex justify-content-between m-4">
-					<span style="font-size: 15px">생년월일 :</span> <span
-						style="font-size: 15px">${userBirth }</span>
+				<div class="d-flex justify-content-between m-5">
+					<span style="font-size: 20px">생년월일 :</span> <span
+						style="font-size: 20px">${userBirth }</span>
 				</div>
-				<div class="d-flex justify-content-between m-4">
-					<span style="font-size: 15px">목표 :</span> <span
-						style="font-size: 15px">${userPurpose }</span>
+				<div class="d-flex justify-content-between m-5">
+					<span style="font-size: 20px">목표 :</span> <span
+						style="font-size: 20px">${userPurpose }</span>
 				</div>
-				<div class="d-flex justify-content-center m-4">
+				<div class="d-flex justify-content-center m-5">
 					<span style="font-size: 15px">${userContent }</span>
 				</div>
 			</div>
 		</div>
-		<div class="box-2 w-100 mr-3 bg-secondary">
+		<div class="box-2 w-100 mr-3 bg-success">
 			<div class="d-flex justify-content-between m-3">
-				<span style="font-size: 30px">시작 체중</span> <span
-					style="font-size: 30px">현재 체중</span> <span style="font-size: 30px">목표
-					체중</span>
+				<span style="font-size: 30px">시작 체중</span>
+				<span style="font-size: 30px">현재 체중</span>
+				<span style="font-size: 30px">목표 체중</span>
 			</div>
 			<div class="d-flex justify-content-between mx-5">
 				<span style="font-size: 30px">${userWeight}kg</span> <span
-					style="font-size: 30px">${userWeight}kg</span> <span
+					style="font-size: 30px">${user.weight}kg</span> <span
 					style="font-size: 30px">${userTargetWeight}kg</span>
 			</div>
 			<div class="d-flex justify-content-between m-3">
-				<span style="font-size: 30px">감소한 양</span> <span
-					style="font-size: 30px">현재 성과</span> <span style="font-size: 30px">남은
-					양</span>
+				<span style="font-size: 30px">감소한 양</span>
+				 <span style="font-size: 30px">남은 양</span>
 			</div>
 			<div class="d-flex justify-content-between mx-5">
-				<span style="font-size: 30px">${userWeight-userTargetWeight}kg</span>
-				<span style="font-size: 30px">${userWeight}</span> <span
-					style="font-size: 30px">${userTargetWeight-userWeight}kg</span>
+				<c:choose>
+					<c:when test = "${(user.weight) - userWeight >= 0}">
+						<span style="font-size: 30px"> + ${(user.weight) - userWeight}kg</span>
+					</c:when>
+					<c:otherwise>
+						<span style="font-size: 30px"> - ${(user.weight) - userWeight}kg</span>
+					</c:otherwise>
+				</c:choose>
+					<span style="font-size: 30px">${userTargetWeight - (user.weight)}kg</span>
 			</div>
 		</div>
 		<div class="d-flex justify-content-center m-3">

@@ -111,5 +111,13 @@
 	  	WHERE
 	  		`id` = #{id}
   </select> 
- 
+  
+  <update id="updateWeightByUserId" parameterType="map">
+  		UPDATE `user`
+	  	SET
+	  		`weight` = #{weight}
+	  		, `updatedAt` = NOW()
+	  	WHERE
+	  		`id` = #{id}
+  </update>
  </mapper>

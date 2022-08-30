@@ -64,7 +64,7 @@
 	  		`userId` = #{userId}	
 	  </update>
 	  
-	  <select id="selectTotalFoodListByUserIdDate" parameterType="int" resultType="com.fatsecret.diary.model.TotalFoodList">
+	  <select id="selectTotalFoodListByUserId" parameterType="int" resultType="com.fatsecret.diary.model.TotalFoodList">
  		SELECT
  			`id`
  			, `userId`

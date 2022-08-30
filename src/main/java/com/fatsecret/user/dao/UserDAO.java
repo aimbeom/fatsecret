@@ -34,4 +34,9 @@ public interface UserDAO {
 			);
 	
 	public User selectUserByUserId(int id);
+	
+	public void updateWeightByUserId(
+			@Param("id") int id,
+			@Param("weight") int weight
+			);
 }

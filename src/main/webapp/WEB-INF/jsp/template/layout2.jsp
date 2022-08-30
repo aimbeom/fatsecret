@@ -67,7 +67,6 @@
       });
 </script> -->
 
-
 <script>
 	$(function() {
 		$('.datepicker').datepicker(

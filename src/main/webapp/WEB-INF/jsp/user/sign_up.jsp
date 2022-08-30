@@ -115,6 +115,7 @@
 				<img src="https://as2.ftcdn.net/v2/jpg/02/51/00/15/1000_F_251001540_P8oe2YQ5v5dhZnrN5SFwXgLS0NMZXyNn.jpg"
 					alt="파일선택" width="35px">
 				</a>
+				<span>이미지 첨부하기</span>
 		<%-- 업로드 된 임시 파일명 보이는 곳 --%>
 			<div id="fileName" class="ml-2"></div>
 		</div>

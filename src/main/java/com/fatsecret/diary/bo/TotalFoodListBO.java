@@ -29,8 +29,8 @@ public class TotalFoodListBO {
 		totalFoodListDAO.updateTotalFoodList(id, userId, totalCarb, totalProtein, totalFat, totalKcal, kcalPercent);
 	}
 
-	public List<TotalFoodList> getTotalFoodListByUserIdDate(int userId) {
+	public List<TotalFoodList> getTotalFoodListByUserId(int userId) {
 
-		return totalFoodListDAO.selectTotalFoodListByUserIdDate(userId);
+		return totalFoodListDAO.selectTotalFoodListByUserId(userId);
 	}
 }

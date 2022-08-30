@@ -110,6 +110,21 @@ public class UserRestController {
 		return result;
 	}
 	
+	@PostMapping("/weight_update")
+	public Map<String, Object> weightUpdate(
+			@RequestParam("weight") int weight,
+			HttpSession session
+			){
+		Map<String, Object> result = new HashMap<>();
+		
+		int id = (int)session.getAttribute("userId");
+		userBO.updateWeightByUserId(id, weight);
+		
+		result.put("result", "success");
+		
+		return result;
+	}
+	
 	
 ////	http://localhost:8080/user/test
 //	@RequestMapping("/test")

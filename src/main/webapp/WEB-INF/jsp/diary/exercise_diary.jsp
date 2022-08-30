@@ -93,9 +93,8 @@
 								<small class="mr-5">시간 소비</small><small class="mr-2">Cal</small>
 							</div>
 							<div class="d-flex justify-content-end mr-3">
-								<span class="mr-5" style="font-size: 12px;">${24 - exercise.hour }시간
-									${60- exercise.minute }분</span><span class="ml-4"
-									style="font-size: 12px;">${2016 - sleep.kcal }</span>
+								<span class="ml-3" style="font-size: 12px;">${24 - exercise.hour }시간</span>
+								<span class="ml-5" style="font-size: 12px;">${2016 - sleep.kcal }</span>
 							</div>
 						</div>
 					</div>

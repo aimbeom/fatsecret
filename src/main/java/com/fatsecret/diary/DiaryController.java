@@ -59,14 +59,14 @@ public class DiaryController {
 		int userId = (int) session.getAttribute("userId");
 		int recommendedKcal = (int) session.getAttribute("recommendedKcal");
 		
-		List<FoodList> foodList = foodListBO.getFoodListDesc(userId);
+//		List<FoodList> foodList = foodListBO.getFoodListDesc(userId);
 		
-		List<TotalFoodList> totalFoodList = totalFoodListBO.getTotalFoodListByUserIdDate(userId);
+		List<TotalFoodList> totalFoodList = totalFoodListBO.getTotalFoodListByUserId(userId);
 		List<TotalActivityList> totalActivityList = totalActivityListBO.getTotalActivityListByUserId(userId);
 		
 		
 		model.addAttribute("viewName", "diary/diet_diary");
-		model.addAttribute("foodList", foodList);
+//		model.addAttribute("foodList", foodList);
 		model.addAttribute("totalFoodList", totalFoodList);
 		model.addAttribute("totalActivityList", totalActivityList);
 

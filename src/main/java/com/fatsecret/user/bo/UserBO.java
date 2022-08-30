@@ -91,4 +91,9 @@ public class UserBO {
 		return userDAO.selectUserByUserId(id);
 	}
 	
+	//몸무게 수정
+	public void updateWeightByUserId(int id, int weight) {
+		userDAO.updateWeightByUserId(id, weight);
+	}
+	
 }
