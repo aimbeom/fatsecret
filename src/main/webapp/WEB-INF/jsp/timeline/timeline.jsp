@@ -100,10 +100,10 @@
 				<%-- d-block: 클릭할 수 있는 영역을 넓히기 위해 --%>
 				<a href="#" class="del-post d-block">삭제하기</a>
 			</div>
-		<%-- 	<div class="text-center p-3 border-top">
-				data-dismiss: 모달창 닫힘
-				<!-- <a href="#" class="update-post d-block">취소</a> -->
-			</div> --%>
+		 	<div class="text-center p-3 border-top">
+				<!-- data-dismiss: 모달창 닫힘 -->
+				<a href="" class="update-post d-block">수정하기</a>
+			</div> 
 		</div>
 	</div>
 </div>
@@ -254,13 +254,26 @@
 
 		});
 		
-	/* 	// 모달창 안에 있는 수정하기 버튼 클릭했을 때
+		// ... 더보기 버튼 클릭시, 모달에 삭제될 글 번호를 넣어준다.
+		$('.more-btn').on('click', function(e) {
+			e.preventDefault();
+
+			let postId = $(this).data('post-id'); // get
+			//alert(postId);
+
+			// 모달에 삭제될 글 번호를 넣어준다.(모달은 재활용 되기 때문에)
+			$('#moreModal').data('post-id', postId); // set	태그: data-post-id="2"
+		});
+		
+	 	// 모달창 안에 있는 수정하기 버튼 클릭했을 때
 		$('#moreModal .update-post').on('click', function(e) {
 			e.preventDefault(); //a 태그 기본 동작 중단(위로 올라가는 현상 방지)
 
 			let postId = $('#moreModal').data('post-id');
 			alert(postId);
-		}); */
+			
+			location.href = "/post/detail_view?postId="+postId;
+		});
 	});
 </script>
 

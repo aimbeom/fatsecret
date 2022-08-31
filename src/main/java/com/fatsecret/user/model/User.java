@@ -18,8 +18,17 @@ public class User {
 	private String email;
 	private String content;
 	private String imagePath;
+	private int startWeight;
 	private Date createdAt;
 	private Date updatedAt;
+
+	public int getStartWeight() {
+		return startWeight;
+	}
+	
+	public void setStartWeight(int startWeight) {
+		this.startWeight = startWeight;
+	}
 	
 	public int getId() {
 		return id;

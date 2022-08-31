@@ -56,7 +56,6 @@ public class FileManagerService {
 			if(Files.exists(path)) { //이미지 파일이 있으면 삭제 (파라미터 2개중 한개 삭제)
 				Files.delete(path);
 			}
-			
 			// 디렉토리(폴더) 삭제
 			path = path.getParent();
 			if(Files.exists(path)){

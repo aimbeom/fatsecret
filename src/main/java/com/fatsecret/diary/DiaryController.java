@@ -53,8 +53,7 @@ public class DiaryController {
 	 */
 //	http://localhost:8080/diary/diet_calendar_view
 	@RequestMapping("/diet_calendar_view")
-	public String dietDiary(@RequestParam(value = "date", required = false) String date,
-			@RequestParam(value = "type", required = false) String type, Model model, HttpSession session) {
+	public String dietDiary(Model model, HttpSession session) {
 
 		int userId = (int) session.getAttribute("userId");
 		int recommendedKcal = (int) session.getAttribute("recommendedKcal");

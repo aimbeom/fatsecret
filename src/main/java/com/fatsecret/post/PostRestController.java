@@ -109,9 +109,7 @@ public class PostRestController {
 		if(row < 1) {
 			result.put("result", "fail");
 		}
-		
 		return result;
-		
 	}
 	
 	

@@ -23,7 +23,7 @@
 			<button type="button" id="postDeleteBtn" class="mx-3 btn btn-secondary">삭제</button>
 			
 			<div class="d-flex">
-				<a href="/timeline/timeline_view" id="postListBtn" class="btn btn-secondary">목록</a>
+				<a href="/user/my_page_view" id="postListBtn" class="btn btn-secondary">목록</a>
 				<button type="button" id="saveBtn" class="btn btn-success" data-post-id="${post.id}">저장</button>
 			</div>
 		</div>
@@ -86,7 +86,7 @@ $(document).ready(function(){
 				if(data.result == "success"){
 					alert('수정되었습니다');
 					location.reload(true);
-					location.href = "/timeline/timeline_view";
+					location.href = "/user/my_page_view";
 				} else {
 					alert(data.errorMessage);
 				}

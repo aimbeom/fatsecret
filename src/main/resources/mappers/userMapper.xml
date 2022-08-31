@@ -30,6 +30,7 @@
   		, `imagePath`
   		, `createdAt`
   		, `updatedAt`
+  		, `startWeight`
   	)
   	VALUES
   	(
@@ -48,6 +49,7 @@
   		, #{imagePath}
 		, NOW()
 		, NOW()
+		, #{weight}
   	)	
   </insert> 
   
@@ -64,22 +66,7 @@
   	
   	<select id="selectUserByEmailPassword" parameterType="map" resultType="com.fatsecret.user.model.User">
 	  	SELECT
-		  	`id`
-	  		,`gender`
-	  		, `name`
-	  		, `weight`
-	  		, `height`
-	  		, `birth`
-	  		, `amountOfActivity`
-	  		, `purpose`
-	  		, `targetWeight`
-	  		, `nickname`
-	  		, `password`
-	  		, `email`
-	  		, `content`
-	  		, `imagePath`
-	  		, `createdAt`
-	  		, `updatedAt`
+		  *
 	  	FROM
 	  		`user`
 	  	WHERE
@@ -90,22 +77,7 @@
   
   <select id="selectUserByUserId" parameterType="int" resultType="com.fatsecret.user.model.User">
 	  	SELECT
-		  	`id`
-	  		,`gender`
-	  		, `name`
-	  		, `weight`
-	  		, `height`
-	  		, `birth`
-	  		, `amountOfActivity`
-	  		, `purpose`
-	  		, `targetWeight`
-	  		, `nickname`
-	  		, `password`
-	  		, `email`
-	  		, `content`
-	  		, `imagePath`
-	  		, `createdAt`
-	  		, `updatedAt`
+		  *
 	  	FROM
 	  		`user`
 	  	WHERE
