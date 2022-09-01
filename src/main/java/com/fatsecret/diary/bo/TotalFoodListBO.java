@@ -24,13 +24,18 @@ public class TotalFoodListBO {
 		return totalFoodListDAO.selectTotalFoodByUserId(userId);
 	}
 
-	public void updateTotalFoodList(int id, int userId, int totalCarb, int totalProtein, int totalFat, int totalKcal, int kcalPercent) {
+	public void updateTotalFoodList(int id, int totalCarb, int totalProtein, int totalFat, int totalKcal, int kcalPercent) {
 
-		totalFoodListDAO.updateTotalFoodList(id, userId, totalCarb, totalProtein, totalFat, totalKcal, kcalPercent);
+		totalFoodListDAO.updateTotalFoodList(id, totalCarb, totalProtein, totalFat, totalKcal, kcalPercent);
 	}
 
 	public List<TotalFoodList> getTotalFoodListByUserId(int userId) {
 
 		return totalFoodListDAO.selectTotalFoodListByUserId(userId);
+	}
+	
+	public TotalFoodList getTotalFoodByUserIdDESC(int userId) {
+		
+		return totalFoodListDAO.selectTotalFoodByUserIdDESC(userId);
 	}
 }

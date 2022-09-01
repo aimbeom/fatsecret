@@ -60,9 +60,11 @@ public class UserController {
 	@RequestMapping("/kcal_informed_view")
 	public String kcalInformedView(Model model, HttpSession session) {
 		
-		int userId = (int) session.getAttribute("userId");
+		User user = userBO.getCurrentUser();
 		
-		int recommendedKcal = userBO.calculateKcal(userId);
+//		int userId = (int) session.getAttribute("userId");
+		
+		int recommendedKcal = userBO.calculateKcal(user.getId());
 		
 		model.addAttribute("viewName", "user/kcal_informed");
 		model.addAttribute("recommendedKcal", recommendedKcal);

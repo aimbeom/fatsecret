@@ -96,4 +96,8 @@ public class UserBO {
 		userDAO.updateWeightByUserId(id, weight);
 	}
 	
+	//권장 칼로리 정보 가져오기
+	public User getCurrentUser() {
+		return userDAO.selectCurrentUser();
+	}
 }

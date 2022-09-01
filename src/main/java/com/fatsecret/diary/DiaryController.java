@@ -22,6 +22,8 @@ import com.fatsecret.diary.model.FoodList;
 import com.fatsecret.diary.model.Sleep;
 import com.fatsecret.diary.model.TotalActivityList;
 import com.fatsecret.diary.model.TotalFoodList;
+import com.fatsecret.user.bo.UserBO;
+import com.fatsecret.user.model.User;
 
 @RequestMapping("/diary")
 @Controller
@@ -37,6 +39,9 @@ public class DiaryController {
 
 	@Autowired
 	private SleepBO sleepBO;
+	
+	@Autowired
+	private UserBO userBO;
 	
 	@Autowired
 	private TotalFoodListBO totalFoodListBO;
@@ -62,13 +67,14 @@ public class DiaryController {
 		
 		List<TotalFoodList> totalFoodList = totalFoodListBO.getTotalFoodListByUserId(userId);
 		List<TotalActivityList> totalActivityList = totalActivityListBO.getTotalActivityListByUserId(userId);
-		
+		User user = userBO.getUserByUserId(userId);
 		
 		model.addAttribute("viewName", "diary/diet_diary");
 //		model.addAttribute("foodList", foodList);
 		model.addAttribute("totalFoodList", totalFoodList);
 		model.addAttribute("totalActivityList", totalActivityList);
-
+		model.addAttribute("user", user);
+		
 		return "template/layout2";
 	}
 
@@ -90,6 +96,8 @@ public class DiaryController {
 		
 		int recommendedKcal = (int) session.getAttribute("recommendedKcal");
 
+		User user = userBO.getUserByUserId(userId);
+		
 		// 아,점,저 음식 리스트
 		List<FoodList> morningFoodList = foodListBO.getFoodListByUserIdTimeTypeDate(userId, "아침", date);
 		List<FoodList> lunchFoodList = foodListBO.getFoodListByUserIdTimeTypeDate(userId, "점심", date);
@@ -102,8 +110,6 @@ public class DiaryController {
 		
 		// 아점저 탄단지칼 토탈
 		TotalFoodList totalFoodList = totalFoodListBO.getTotalFoodByUserId(userId);
-		
-		
 		
 		// 당일 섭취량 백분율
 		int kcalPercent = (int) foodListBO.kcalPercent(userId, date, recommendedKcal);
@@ -127,7 +133,9 @@ public class DiaryController {
 		model.addAttribute("elementPercent", elementPercent);
 
 		model.addAttribute("setDate", date);
-
+		
+		model.addAttribute("user", user);
+		
 		return "template/layout2";
 	}
 
@@ -151,6 +159,8 @@ public class DiaryController {
 
 		Sleep sleep = sleepBO.selectSleepListByIdAndDate(userId, date);
 		
+		User user = userBO.getUserByUserId(userId);
+		
 		// 활동 토탈 소모 칼로리
 		TotalActivityList totalActivity = totalActivityListBO.getTotalActivityByUserId(userId);
 		
@@ -166,7 +176,9 @@ public class DiaryController {
 //		model.addAttribute("totalSleepTime", totalSleepTime);
 
 		model.addAttribute("setDate", date);
-
+		
+		model.addAttribute("user", user);
+		
 		return "template/layout2";
 	}
 

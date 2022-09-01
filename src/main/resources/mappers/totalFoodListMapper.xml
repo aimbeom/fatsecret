@@ -60,8 +60,6 @@
 	  		, `updatedAt` = NOW()
 	  	WHERE
 	  		`id` = #{id}
-	  	AND
-	  		`userId` = #{userId}	
 	  </update>
 	  
 	  <select id="selectTotalFoodListByUserId" parameterType="int" resultType="com.fatsecret.diary.model.TotalFoodList">
@@ -80,7 +78,19 @@
  		WHERE
  			`userId` = #{userId}
  		ORDER BY
- 			`createdAt`
+ 			`id`
+ 		DESC
+ 	</select>
+ 	
+ 	<select id="selectTotalFoodByUserIdDESC" parameterType="int" resultType="com.fatsecret.diary.model.TotalFoodList">
+ 		SELECT
+ 			*
+ 		FROM
+ 			`total_foodlist`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		ORDER BY
+ 			`id`
  		DESC	
  	</select>
 </mapper>

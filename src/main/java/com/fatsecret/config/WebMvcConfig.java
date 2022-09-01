@@ -30,6 +30,6 @@ public class WebMvcConfig implements WebMvcConfigurer{
 		//인터셉터의 이름을 넣어준다									
 		registry.addInterceptor(intereceptor)
 		.addPathPatterns("/**")		//	/** = 아래 패스까지 모두 확인
-		.excludePathPatterns("/error", "/static/**", "/user/sign_out");	//static으로 이어지는 하위 나머지들 전부를 제외한다
+		.excludePathPatterns("/error", "/static/**", "/post/detail_view", "/post/write_view", "/user/my_page_view", "/user/my_weight_update_view", "/user/sign_out");	//static으로 이어지는 하위 나머지들 전부를 제외한다
 	}
 }	

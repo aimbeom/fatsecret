@@ -25,7 +25,6 @@ public interface TotalFoodListDAO {
 	
 	public void updateTotalFoodList(
 			@Param("id") int id,
-			@Param("userId") int userId,
 			@Param("carb") int totalCarb,
 			@Param("protein") int totalProtein,
 			@Param("fat") int totalFat,
@@ -36,4 +35,6 @@ public interface TotalFoodListDAO {
 	public List<TotalFoodList> selectTotalFoodListByUserId(
 			@Param("userId") int userId
 			);
+	
+	public TotalFoodList selectTotalFoodByUserIdDESC(int userId);
 }

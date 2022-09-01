@@ -61,14 +61,14 @@
 					style="font-size: 30px">남은 양</span>
 			</div>
 			<div class="d-flex justify-content-between mx-5">
-				<c:choose>
-					<c:when test="${(user.weight) - userWeight >= 0}">
-						<span style="font-size: 30px"> + ${(user.weight) - userWeight}kg</span>
-					</c:when>
-					<c:otherwise>
-						<span style="font-size: 30px"> - ${(user.weight) - userWeight}kg</span>
-					</c:otherwise>
-				</c:choose>
+			<c:choose>	
+				<c:when test="${(user.weight) - user.startWeight > 0}">
+					<span style="font-size: 30px">+${(user.weight) - user.startWeight}kg</span>
+				</c:when>
+				<c:otherwise>
+					<span style="font-size: 30px">${(user.weight) - user.startWeight}kg</span>
+				</c:otherwise>
+			</c:choose>	
 				<span style="font-size: 30px">${userTargetWeight - (user.weight)}kg</span>
 			</div>
 		</div>
@@ -97,7 +97,8 @@
 										pattern="yyyy년 MM월 dd일" /></td>
 								<td><a class="btn btn-success"
 									href="/post/detail_view?postId=${post.id}">수정</a></td>
-								<td><button class="btn btn-danger delBtn" data-post-id="${post.id }">삭제</button></td>
+								<td><button class="btn btn-danger delBtn"
+										data-post-id="${post.id }">삭제</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -108,20 +109,23 @@
 </div>
 
 <script>
-	$(document).ready(function(){
-		$('.delBtn').on('click', function(){
-			
+	$(document).ready(function() {
+		$('.delBtn').on('click', function() {
+
 			let postId = $(this).data('post-id');
 			alert(postId);
-			
-			 $.ajax({
+
+			$.ajax({
 				//request
 				type : "delete",
 				url : "/post/delete",
-				data : {"postId" : postId}
-				
+				data : {
+					"postId" : postId
+				}
+
 				//response
-				, success : function(e){
+				,
+				success : function(e) {
 					if (data.result == "success") {
 						alert('삭제 성공');
 						location.reload(true);
@@ -132,7 +136,7 @@
 				error : function(e) {
 					alert('에러');
 				}
-			}); 
+			});
 		});
 	});
 </script>

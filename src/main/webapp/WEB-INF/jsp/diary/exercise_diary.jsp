@@ -433,9 +433,9 @@
 			});
 		});
 		
-		$('#updateTotalActivityInfo').on('click',function(e) {
+		$('#updateTotalActivityInfo').on('click', function(e) {
 				
-			let id = ${totalActivity.id};
+			//let id = ${totalActivity.id};
 			let kcal = ${2016 - sleep.kcal + exercise.kcal};
 			//alert(id);
 			
@@ -444,7 +444,6 @@
 				type : "post",
 				url : "/diary/update_total_activity",
 				data : {
-					"id" : id,
 					"kcal" : kcal
 				}
 
@@ -463,7 +462,7 @@
 				}
 			});
 
-		}); 
+		});
 
 	});
 </script>

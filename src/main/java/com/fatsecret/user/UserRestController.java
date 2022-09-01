@@ -53,7 +53,8 @@ public class UserRestController {
 			@RequestParam("password") String password,
 			@RequestParam("email") String email,
 			@RequestParam(value="content", required=false) String content,
-			@RequestParam(value="file", required=false) MultipartFile file
+			@RequestParam(value="file", required=false) MultipartFile file,
+			HttpSession session
 			){
 		
 		Map<String, Object> result = new HashMap<>();
@@ -93,7 +94,7 @@ public class UserRestController {
 			session.setAttribute("userName", user.getName());
 			session.setAttribute("userNickname", user.getNickname());
 			session.setAttribute("userHeight", user.getHeight());
-			session.setAttribute("userWeight", user.getWeight());
+			session.setAttribute("userStartWeight", user.getStartWeight());
 			session.setAttribute("userBirth", user.getBirth());
 			session.setAttribute("userPurpose", user.getPurpose());
 			session.setAttribute("userTargetWeight", user.getTargetWeight());

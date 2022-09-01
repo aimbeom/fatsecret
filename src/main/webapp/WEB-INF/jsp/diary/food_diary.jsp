@@ -26,19 +26,19 @@
 						<td>${mTotalFoodList.protein + lTotalFoodList.protein + dTotalFoodList.protein}g</td>
 						<td>${mTotalFoodList.kcal + lTotalFoodList.kcal + dTotalFoodList.kcal}kcal</td>
 					</tr>
-
 				</tbody>
 			</table>
 			<div class="d-flex justify-content-end">
-				<fmt:formatDate var="resultRegDt" value="${totalFoodList.createdAt }" pattern="yyyy-MM-dd" />
-				<c:choose>
+				<fmt:formatDate var="resultRegDt"
+					value="${totalFoodList.createdAt }" pattern="yyyy-MM-dd" />
+				 <c:choose>
 					<c:when test="${resultRegDt != setDate }">
 						<button class="btn btn-success" id="saveTotalFoodInfo">기록</button>
 					</c:when>
 					<c:when test="${resultRegDt == setDate }">
 						<button class="btn btn-success" id="updateTotalFoodInfo">수정</button>
 					</c:when>
-				</c:choose>
+				</c:choose> 
 			</div>
 		</div>
 		<div class="input-wrap w-100 mt-5">
@@ -227,9 +227,11 @@
 						<div class="small text-gray">지방 : (${elementPercent.fat }%)</div>
 					</div>
 				</div>
-				<div class="mr-2 mt-3">
+				<div id="piechart" style="width: 400px; height: 200px;"></div>
+				<!-- <div class="mr-2 mt-3">
+					
 					<span style="font-size: 30px">N/A</span>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -587,22 +589,22 @@
 						}
 					});
 				});
-				
+
 				//totalFoodList 추가
-				$('#saveTotalFoodInfo').on('click',function(e) {
-					$('#saveTotalFoodInfo').addClass('d-none');
-					
-					let totalFat = ${mTotalFoodList.fat + lTotalFoodList.fat + dTotalFoodList.fat};
-					
-					let totalCarb = ${mTotalFoodList.carb + lTotalFoodList.carb + dTotalFoodList.carb}
-					
-					let totalProtein = ${mTotalFoodList.protein + lTotalFoodList.protein + dTotalFoodList.protein}
-					
-					let totalKcal = ${mTotalFoodList.kcal + lTotalFoodList.kcal + dTotalFoodList.kcal}
-					
-					let kcalPercent = ${kcalPercent};
-					
-					//alert(kcalPercent);
+				$('#saveTotalFoodInfo').on('click', function(e) {
+							/* $('#saveTotalFoodInfo').addClass('d-none'); */
+
+							let totalFat = ${mTotalFoodList.fat + lTotalFoodList.fat + dTotalFoodList.fat};
+
+							let totalCarb = ${mTotalFoodList.carb + lTotalFoodList.carb+ dTotalFoodList.carb};
+
+							let totalProtein = ${mTotalFoodList.protein + lTotalFoodList.protein + dTotalFoodList.protein};
+
+							let totalKcal = ${mTotalFoodList.kcal + lTotalFoodList.kcal + dTotalFoodList.kcal};
+
+							let kcalPercent = ${kcalPercent};
+
+							//alert(kcalPercent);
 
 							$.ajax({
 								//request
@@ -621,7 +623,8 @@
 								success : function(data) {
 									if (data.result == "success") {
 										alert("입력 성공");
-										$('#updateTotalFoodInfo').removeClass('d-none');
+										/* $('#updateTotalFoodInfo').removeClass(
+												'd-none'); */
 										location.reload(true);
 									} else {
 										alert('입력 실패');
@@ -632,28 +635,27 @@
 								}
 							});
 						});
-				
-			 	$('#updateTotalFoodInfo').on('click',function(e) {
-			 				
-			 				let id = ${totalFoodList.id};
-							
+
+				 $('#updateTotalFoodInfo').on('click', function(e) {
+
+							/* let id = ${totalFoodList.id}; */
+
 							let totalFat = ${mTotalFoodList.fat + lTotalFoodList.fat + dTotalFoodList.fat};
-							
-							let totalCarb = ${mTotalFoodList.carb + lTotalFoodList.carb + dTotalFoodList.carb}
-							
-							let totalProtein = ${mTotalFoodList.protein + lTotalFoodList.protein + dTotalFoodList.protein}
-							
-							let totalKcal = ${mTotalFoodList.kcal + lTotalFoodList.kcal + dTotalFoodList.kcal}
-							
+
+							let totalCarb = ${mTotalFoodList.carb + lTotalFoodList.carb+ dTotalFoodList.carb};
+
+							let totalProtein = ${mTotalFoodList.protein + lTotalFoodList.protein + dTotalFoodList.protein};
+
+							let totalKcal = ${mTotalFoodList.kcal + lTotalFoodList.kcal + dTotalFoodList.kcal};
+
 							let kcalPercent = ${kcalPercent};
 							//alert(id);
-							
+
 							$.ajax({
 								//request
 								type : "post",
 								url : "/diary/update_total_food",
 								data : {
-									"id" : id,
 									"totalCarb" : totalCarb,
 									"totalProtein" : totalProtein,
 									"totalFat" : totalFat,
@@ -676,6 +678,6 @@
 								}
 							});
 
-						}); 
+						});
 			});
 </script>

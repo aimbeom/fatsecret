@@ -17,6 +17,8 @@ import com.fatsecret.diary.bo.FoodListBO;
 import com.fatsecret.diary.bo.SleepBO;
 import com.fatsecret.diary.bo.TotalActivityListBO;
 import com.fatsecret.diary.bo.TotalFoodListBO;
+import com.fatsecret.diary.model.TotalActivityList;
+import com.fatsecret.diary.model.TotalFoodList;
 
 @RequestMapping("/diary")
 @RestController
@@ -255,8 +257,7 @@ public class DiaryRestController {
 	 */
 	@PostMapping("/update_total_food")
 	public Map<String, Object> updateTotalFood(
-			@RequestParam("id") int id
-			, @RequestParam("totalCarb") int totalCarb
+			 @RequestParam("totalCarb") int totalCarb
 			, @RequestParam("totalProtein") int totalProtein
 			, @RequestParam("totalFat") int totalFat
 			, @RequestParam("totalKcal") int totalKcal
@@ -267,7 +268,11 @@ public class DiaryRestController {
 		Map<String, Object> result = new HashMap<>();
 		int userId = (int) session.getAttribute("userId");
 		
-		totalFoodListBO.updateTotalFoodList(id, userId, totalCarb, totalProtein, totalFat, totalKcal, kcalPercent);
+		TotalFoodList totalFood = totalFoodListBO.getTotalFoodByUserIdDESC(userId);
+		
+		int id = totalFood.getId();
+		
+		totalFoodListBO.updateTotalFoodList(id, totalCarb, totalProtein, totalFat, totalKcal, kcalPercent);
 		
 		result.put("result", "success");
 		
@@ -302,7 +307,6 @@ public class DiaryRestController {
 	
 	@PostMapping("/update_total_activity")
 	public Map<String, Object> updateTotalActivity(
-			@RequestParam("id") int id,
 			@RequestParam("kcal") int kcal
 			, HttpSession session
 			){
@@ -310,7 +314,11 @@ public class DiaryRestController {
 		Map<String, Object> result = new HashMap<>();
 		int userId = (int) session.getAttribute("userId");
 		
-		totalActivityListBO.updateTotalActivityByUserId(userId, id, kcal);
+		TotalActivityList totalActivity = totalActivityListBO.getTotalActivityByUserIdDESC(userId);
+		
+		int id = totalActivity.getId();
+		
+		totalActivityListBO.updateTotalActivityByUserId(id,kcal);
 		
 		result.put("result", "success");
 		

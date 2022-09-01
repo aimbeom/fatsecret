@@ -22,7 +22,8 @@ public interface TotalActivityListDAO {
 	
 	public void updateTotalActivityByUserId(
 			@Param("id") int id
-			,@Param("userId") int userId
 			,@Param("kcal") int kcal
 			);
+	
+	public TotalActivityList selectTotalActivityByUserIdDESC(int userId);
 }

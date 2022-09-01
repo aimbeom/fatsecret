@@ -29,8 +29,13 @@ public class TotalActivityListBO {
 		return totalActivityListDAO.selectTotalActivityListByUserId(userId);
 	}
 	
-	public void updateTotalActivityByUserId(int id, int userId, int kcal) {
+	public void updateTotalActivityByUserId(int id, int kcal) {
 		
-		totalActivityListDAO.updateTotalActivityByUserId(id, userId, kcal);
+		totalActivityListDAO.updateTotalActivityByUserId(id, kcal);
+	}
+	
+	public TotalActivityList getTotalActivityByUserIdDESC(int userId) {
+		
+		return totalActivityListDAO.selectTotalActivityByUserIdDESC(userId);
 	}
 }

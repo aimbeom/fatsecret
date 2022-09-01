@@ -31,42 +31,6 @@
 <link href="/static/fullcalendar-5.11.3/lib/main.css" rel="stylesheet" />
 <script src="/static/fullcalendar-5.11.3/lib/main.js"></script>
 
-<!-- <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    	 var calendarEl = document.getElementById('calendar');
-         var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
-        	
-         /*  ,events: function(start,end,time,callback){
-        		  var sStart = start._d.getFullYear()+'-'+(start._d.getMonth()+1)+'-'+start._d.getDate()+' 00:00:00';
-        		  var sEnd = end._d.getFullYear()+'-'+(end._d.getMonth()+1)+'-'+end._d.getDate()+' 23:59:59';
-
-        		  // console.log(start._d.getFullYear()+'-'+(start._d.getMonth()+1)+'-'+start._d.getDate()+' 00:00:00');
-        		  // console.log(end._d.getFullYear()+'-'+(end._d.getMonth()+1)+'-'+end._d.getDate()+' 23:59:59')
-        		  var sConfirm='all';
-
-        		  aParame = {'start_date': sStart,'end_date':sEnd,'mode':'select','calendar_status':sConfirm};
-        		  $.ajax({
-        		  	url: "/test/action.php",
-        		  	type: 'POST',
-        		  	cache: false,
-        		  	data: aParame,
-        		  	dataType:'JSON',
-        		  	success: function (result) {
-        		  	callback(result);
-        		  },
-        		  	error: function (request, status, error) {
-        		  	console.log(error);
-        		  	}
-        		  });
-
-        		  } */
-        });
-         
-        calendar.render();
-      });
-</script> -->
-
 <script>
 	$(function() {
 		$('.datepicker').datepicker(

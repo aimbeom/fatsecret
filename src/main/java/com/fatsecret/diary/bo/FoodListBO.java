@@ -70,7 +70,7 @@ public class FoodListBO {
 			food.setCarb(totalCarb);
 			food.setProtein(totalProtein);
 			food.setFat(totalFat);
-			food.setKcal(kcal);
+			food.setKcal(totalKcal);
 		}
 		return food;
 	}

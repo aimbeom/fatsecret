@@ -92,4 +92,15 @@
 	  	WHERE
 	  		`id` = #{id}
   </update>
+  
+  <select id="selectCurrentUser" resultType="com.fatsecret.user.model.User">
+  		SELECT
+		  *
+	  	FROM
+	  		`user`
+	  	ORDER BY 
+	  		`createdAt`
+	  	DESC LIMIT
+	  	1
+  </select>
  </mapper>

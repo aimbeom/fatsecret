@@ -13,6 +13,8 @@ import com.fatsecret.post.bo.PostBO;
 import com.fatsecret.post.model.Post;
 import com.fatsecret.timeline.bo.TimelineBO;
 import com.fatsecret.timeline.model.CardView;
+import com.fatsecret.user.bo.UserBO;
+import com.fatsecret.user.model.User;
 
 @RequestMapping("/timeline")
 @Controller
@@ -21,6 +23,9 @@ public class TimelineController {
 	@Autowired
 	TimelineBO timelineBO;
 	
+	@Autowired
+	private UserBO userBO;
+	
 	
 //	http://localhost:8080/timeline/timeline_view
 	@RequestMapping("/timeline_view")
@@ -28,8 +33,14 @@ public class TimelineController {
 		
 		List<CardView> cardList = timelineBO.generateCardViewList((Integer) session.getAttribute("userId"));
 		
+		int userId = (int) session.getAttribute("userId");
+		
+		User user = userBO.getUserByUserId(userId);
+		
 		model.addAttribute("viewName", "/timeline/timeline");
 		model.addAttribute("cardList", cardList);
+		
+		model.addAttribute("user", user);
 		
 		return	"template/layout2";
 	}

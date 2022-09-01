@@ -39,4 +39,6 @@ public interface UserDAO {
 			@Param("id") int id,
 			@Param("weight") int weight
 			);
+	
+	public User selectCurrentUser();
 }

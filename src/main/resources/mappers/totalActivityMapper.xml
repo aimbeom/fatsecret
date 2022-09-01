@@ -41,18 +41,28 @@
  		WHERE
  			`userId` = #{userId}
  		ORDER BY
- 			`createdAt`
+ 			`id`
  		DESC	
  	</select>
  	
  	<update id="updateTotalActivityByUserId" parameterType="map">
 	  	UPDATE `total_activity`
 	  	SET
-	  		, `kcal` = #{kcal}
+	  		`kcal` = #{kcal}
 	  		, `updatedAt` = NOW()
 	  	WHERE
 	  		`id` = #{id}
-	  	AND
-	  		`userId` = #{userId}	
 	  </update>
+	  
+	  <select id="selectTotalActivityByUserIdDESC" parameterType="int" resultType="com.fatsecret.diary.model.TotalActivityList">
+ 		SELECT
+ 			*
+ 		FROM
+ 			`total_activity`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		ORDER BY
+ 			`id`
+ 		DESC	
+ 	</select>
 </mapper>
