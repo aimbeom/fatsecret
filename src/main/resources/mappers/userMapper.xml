@@ -103,4 +103,22 @@
 	  	DESC LIMIT
 	  	1
   </select>
+  
+  <update id="updateMyImageByUserIdFile" parameterType="map">
+  		UPDATE `user`
+	  	SET
+	  		`imagePath` = #{imagePath}
+	  		, `updatedAt` = NOW()
+	  	WHERE
+	  		`id` = #{id}
+  </update>
+  
+  <update id="updateMyImageNullById" parameterType="int">
+		UPDATE `user`
+	  	SET
+	  		`imagePath` = NULL
+	  		, `updatedAt` = NOW()
+	  	WHERE
+	  		`id` = #{id}	
+	</update>
  </mapper>

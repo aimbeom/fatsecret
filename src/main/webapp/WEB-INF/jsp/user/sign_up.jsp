@@ -230,6 +230,7 @@ $(document).ready(function(){
 			alert('생일을 입력해주세요');
 			return;
 		}
+		
 		let amountOfActivity = $('#amountOfActivity').val().trim();
 		
 		//내 목표

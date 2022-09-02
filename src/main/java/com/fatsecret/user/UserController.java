@@ -101,7 +101,7 @@ public class UserController {
 	@RequestMapping("/my_page_view")
 	public String myPage(Model model, HttpSession session) {
 		
-		int userId = (int) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("userId");
 		
 		List<Post> postList = postBO.getPostListByUserId(userId);
 		
@@ -118,7 +118,7 @@ public class UserController {
 	@RequestMapping("/my_weight_update_view")
 	public String weightUpdatePage(Model model, HttpSession session) {
 		
-		int userId = (int) session.getAttribute("userId");
+//		int userId = (int) session.getAttribute("userId");
 		
 		model.addAttribute("viewName", "user/weight_update");
 		

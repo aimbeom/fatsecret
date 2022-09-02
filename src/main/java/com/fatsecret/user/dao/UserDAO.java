@@ -33,7 +33,7 @@ public interface UserDAO {
 			@Param ("password") String password
 			);
 	
-	public User selectUserByUserId(int id);
+	public User selectUserByUserId(Integer id);
 	
 	public void updateWeightByUserId(
 			@Param("id") int id,
@@ -41,4 +41,11 @@ public interface UserDAO {
 			);
 	
 	public User selectCurrentUser();
+	
+	public void updateMyImageByUserIdFile(
+			@Param ("id") int id,
+			@Param ("imagePath") String imagePath
+			);
+	
+	public void updateMyImageNullById(int id);
 }

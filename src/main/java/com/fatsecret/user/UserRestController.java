@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -125,6 +126,52 @@ public class UserRestController {
 		
 		return result;
 	}
+	
+	@PostMapping("/my_image_update")
+	public Map<String, Object> weightUpdate(
+			@RequestParam("id") int id,
+			@RequestParam(value="file", required=false) MultipartFile file,
+			HttpSession session
+			){
+		Map<String, Object> result = new HashMap<>();
+		
+		String nickname = (String) session.getAttribute("userNickname");
+		
+		userBO.updateMyImageByUserIdFile(id, nickname, file);
+		
+		result.put("result", "success");
+		result.put("errorMessage", "수정 실패");
+		return result;
+	}
+	
+	@PostMapping("/delete_my_image")
+	public Map<String, Object> deleteMyImage(
+			@RequestParam("id") int id,
+			HttpSession session
+			){
+		Map<String, Object> result = new HashMap<>();
+		
+		userBO.updateMyImageNullById(id);
+		
+		result.put("result", "success");
+		result.put("errorMessage", "수정 실패");
+		return result;
+	}
+	
+//	@PostMapping("/update_my_image")
+//	public Map<String, Object> updateMyImage(
+//			@RequestParam("id") int id,
+//			@RequestParam(value="file", required=false) MultipartFile file,
+//			HttpSession session
+//			){
+//		Map<String, Object> result = new HashMap<>();
+//		
+//		userBO.updateMyImageByIdFile(id, file);
+//		
+//		result.put("result", "success");
+//		result.put("errorMessage", "수정 실패");
+//		return result;
+//	}
 	
 	
 ////	http://localhost:8080/user/test

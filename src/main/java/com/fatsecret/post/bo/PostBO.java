@@ -126,7 +126,7 @@ public class PostBO {
 	}
 	
 	//마이페이지에 뿌려줄 유저 id를 인자로 게시한 게시물의 갯수를 받아온다
-	public List<Post> getPostListByUserId(int userId) {
+	public List<Post> getPostListByUserId(Integer userId) {
 		
 		return postDAO.getPostListByUserId(userId);
 	}

@@ -86,7 +86,7 @@ public class UserBO {
 	}
 	
 	//CardtView와 CommentCard에 뿌려줄 userList 가져오기 id값을 매개로 받아온다
-	public User getUserByUserId(int id) {
+	public User getUserByUserId(Integer id) {
 		
 		return userDAO.selectUserByUserId(id);
 	}
@@ -100,4 +100,33 @@ public class UserBO {
 	public User getCurrentUser() {
 		return userDAO.selectCurrentUser();
 	}
+	
+	//내 이미지 업데이트
+	public void updateMyImageByUserIdFile(int id, String nickname, MultipartFile file) {
+		
+		User user = getUserByUserId(id);
+		
+		String imagePath = null;
+		// 파일이 있으면 파일 업로드 => path 리턴 받음
+		if (file != null) {
+			imagePath = fileManager.saveFile(nickname, file);
+		
+			// 새로 업로드된 이미지가 성공하면 기존 이미지 삭제(기존 이미지가 있을 때에만)
+			if(imagePath != null && user.getImagePath() != null) {
+				// 기존 이미지 삭제
+				try {
+					fileManager.deleteFile(user.getImagePath());
+				} catch (Exception e) {
+					logger.error("이미지 삭제 실패");
+				}
+			}
+		}
+		userDAO.updateMyImageByUserIdFile(id, imagePath);
+	}
+	
+	public void  updateMyImageNullById(int id) {
+		
+		userDAO.updateMyImageNullById(id);
+	}
+	
 }

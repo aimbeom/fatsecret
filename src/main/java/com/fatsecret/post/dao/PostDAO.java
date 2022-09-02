@@ -37,5 +37,5 @@ public interface PostDAO {
 			);
 	
 	//마이페이지에 뿌릴 글목록 가져오기
-	public List<Post> getPostListByUserId(int userId);
+	public List<Post> getPostListByUserId(Integer userId);
 }
