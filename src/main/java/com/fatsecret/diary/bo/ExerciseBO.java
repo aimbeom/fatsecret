@@ -19,13 +19,13 @@ public class ExerciseBO {
 	@Autowired
 	private ExerciseDAO exerciseDAO;
 
-	public void addExerciseList(int userId, String name, int hour, int minute, int kcal) {
+	public void addExerciseList(Integer userId, String name, int hour, int minute, int kcal) {
 
 		exerciseDAO.addExerciseList(userId, name, hour, minute, kcal);
 	}
 
 	// userId로 선택한 날짜 운동 리스트 가져오기
-	public List<Exercise> getExerciseListByUserIdAndDate(int userId, String date) {
+	public List<Exercise> getExerciseListByUserIdAndDate(Integer userId, String date) {
 
 		return exerciseDAO.selectExerciseListByUserIdAndDate(userId, date);
 	}
@@ -37,7 +37,7 @@ public class ExerciseBO {
 	}
 	
 	// userId로 해당 유저의 운동 리스트들 가져와 합산 계산
-	public Exercise calculate(int userId, String date) {
+	public Exercise calculate(Integer userId, String date) {
 		
 		int totalHour = 0;
 		int totalMinute = 0;
@@ -75,7 +75,7 @@ public class ExerciseBO {
 		return exercise;
 	}
 	
-	public List<Exercise> getExerciseList(int userId){
+	public List<Exercise> getExerciseList(Integer userId){
 		
 		return exerciseDAO.selectExerciseList(userId);
 	}

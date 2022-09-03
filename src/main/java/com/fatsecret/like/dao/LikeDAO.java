@@ -12,11 +12,11 @@ public interface LikeDAO {
 	
 	public void insertLike(
 			@Param("postId") int postId,
-			@Param("userId") int userId);
+			@Param("userId") Integer userId);
 	
 	public void deleteLikeByPostIdAndUserId(
 			@Param("postId") int postId,
-			@Param("userId") int userId);
+			@Param("userId") Integer userId);
 	
 //	public Like selectLikeByPostIdAndUserId(
 //			@Param("postId") int postId,

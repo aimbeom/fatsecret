@@ -114,6 +114,12 @@ public class UserController {
 		return "template/layout2";
 	}
 	
+	/**
+	 * 내 체중 수정 페이지
+	 * @param model
+	 * @param session
+	 * @return
+	 */
 //	http://localhost:8080/user/my_wight_update_view
 	@RequestMapping("/my_weight_update_view")
 	public String weightUpdatePage(Model model, HttpSession session) {

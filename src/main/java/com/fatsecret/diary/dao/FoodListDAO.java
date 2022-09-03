@@ -13,7 +13,7 @@ public interface FoodListDAO {
 	
 	//음식 추가
 	public void addFoodList(
-			@Param("userId") int userId,
+			@Param("userId") Integer userId,
 			@Param("timeType") String timeType,
 			@Param("foodName") String foodName,
 			@Param("amount") String amount,
@@ -25,7 +25,7 @@ public interface FoodListDAO {
 	
 	//음식 리스트 가져오기
 	public List<FoodList> selectFoodListByUserIdTimeTypeDate(
-			@Param("userId") int userId,
+			@Param("userId") Integer userId,
 			@Param("timeType") String timeType,
 			@Param("date") String date
 			);
@@ -34,10 +34,10 @@ public interface FoodListDAO {
 	public void delFoodById(int id);
 
 	//userId로 데이터 뽑기
-	public List<FoodList> selectFoodListByUserId(int usreId);
+	public List<FoodList> selectFoodListByUserId(Integer usreId);
 	
 	//userid로 역순 데이터 뽑기
-	public List<FoodList> selectFoodListDesc(int userId);
+	public List<FoodList> selectFoodListDesc(Integer userId);
 
 }
 

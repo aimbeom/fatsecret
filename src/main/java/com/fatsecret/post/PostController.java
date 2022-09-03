@@ -31,7 +31,7 @@ public class PostController {
 //	http://localhost:8080/post/write_view	
 	@RequestMapping("/write_view")
 	public String write(Model model, HttpSession session) {
-		int userId = (int) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("userId");
 		User user = userBO.getUserByUserId(userId);
 		
 		model.addAttribute("viewName", "post/write");
@@ -52,7 +52,8 @@ public class PostController {
 			@RequestParam("postId") int postId,
 			HttpSession session,
 			Model model) {
-		int userId = (int) session.getAttribute("userId");
+		
+		Integer userId = (Integer) session.getAttribute("userId");
 		User user = userBO.getUserByUserId(userId);
 		
 		model.addAttribute("viewName", "post/detail");

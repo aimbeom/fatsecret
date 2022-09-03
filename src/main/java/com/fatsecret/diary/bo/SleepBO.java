@@ -17,13 +17,13 @@ public class SleepBO {
 	private SleepDAO sleepDAO;
 
 	// 수면 리스트 추가
-	public void addSleepList(int userId, int hour, int minute, int kcal) {
+	public void addSleepList(Integer userId, int hour, int minute, int kcal) {
 
 		sleepDAO.addSleepList(userId, hour, minute, kcal);
 	}
 
 	// 유저 아이디, 선택한 날짜를 매개로 수면 리스트 가져오기
-	public Sleep selectSleepListByIdAndDate(int userId, String date) {
+	public Sleep selectSleepListByIdAndDate(Integer userId, String date) {
 
 		return sleepDAO.selectSleepListByIdAndDate(userId, date);
 	}
@@ -34,7 +34,7 @@ public class SleepBO {
 	}	
 
 	// 수면 리스트 수정
-	public void updateSleep(int id, int userId, int hour, int minute, int kcal) {
+	public void updateSleep(int id, Integer userId, int hour, int minute, int kcal) {
 
 		sleepDAO.updateSleep(id, userId, hour, minute, kcal);
 	}

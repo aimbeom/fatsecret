@@ -11,7 +11,7 @@ public class LikeBO {
 	@Autowired
 	private LikeDAO likeDAO;
 	
-	public void like(int userId, int postId) {
+	public void like(Integer userId, int postId) {
 		if (likeDAO.existLikeByPostIdAndUserId(postId, userId)) {
 			// 좋아요가 있으면
 			likeDAO.deleteLikeByPostIdAndUserId(postId, userId);

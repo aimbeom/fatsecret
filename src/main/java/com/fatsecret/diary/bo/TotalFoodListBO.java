@@ -14,12 +14,12 @@ public class TotalFoodListBO {
 	@Autowired
 	TotalFoodListDAO totalFoodListDAO;
 
-	public void addTotalFoodList(int userId, int totalCarb, int totalProtein, int totalFat, int totalKcal, int kcalPercent) {
+	public void addTotalFoodList(Integer userId, int totalCarb, int totalProtein, int totalFat, int totalKcal, int kcalPercent) {
 
 		totalFoodListDAO.insertTotalFoodList(userId, totalCarb, totalProtein, totalFat, totalKcal, kcalPercent);
 	}
 
-	public TotalFoodList getTotalFoodByUserId(int userId) {
+	public TotalFoodList getTotalFoodByUserId(Integer userId) {
 
 		return totalFoodListDAO.selectTotalFoodByUserId(userId);
 	}
@@ -29,12 +29,12 @@ public class TotalFoodListBO {
 		totalFoodListDAO.updateTotalFoodList(id, totalCarb, totalProtein, totalFat, totalKcal, kcalPercent);
 	}
 
-	public List<TotalFoodList> getTotalFoodListByUserId(int userId) {
+	public List<TotalFoodList> getTotalFoodListByUserId(Integer userId) {
 
 		return totalFoodListDAO.selectTotalFoodListByUserId(userId);
 	}
 	
-	public TotalFoodList getTotalFoodByUserIdDESC(int userId) {
+	public TotalFoodList getTotalFoodByUserIdDESC(Integer userId) {
 		
 		return totalFoodListDAO.selectTotalFoodByUserIdDESC(userId);
 	}

@@ -32,7 +32,7 @@ public class PostBO {
 	LikeBO likeBO;
 	
 	//게시글 추가
-	public void addPost(int userId, String userNickname, String title, String content, MultipartFile file) {
+	public void addPost(Integer userId, String userNickname, String title, String content, MultipartFile file) {
 		String imagePath = null;
 
 		// 파일이 있으면 파일 업로드 => path 리턴 받음
@@ -64,7 +64,7 @@ public class PostBO {
 	}
 	
 	//timeline card 삭제
-	public void deletePostByPostIdUserId(int postId, int userId) {
+	public void deletePostByPostIdUserId(int postId, Integer userId) {
 		// 삭제할 글을 셀렉트 해온다.
 		logger.info("updatePost postId:{}", postId);
 
@@ -93,7 +93,7 @@ public class PostBO {
 	}
 	
 	//글 수정
-	public int updatePost(int userId, String userNickname, int postId,
+	public int updatePost(Integer userId, String userNickname, int postId,
 			String title, String content, MultipartFile file) {
 		
 		// 기존에 저장된 글을 가져와본다

@@ -92,7 +92,7 @@ public class DiaryController {
 			Model model,
 			HttpSession session) {
 		
-		int userId = (int) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("userId");
 		
 		int recommendedKcal = (int) session.getAttribute("recommendedKcal");
 
@@ -151,7 +151,7 @@ public class DiaryController {
 	public String exerciseDairy(@RequestParam(value = "date", required = false) String date, Model model,
 			HttpSession session) {
 
-		int userId = (int) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("userId");
 
 		List<Exercise> exerciseList = exerciseBO.getExerciseListByUserIdAndDate(userId, date);
 

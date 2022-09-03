@@ -6,7 +6,7 @@
 	<div class="d-flex align-items-center mr-5">
 		<c:if test="${not empty userName}">
 			<span>
-			<a href="/user/my_page"><span style="color:black">${userName}</span>님 안녕하세요</a> | <a href="/post/write_view">게시하기</a> | 나의 체중 ${user.weight}kg | <a href="/user/sign_out">로그아웃</a>
+			<a href="/user/my_page"><span style="color:black">${user.nickname}</span>님 안녕하세요</a> | <a href="/post/write_view">게시하기</a> | 나의 체중 ${user.weight}kg | <a href="/user/sign_out">로그아웃</a>
 			</span>
 		</c:if>
 		<c:if test="${userName == null }">

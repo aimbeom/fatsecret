@@ -11,19 +11,19 @@ import com.fatsecret.diary.model.TotalActivityList;
 public interface TotalActivityListDAO {
 	
 	public void insertTotalActivityList(
-			@Param("userId") int userId,
+			@Param("userId") Integer userId,
 			@Param("kcal") int kcal);
 	
 	public TotalActivityList selectTotalActivityByUserId(
-			@Param("userId") int userId);
+			@Param("userId") Integer userId);
 	
 	public List<TotalActivityList> selectTotalActivityListByUserId(
-			@Param("userId") int userId);
+			@Param("userId") Integer userId);
 	
 	public void updateTotalActivityByUserId(
 			@Param("id") int id
 			,@Param("kcal") int kcal
 			);
 	
-	public TotalActivityList selectTotalActivityByUserIdDESC(int userId);
+	public TotalActivityList selectTotalActivityByUserIdDESC(Integer userId);
 }

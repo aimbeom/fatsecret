@@ -11,7 +11,7 @@ import com.fatsecret.diary.model.TotalFoodList;
 public interface TotalFoodListDAO {
 	
 	public void insertTotalFoodList(
-			@Param("userId") int userId,
+			@Param("userId") Integer userId,
 			@Param("carb") int totalCarb,
 			@Param("protein") int totalProtein,
 			@Param("fat") int totalFat,
@@ -20,7 +20,7 @@ public interface TotalFoodListDAO {
 			);
 	
 	public TotalFoodList selectTotalFoodByUserId(
-			@Param("userId") int userId
+			@Param("userId") Integer userId
 			);
 	
 	public void updateTotalFoodList(
@@ -32,9 +32,7 @@ public interface TotalFoodListDAO {
 			@Param("kcalPercent") int kcalPercent
 			);
 	
-	public List<TotalFoodList> selectTotalFoodListByUserId(
-			@Param("userId") int userId
-			);
+	public List<TotalFoodList> selectTotalFoodListByUserId(Integer userId);
 	
-	public TotalFoodList selectTotalFoodByUserIdDESC(int userId);
+	public TotalFoodList selectTotalFoodByUserIdDESC(Integer userId);
 }

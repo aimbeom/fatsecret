@@ -13,7 +13,7 @@ public interface SleepDAO {
 	
 	//수면 리스트 추가
 	public void addSleepList(
-			@Param("userId") int userId,
+			@Param("userId") Integer userId,
 			@Param("hour") int hour,
 			@Param("minute") int minute,
 			@Param("kcal") int kcal
@@ -21,7 +21,7 @@ public interface SleepDAO {
 	
 	//userId, date를 매개로 선택한 날짜 데이터 뽑아오기
 	public Sleep selectSleepListByIdAndDate(
-			@Param("userId") int userId,
+			@Param("userId") Integer userId,
 			@Param("date") String date
 			);
 	
@@ -31,11 +31,11 @@ public interface SleepDAO {
 	
 	public void updateSleep(
 			@Param("id") int id,
-			@Param("userId") int userId,
+			@Param("userId") Integer userId,
 			@Param("hour") int hour,
 			@Param("minute") int minute,
 			@Param("kcal") int kcal
 			);
 	
-	public List<Sleep> selectSleepList(int userId);
+	public List<Sleep> selectSleepList(Integer userId);
 }

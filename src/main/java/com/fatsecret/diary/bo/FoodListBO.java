@@ -19,14 +19,14 @@ public class FoodListBO {
 	private FoodListDAO foodListDAO;
 
 	// 음식 추가
-	public void addFoodList(int userId, String timeType, String foodName, String amount, int carb, int protein, int fat,
+	public void addFoodList(Integer userId, String timeType, String foodName, String amount, int carb, int protein, int fat,
 			int kcal) {
 
 		foodListDAO.addFoodList(userId, timeType, foodName, amount, carb, protein, fat, kcal);
 	}
 
 	// 음식 리스트 가져오기
-	public List<FoodList> getFoodListByUserIdTimeTypeDate(int userId, String timeType, String date) {
+	public List<FoodList> getFoodListByUserIdTimeTypeDate(Integer userId, String timeType, String date) {
 
 		return foodListDAO.selectFoodListByUserIdTimeTypeDate(userId, timeType, date);
 	}
@@ -38,7 +38,7 @@ public class FoodListBO {
 	}
 
 	// 탄단지칼 합산 구하기
-	public FoodList totalAmount(int userId, String timeType, String date) {
+	public FoodList totalAmount(Integer userId, String timeType, String date) {
 		int totalCarb = 0;
 		int totalProtein = 0;
 		int totalFat = 0;
@@ -76,7 +76,7 @@ public class FoodListBO {
 	}
 
 	// 당일 섭취량 백분율 구하기
-	public float kcalPercent(int userId, String date, int recommendedKcal) {
+	public float kcalPercent(Integer userId, String date, int recommendedKcal) {
 
 		FoodList mfoodList = totalAmount(userId, "아침", date);
 		FoodList lfoodList = totalAmount(userId, "점심", date);
@@ -92,7 +92,7 @@ public class FoodListBO {
 	}
 
 	// 탄단지 섭취 비율 백분율 구하기
-	public FoodList elementPercent(int userId, String date, int recommendedKcal) {
+	public FoodList elementPercent(Integer userId, String date, int recommendedKcal) {
 
 		FoodList foodList = new FoodList();
 
@@ -129,13 +129,13 @@ public class FoodListBO {
 		return foodList;
 	}
 
-	public List<FoodList> getFoodList(int userId) {
+	public List<FoodList> getFoodList(Integer userId) {
 
 		return foodListDAO.selectFoodListByUserId(userId);
 	}
 
 	// 당일 총 칼로리 계산
-	public int totalKcal(int userId, String date, int recommendedKcal) {
+	public int totalKcal(Integer userId, String date, int recommendedKcal) {
 
 		FoodList mfoodList = totalAmount(userId, "아침", date);
 		FoodList lfoodList = totalAmount(userId, "점심", date);

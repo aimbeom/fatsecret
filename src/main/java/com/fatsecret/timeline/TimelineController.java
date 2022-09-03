@@ -33,7 +33,7 @@ public class TimelineController {
 		
 		List<CardView> cardList = timelineBO.generateCardViewList((Integer) session.getAttribute("userId"));
 		
-		int userId = (int) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("userId");
 		
 		User user = userBO.getUserByUserId(userId);
 		

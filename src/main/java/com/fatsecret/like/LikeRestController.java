@@ -28,7 +28,7 @@ public class LikeRestController {
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		
-		int userId = (int) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("userId");
 		
 		likeBO.like(userId, postId);
 		

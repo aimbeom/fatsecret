@@ -14,17 +14,17 @@ public class TotalActivityListBO {
 	@Autowired
 	private TotalActivityListDAO totalActivityListDAO;
 
-	public void addTotalActivityList(int userId, int kcal) {
+	public void addTotalActivityList(Integer userId, int kcal) {
 
 		totalActivityListDAO.insertTotalActivityList(userId, kcal);
 	}
 
-	public TotalActivityList getTotalActivityByUserId(int userId) {
+	public TotalActivityList getTotalActivityByUserId(Integer userId) {
 
 		return totalActivityListDAO.selectTotalActivityByUserId(userId);
 	}
 
-	public List<TotalActivityList> getTotalActivityListByUserId(int userId) {
+	public List<TotalActivityList> getTotalActivityListByUserId(Integer userId) {
 
 		return totalActivityListDAO.selectTotalActivityListByUserId(userId);
 	}
@@ -34,7 +34,7 @@ public class TotalActivityListBO {
 		totalActivityListDAO.updateTotalActivityByUserId(id, kcal);
 	}
 	
-	public TotalActivityList getTotalActivityByUserIdDESC(int userId) {
+	public TotalActivityList getTotalActivityByUserIdDESC(Integer userId) {
 		
 		return totalActivityListDAO.selectTotalActivityByUserIdDESC(userId);
 	}

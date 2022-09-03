@@ -11,7 +11,7 @@ import com.fatsecret.diary.model.Exercise;
 public interface ExerciseDAO {
 	
 	public void addExerciseList(
-			@Param("userId") int userId,
+			@Param("userId") Integer userId,
 			@Param("name") String name,
 			@Param("hour") int hour,
 			@Param("minute") int timinuteme,
@@ -19,12 +19,12 @@ public interface ExerciseDAO {
 			);
 	
 	public List<Exercise> selectExerciseListByUserIdAndDate(
-			@Param("userId") int userId,
+			@Param("userId") Integer userId,
 			@Param("date") String date
 			);
 	
 	public void deleteExerciseListById(int id);
 	
-	public List<Exercise> selectExerciseList(int userId);
+	public List<Exercise> selectExerciseList(Integer userId);
 	
 }

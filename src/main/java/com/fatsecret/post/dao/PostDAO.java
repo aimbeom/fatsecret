@@ -12,7 +12,7 @@ public interface PostDAO {
 	
 	//게시글 추가
 	public void insertPost(
-			@Param("userId") int userId,
+			@Param("userId") Integer userId,
 			@Param("title") String title,
 			@Param("content") String content,
 			@Param("imagePath") String imagePath
@@ -30,7 +30,7 @@ public interface PostDAO {
 	//글 수정
 	public int updatePostByPostIdAndUserId(
 			@Param("postId") int postId,
-			@Param("userId") int userId,
+			@Param("userId") Integer userId,
 			@Param("title") String title,
 			@Param("content") String content,
 			@Param("imagePath") String imagePath

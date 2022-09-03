@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fatsecret.post.bo.PostBO;
 import com.fatsecret.post.model.Post;
+import com.fatsecret.user.bo.UserBO;
+import com.fatsecret.user.model.User;
 
 @RequestMapping("/post")
 @RestController
@@ -24,6 +27,9 @@ public class PostRestController {
 	
 	@Autowired
 	PostBO postBO;
+	
+	@Autowired
+	UserBO userBO;
 	
 	@PostMapping("/write")
 	public Map<String, Object> write(
@@ -37,8 +43,10 @@ public class PostRestController {
 		result.put("result", "success");
 		
 		//글쓴이 정보를 세션에서 꺼낸다, 꺼내야 할 정보가 세션에 있는지 없는지 유무 확인까지
-		Object userIdObject = session.getAttribute("userId"); //꺼낼때는 원래의 type이 아닌 object로 꺼낸다
-				
+		Integer userIdObject = (Integer)session.getAttribute("userId"); //꺼낼때는 원래의 type이 아닌 object로 꺼낸다
+		
+		User user = userBO.getUserByUserId(userIdObject);
+		
 		//로그인 되어있지 않음
 		if(userIdObject == null) { 
 			result.put("result", "error");
@@ -48,7 +56,7 @@ public class PostRestController {
 		}
 				
 		//로그인이 된 사용자
-		int userId = (int)userIdObject;
+		Integer userId = userIdObject;
 		String userNickname = (String)session.getAttribute("userNickname");
 		
 		//bo 전송/수신
@@ -73,7 +81,7 @@ public class PostRestController {
 		result.put("result", "success");
 		result.put("errorMessage", "실패");
 		
-		int userId = (int) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("userId");
 		postBO.deletePostByPostIdUserId(postId, userId);
 		
 		return result;
@@ -98,7 +106,7 @@ public class PostRestController {
 			){
 		// 로그인 된 사람만 도달했는지 검사 => 나중에
 		String userNickname = (String)session.getAttribute("userNickname");
-		int userId = (int)session.getAttribute("userId");
+		Integer userId = (Integer)session.getAttribute("userId");
 		
 		//db update
 		int row = postBO.updatePost(userId, userNickname, postId, title, content, file);
