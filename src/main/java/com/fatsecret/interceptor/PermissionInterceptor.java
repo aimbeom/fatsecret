@@ -33,41 +33,16 @@ public class PermissionInterceptor implements HandlerInterceptor{
 		logger.info("####################### uri:{}", uri);
 		// 비로그인 && /post / diary => 로그인 페이지로 리다이렉트		2000k 400 302
 		if(userId == null && (uri.startsWith("/post") || uri.startsWith("/diary") || uri.startsWith("/timeline"))) {
-			logger.info("testssssssssssssss");
+			//logger.info("testssssssssssssss");
 			response.sendRedirect("/user/sign_in_view");
 			return false;
 		}
 		// 로그인 && /user
 		if(userId != null && (uri.startsWith("/post"))) {
-			logger.info("xxxxxxxxxxxxxxxxxxxxxx");
+			//logger.info("xxxxxxxxxxxxxxxxxxxxxx");
 			response.sendRedirect(uri);
 			return false;
 		}
 		return true;	//요청된 path로 컨트롤러 수행
 	}
-	
-//	@Override
-//	public void postHandle(
-//			HttpServletRequest request,
-//			HttpServletResponse response,
-//			Object handler,
-//			ModelAndView modelAndView
-//			) {
-//		// URI 확인
-//		String uri = request.getRequestURI();
-//		logger.info("############# postHandler: {}", uri);
-//	}
-//	
-//	@Override
-//	public void afterCompletion(
-//			HttpServletRequest request,
-//			HttpServletResponse response,
-//			Object handler,
-//			Exception ex
-//			) {
-//		// URI 확인
-//		String uri = request.getRequestURI();
-//		logger.info("############# afterHandler: {}", uri);
-//		
-//	}
 }

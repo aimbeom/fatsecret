@@ -305,6 +305,12 @@ public class DiaryRestController {
 		return result;
 	}
 	
+	/**
+	 * 총 운동 리스트 수정
+	 * @param kcal
+	 * @param session
+	 * @return
+	 */
 	@PostMapping("/update_total_activity")
 	public Map<String, Object> updateTotalActivity(
 			@RequestParam("kcal") int kcal
@@ -312,7 +318,7 @@ public class DiaryRestController {
 			){
 		
 		Map<String, Object> result = new HashMap<>();
-		int userId = (int) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("userId");
 		
 		TotalActivityList totalActivity = totalActivityListBO.getTotalActivityByUserIdDESC(userId);
 		

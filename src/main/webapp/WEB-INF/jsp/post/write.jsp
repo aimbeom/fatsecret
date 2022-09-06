@@ -24,75 +24,73 @@
 </div>
 
 <script>
-$(document).ready(function() {
-	//파일업로드 이미지 클릭 -> input type ="file" 숨어있던 창이 열림
-	$('#fileUpLoadBtn').on('click', function(e) {
-		e.preventDefault(); //a태그가 위로 올라가는 현상을 방지
+	$(document).ready(
+			function() {
+				//파일업로드 이미지 클릭 -> input type ="file" 숨어있던 창이 열림
+				$('#fileUpLoadBtn').on('click', function(e) {
+					e.preventDefault(); //a태그가 위로 올라가는 현상을 방지
 
-		$('#file').click(); // input file을 클릭한 것과 같은 효과
+					$('#file').click(); // input file을 클릭한 것과 같은 효과
 
-	});
+				});
 
-	// 파일 업로드를 했을 때, 확장자 이름 노출, 파일 확장자 검증
-	$('#file').on('change', function(e) {
-				let fileName = e.target.files[0].name;
+				// 파일 업로드를 했을 때, 확장자 이름 노출, 파일 확장자 검증
+				$('#file').on(
+						'change',
+						function(e) {
+							let fileName = e.target.files[0].name;
 
-				let arr = fileName.split(".");
+							let arr = fileName.split(".");
 
-				//확장자 검증
-				if (arr.length < 2 || arr[arr.length - 1] != 'gif'
-						&& arr[arr.length - 1] != 'jpeg'
-						&& arr[arr.length - 1] != 'jpg'
-						&& arr[arr.length - 1] != 'png') {
-					alert('이미지 파일만 업로드 할 수 있습니다');
-					$(this).val(""); //파일을 비운다
-					$('#fileName').text(""); //파일 이름도 비워줌.
-					return;
-				}
+							//확장자 검증
+							if (arr.length < 2 || arr[arr.length - 1] != 'gif'
+									&& arr[arr.length - 1] != 'jpeg'
+									&& arr[arr.length - 1] != 'jpg'
+									&& arr[arr.length - 1] != 'png') {
+								alert('이미지 파일만 업로드 할 수 있습니다');
+								$(this).val(""); //파일을 비운다
+								$('#fileName').text(""); //파일 이름도 비워줌.
+								return;
+							}
 
-				//임시파일 명 노출
-				$('#fileName').text(fileName);
+							//임시파일 명 노출
+							$('#fileName').text(fileName);
+						});
+
+				$('#saveBtn').on('click', function(e) {
+					let title = $('#title').val();
+					let content = $('#content').val();
+
+					// form태그를 자바스크립트에서 만든다	.
+					let formData = new FormData();
+					formData.append("title", title); //<input type ="" name="subject"> 를 만들고 name 값을 보낸다
+					formData.append("content", content); //<input type ="" name="subject"> 를 만들고 name 값을 보낸다
+					formData.append("file", $('#file')[0].files[0]); //$('#file')[0] : 첫번째 input file 태그, files[0]: 업로드 된 것 중에 첫번째 파일
+
+					//ajax form 데이터 전송
+					$.ajax({
+
+						//request
+						type : "post"
+						, url : "/post/create"
+						, data : formData
+						, encType : "multipart/form-data" // 파일 업로드 필수 설정
+						, processData : false //파일 업로드 필수 설정 ({"":""} 형태로 자동 변환 x)
+						, contentType : false //파일 업로드 필수 설정
+
+						//response
+						, success : function(data) {
+							if (data.result == "success") {
+								alert('메모가 저장되었습니다');
+								location.href = "/timeline/timeline_view";
+							} else {
+								alert(data.errorMessage);
+							}
+						}
+						, error : function(e) {
+							alert("메모 저장에 실패했습니다");
+						}
+					});
+				});
 			});
-
-	$('#saveBtn').on('click', function(e) {
-		let title = $('#title').val();
-		let content = $('#content').val();
-		
-		// form태그를 자바스크립트에서 만든다	.
-		let formData = new FormData();
-		formData.append("title", title); //<input type ="" name="subject"> 를 만들고 name 값을 보낸다
-		formData.append("content", content); //<input type ="" name="subject"> 를 만들고 name 값을 보낸다
-		formData.append("file", $('#file')[0].files[0]); //$('#file')[0] : 첫번째 input file 태그, files[0]: 업로드 된 것 중에 첫번째 파일
-
-		//ajax form 데이터 전송
-		$.ajax({
-
-			//request
-			type : "post",
-			url : "/post/write",
-			data : formData,
-			encType : "multipart/form-data" // 파일 업로드 필수 설정
-			,
-			processData : false //파일 업로드 필수 설정 ({"":""} 형태로 자동 변환 x)
-			,
-			contentType : false //파일 업로드 필수 설정
-
-			//response
-			,
-			success : function(data) {
-				if (data.result == "success") {
-					alert('메모가 저장되었습니다');
-					location.href = "/timeline/timeline_view";
-					//location.reload(true);
-				} else {
-					alert(data.errorMessage);
-				}
-			}
-			,
-			error : function(e) {
-				alert("메모 저장에 실패했습니다");
-			}
-		});
-	});
-});
 </script>

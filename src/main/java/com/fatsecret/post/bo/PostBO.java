@@ -33,6 +33,7 @@ public class PostBO {
 	
 	//게시글 추가
 	public void addPost(Integer userId, String userNickname, String title, String content, MultipartFile file) {
+		
 		String imagePath = null;
 
 		// 파일이 있으면 파일 업로드 => path 리턴 받음

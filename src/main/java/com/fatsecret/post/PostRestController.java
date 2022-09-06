@@ -31,7 +31,7 @@ public class PostRestController {
 	@Autowired
 	UserBO userBO;
 	
-	@PostMapping("/write")
+	@PostMapping("/create")
 	public Map<String, Object> write(
 			@RequestParam("title") String title,
 			@RequestParam("content") String content,

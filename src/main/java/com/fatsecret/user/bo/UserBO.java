@@ -92,7 +92,7 @@ public class UserBO {
 	}
 	
 	//몸무게 수정
-	public void updateWeightByUserId(int id, int weight) {
+	public void updateWeightByUserId(Integer id, int weight) {
 		userDAO.updateWeightByUserId(id, weight);
 	}
 	

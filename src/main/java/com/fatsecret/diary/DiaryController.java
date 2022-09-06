@@ -60,7 +60,7 @@ public class DiaryController {
 	@RequestMapping("/diet_calendar_view")
 	public String dietDiary(Model model, HttpSession session) {
 
-		int userId = (int) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("userId");
 		int recommendedKcal = (int) session.getAttribute("recommendedKcal");
 		
 //		List<FoodList> foodList = foodListBO.getFoodListDesc(userId);
@@ -69,11 +69,21 @@ public class DiaryController {
 		List<TotalActivityList> totalActivityList = totalActivityListBO.getTotalActivityListByUserId(userId);
 		User user = userBO.getUserByUserId(userId);
 		
+		//오늘날짜 토탈 음식, 운동 리스트 유무 확인
+		TotalFoodList lastTotalFoodList = totalFoodListBO.getTotalFoodByUserIdDESC(userId);
+		TotalActivityList lastTotalActivityList = totalActivityListBO.getTotalActivityByUserIdDESC(userId);
+		
 		model.addAttribute("viewName", "diary/diet_diary");
 //		model.addAttribute("foodList", foodList);
 		model.addAttribute("totalFoodList", totalFoodList);
 		model.addAttribute("totalActivityList", totalActivityList);
+		
+		model.addAttribute("lastTotalFoodList", lastTotalFoodList);
+		model.addAttribute("lastTotalActivityList", lastTotalActivityList);
+		
 		model.addAttribute("user", user);
+		
+		
 		
 		return "template/layout2";
 	}

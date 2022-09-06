@@ -38,4 +38,9 @@ public class TotalActivityListBO {
 		
 		return totalActivityListDAO.selectTotalActivityByUserIdDESC(userId);
 	}
+	
+	public TotalActivityList getTotalActivityByUserIdCreatedAt(Integer userId) {
+		
+		return totalActivityListDAO.selectTotalActivityByUserIdCreatedAt(userId);
+	}
 }

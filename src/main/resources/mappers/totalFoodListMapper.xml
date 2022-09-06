@@ -91,6 +91,18 @@
  			`userId` = #{userId}
  		ORDER BY
  			`id`
- 		DESC	
+ 		DESC LIMIT
+ 		1
+ 	</select>
+ 	
+ 	<select id="selectTotalFoodListByUserIdCreatedAt" parameterType="int" resultType="com.fatsecret.diary.model.TotalFoodList">
+ 		SELECT
+ 			*
+ 		FROM
+ 			`total_foodlist`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		AND
+ 			DATE(`createdAt`) = DATE(NOW());
  	</select>
 </mapper>

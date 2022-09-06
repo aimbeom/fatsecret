@@ -26,4 +26,6 @@ public interface TotalActivityListDAO {
 			);
 	
 	public TotalActivityList selectTotalActivityByUserIdDESC(Integer userId);
+
+	public TotalActivityList selectTotalActivityByUserIdCreatedAt(Integer userId);
 }

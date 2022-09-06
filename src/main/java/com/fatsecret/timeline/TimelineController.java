@@ -21,7 +21,7 @@ import com.fatsecret.user.model.User;
 public class TimelineController {
 	
 	@Autowired
-	TimelineBO timelineBO;
+	private TimelineBO timelineBO;
 	
 	@Autowired
 	private UserBO userBO;

@@ -38,4 +38,9 @@ public class TotalFoodListBO {
 		
 		return totalFoodListDAO.selectTotalFoodByUserIdDESC(userId);
 	}
+	
+	public TotalFoodList getTotalFoodListByUserIdCreatedAt(Integer userId) {
+		
+		return totalFoodListDAO.selectTotalFoodListByUserIdCreatedAt(userId);
+	}
 }

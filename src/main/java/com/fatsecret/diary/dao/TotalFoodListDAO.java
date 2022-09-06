@@ -35,4 +35,6 @@ public interface TotalFoodListDAO {
 	public List<TotalFoodList> selectTotalFoodListByUserId(Integer userId);
 	
 	public TotalFoodList selectTotalFoodByUserIdDESC(Integer userId);
+
+	public TotalFoodList selectTotalFoodListByUserIdCreatedAt(Integer userId);
 }

@@ -5,6 +5,19 @@
 <div class="d-flex justify-content-center">
 	<div id="calendar" class="w-50"></div>
 </div>
+<div class="d-flex justify-content-center">
+<c:choose>
+	<c:when test="${lastTotalFoodList != null && lastTotalActivityList == null}">
+ 		<span>오늘자 운동 다이어리를 완성해주세요!</span>
+ 	</c:when>
+ 	<c:when test="${lastTotalFoodList == null && lastTotalActivityList != null}">
+ 		<span>오늘자 음식 다이어리를 완성해주세요!</span>
+ 	</c:when>
+ 	<c:when test="${lastTotalFoodList == null && lastTotalActivityList == null}">
+ 		<span>운동/음식 다이어리를 입력해 캘린더를 완성해주세요!</span>
+ 	</c:when>
+ </c:choose>
+ </div>
 <div class="diaryWrap d-flex justify-content-center"
 	style="height: 400px;">
 	<div class="diet_calendar">

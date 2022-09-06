@@ -119,7 +119,7 @@ public class UserRestController {
 			){
 		Map<String, Object> result = new HashMap<>();
 		
-		int id = (int)session.getAttribute("userId");
+		Integer id = (Integer)session.getAttribute("userId");
 		userBO.updateWeightByUserId(id, weight);
 		
 		result.put("result", "success");
