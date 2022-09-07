@@ -1,5 +1,7 @@
 package com.fatsecret.diary;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -70,8 +72,8 @@ public class DiaryController {
 		User user = userBO.getUserByUserId(userId);
 		
 		//오늘날짜 토탈 음식, 운동 리스트 유무 확인
-		TotalFoodList lastTotalFoodList = totalFoodListBO.getTotalFoodByUserIdDESC(userId);
-		TotalActivityList lastTotalActivityList = totalActivityListBO.getTotalActivityByUserIdDESC(userId);
+		TotalFoodList lastTotalFoodList = totalFoodListBO.getTotalFoodListByUserIdCreatedAt(userId);
+		TotalActivityList lastTotalActivityList = totalActivityListBO.getTotalActivityByUserIdCreatedAt(userId);
 		
 		model.addAttribute("viewName", "diary/diet_diary");
 //		model.addAttribute("foodList", foodList);
@@ -160,7 +162,12 @@ public class DiaryController {
 	@RequestMapping("/exercise_diary_view")
 	public String exerciseDairy(@RequestParam(value = "date", required = false) String date, Model model,
 			HttpSession session) {
-
+		
+		//오늘 날짜 가져오기
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Calendar c1 = Calendar.getInstance();	
+		String strToday = sdf.format(c1.getTime());
+		
 		Integer userId = (Integer) session.getAttribute("userId");
 
 		List<Exercise> exerciseList = exerciseBO.getExerciseListByUserIdAndDate(userId, date);
@@ -188,6 +195,7 @@ public class DiaryController {
 		model.addAttribute("setDate", date);
 		
 		model.addAttribute("user", user);
+		model.addAttribute("today", strToday);
 		
 		return "template/layout2";
 	}

@@ -120,13 +120,15 @@ public class UserController {
 	 * @param session
 	 * @return
 	 */
-//	http://localhost:8080/user/my_wight_update_view
+//	http://localhost:8080/user/my_weight_update_view
 	@RequestMapping("/my_weight_update_view")
 	public String weightUpdatePage(Model model, HttpSession session) {
 		
-//		int userId = (int) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("userId");
+		User user = userBO.getUserByUserId(userId);
 		
 		model.addAttribute("viewName", "user/weight_update");
+		model.addAttribute("user", user);
 		
 		return "template/layout2";
 	}

@@ -5,19 +5,28 @@
 <div class="d-flex justify-content-center">
 	<div id="calendar" class="w-50"></div>
 </div>
+<div class="d-flex w-50 justify-content-center">
+	<h3>최근 음식 및 운동항목</h3>
+</div>
 <div class="d-flex justify-content-center">
-<c:choose>
-	<c:when test="${lastTotalFoodList != null && lastTotalActivityList == null}">
- 		<span>오늘자 운동 다이어리를 완성해주세요!</span>
- 	</c:when>
- 	<c:when test="${lastTotalFoodList == null && lastTotalActivityList != null}">
- 		<span>오늘자 음식 다이어리를 완성해주세요!</span>
- 	</c:when>
- 	<c:when test="${lastTotalFoodList == null && lastTotalActivityList == null}">
- 		<span>운동/음식 다이어리를 입력해 캘린더를 완성해주세요!</span>
- 	</c:when>
- </c:choose>
- </div>
+	<c:choose>
+		<c:when
+			test="${lastTotalFoodList != null && lastTotalActivityList == null}">
+			<span>오늘자 운동 다이어리를 완성해주세요!</span>
+		</c:when>
+		<c:when
+			test="${lastTotalFoodList == null && lastTotalActivityList != null}">
+			<span>오늘자 음식 다이어리를 완성해주세요!</span>
+		</c:when>
+		<c:when
+			test="${lastTotalFoodList == null && lastTotalActivityList == null}">
+			<span>운동/음식 다이어리를 입력해 캘린더를 완성해주세요!</span>
+		</c:when>
+		<%--  	<c:when test="${lastTotalFoodList != null && lastTotalActivityList != null}">
+			테스트
+ 	</c:when> --%>
+	</c:choose>
+</div>
 <div class="diaryWrap d-flex justify-content-center"
 	style="height: 400px;">
 	<div class="diet_calendar">
@@ -72,9 +81,16 @@
 										<td>${totalActivityList.kcal }kcal</td>
 									</c:if>
 									<c:if test="${resultRegDt == resultAtDt }">
-										<td>${totalActivityList.kcal + totalFoodList.kcal}kcal</td>
+										<c:if test="${totalActivityList.kcal > totalFoodList.kcal}">
+											<td><img src="https://cdn-icons-png.flaticon.com/512/2267/2267922.png" width="30"> ${totalActivityList.kcal - totalFoodList.kcal}kcal</td>
+										</c:if>
+										<c:if test="${totalActivityList.kcal < totalFoodList.kcal}">
+											<td><img src="https://cdn-icons-png.flaticon.com/128/2267/2267904.png" width="30"> ${totalFoodList.kcal - totalActivityList.kcal}kcal</td>
+										</c:if>
+										<c:if test="${totalActivityList.kcal == totalFoodList.kcal}">
+											<td>0</td>
+										</c:if>
 									</c:if>
-								</tr>
 							</c:if>
 						</c:forEach>
 					</c:forEach>

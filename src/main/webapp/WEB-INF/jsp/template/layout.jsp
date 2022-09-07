@@ -25,8 +25,10 @@
                 ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
                 ,changeYear: true //option값 년 선택 가능
                 ,changeMonth: true //option값  월 선택 가능  
-                ,minDate: new Date('1990-01-01')
-         		,maxDate: new Date('2022-12-31')
+                /* ,minDate: new Date('1950-01-01')
+         		,maxDate: new Date('2022-12-31') */
+         		,yearRange: '1950:today'
+             
          });
          
          $('#datepicker').datepicker('setDate', 'today');

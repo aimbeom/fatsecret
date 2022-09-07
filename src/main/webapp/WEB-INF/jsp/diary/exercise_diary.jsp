@@ -54,6 +54,32 @@
 					class="btn btn-success form-control d-flex justify-content-first">
 					<span style="color: white">+항목 추가하기</span>
 				</button>
+				<div id="exerciseList2">
+					<c:forEach items="${exerciseList }" var="exercise">
+						<div class="my-1" style="background-color:#d7f0bd">
+							<div class="d-flex justify-content-between" >
+								<div class="ml-3 d-flex w-100 justify-content-between">
+									${exercise.name }
+									<div class="d-flex w-50 justify-content-between px-5 mr-5">
+										<div class="d-flex">
+											<c:if test="${exercise.hour != 0 }">
+											<small>${exercise.hour }시간</small>
+											</c:if>
+											<small>${exercise.minute }분</small>
+										</div>
+										<small>${exercise.kcal }kcal</small>
+									</div>
+								</div>
+								<div>
+									<a href="#" class="exerciseDelBtn" data-exercise-id="${exercise.id }">
+										<img class="mr-3" src="https://www.iconninja.com/files/603/22/506/x-icon.png"
+										width="10px" height="10px">
+									</a>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
 				<div id="exerciseList" class="d-none justify-content-center "
 					style="background-color: #d7f0bd;">
 					<div class="d-flex">
@@ -155,11 +181,18 @@
 									${(60 - exercise.minute) - sleep.minute }분</div>
 								<div>${2016 - sleep.kcal }</div>
 							</c:when>
-							<c:otherwise>
+							<c:when test="${sleep.minute > 0}">
 								<div class="mr-4">${((24 - exercise.hour) - sleep.hour)}시간
-									${(60 - exercise.minute) - sleep.minute }분</div>
+									${(60 - exercise.minute) - sleep.minute }분
+								</div>
 								<div>${2016 - sleep.kcal }</div>
-							</c:otherwise>
+							</c:when>		
+							<c:when test="${sleep.minute == 0}">
+									<div class="mr-4">${((24 - exercise.hour) - sleep.hour)}시간
+									</div>
+									<div>${2016 - sleep.kcal }</div>
+							</c:when>	
+								
 						</c:choose>
 					</div>
 				</div>
@@ -173,6 +206,7 @@
 		$('#exerciseBtn').on('click', function() {
 			//안보이게 초기화				
 			$('#exerciseList').removeClass('d-none');
+			$('#exerciseList2').addClass('d-none');
 		});
 
 		//운동 리스트 - 접기 버튼
@@ -180,6 +214,7 @@
 			//alert('test');
 			//접기 버튼 클릭 시 다시 접기
 			$('#exerciseList').addClass('d-none');
+			$('#exerciseList2').removeClass('d-none');
 		});
 
 		//운동 리스트 - 추가 버튼

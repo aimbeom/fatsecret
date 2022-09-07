@@ -58,9 +58,9 @@
 						location.href = "/diary/food_diary_view?date=" + date
 								+ "&type=" + type;
 
-						if (date == null) {
+						  if (date == null) {
 							$('#datepicker').datepicker('setDate', 'today');
-						}
+						} 
 					}
 				});
 
@@ -103,7 +103,7 @@
 			<jsp:include page="../include/gnb2.jsp" />
 		</header>
 		<section class="content">
-			<jsp:include page="../${viewName}.jsp" />
+				<jsp:include page="../${viewName}.jsp" />
 		</section>
 	</div>
 </body>

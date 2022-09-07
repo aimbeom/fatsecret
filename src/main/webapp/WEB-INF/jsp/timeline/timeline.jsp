@@ -55,8 +55,8 @@
 					</div>
 					<%-- 글쓴이, 내용 --%>
 					<div class="d-flex m-2">
-						<span style="font-weight: bold">${card.user.nickname }</span> <span
-							class="ml-3">${card.post.content}</span>
+						<span style="font-weight: bold">${card.user.nickname }</span>
+						<span class="ml-3">${card.post.content}</span>
 					</div>
 					<%-- 댓글 목록 --%>
 					<c:forEach items="${card.commentCardList}" var="comment">
@@ -99,6 +99,39 @@
 			<div class="text-center p-3">
 				<%-- d-block: 클릭할 수 있는 영역을 넓히기 위해 --%>
 				<a href="#" class="del-post d-block">삭제하기</a>
+			</div>
+		 	<div class="text-center p-3 border-top">
+				<!-- data-dismiss: 모달창 닫힘 -->
+				<a href="" class="update-post d-block">수정하기</a>
+			</div> 
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="moreModal">
+	<div class="modal-dialog modal-sm modal-dialog-centered">
+		<div class="modal-content">
+			<%-- modal 창 안에 내용 넣기 --%>
+			<div class="text-center p-3">
+				<%-- d-block: 클릭할 수 있는 영역을 넓히기 위해 --%>
+				<a href="#" class="del-post d-block">수정테스트</a>
+			</div>
+		 	<div class="text-center p-3 border-top">
+				<!-- data-dismiss: 모달창 닫힘 -->
+				<a href="" class="update-post d-block">수정하기</a>
+			</div> 
+		</div>
+	</div>
+</div>
+
+<div class="modal2 fade" id="moreModal2">
+	<div class="modal-dialog modal-sm modal-dialog-centered">
+		<div class="modal-content">
+			<%-- modal 창 안에 내용 넣기 --%>
+			<div class="text-center p-3">
+				<%-- d-block: 클릭할 수 있는 영역을 넓히기 위해 --%>
+				<a href="#" class="del-post d-block">수정테스트</a>
 			</div>
 		 	<div class="text-center p-3 border-top">
 				<!-- data-dismiss: 모달창 닫힘 -->
@@ -270,7 +303,7 @@
 			e.preventDefault(); //a 태그 기본 동작 중단(위로 올라가는 현상 방지)
 
 			let postId = $('#moreModal').data('post-id');
-			alert(postId);
+			//alert(postId);
 			
 			location.href = "/post/detail_view?postId="+postId;
 		});

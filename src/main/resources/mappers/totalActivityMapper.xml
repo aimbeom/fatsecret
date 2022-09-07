@@ -67,11 +67,11 @@
  		1	
  	</select>
  	
- 	<select id="selectTotalActivityByUserIdCreatedAt" parameterType="int" resultType="com.fatsecret.diary.model.TotalFoodList">
+ 	<select id="selectTotalActivityByUserIdCreatedAt" parameterType="int" resultType="com.fatsecret.diary.model.TotalActivityList">
  		SELECT
  			*
  		FROM
- 			`total_foodlist`
+ 			`total_activity`
  		WHERE
  			`userId` = #{userId}
  		AND

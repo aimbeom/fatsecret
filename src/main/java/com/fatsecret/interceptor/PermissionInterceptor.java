@@ -31,18 +31,18 @@ public class PermissionInterceptor implements HandlerInterceptor{
 		// URL path 확인
 		String uri = request.getRequestURI();
 		logger.info("####################### uri:{}", uri);
-		// 비로그인 && /post / diary => 로그인 페이지로 리다이렉트		2000k 400 302
+		// 비로그인 && /post / diary / timeline => 로그인 페이지로 리다이렉트		2000k 400 302
 		if(userId == null && (uri.startsWith("/post") || uri.startsWith("/diary") || uri.startsWith("/timeline"))) {
 			//logger.info("testssssssssssssss");
 			response.sendRedirect("/user/sign_in_view");
 			return false;
 		}
-		// 로그인 && /user
-		if(userId != null && (uri.startsWith("/post"))) {
-			//logger.info("xxxxxxxxxxxxxxxxxxxxxx");
-			response.sendRedirect(uri);
-			return false;
-		}
+//		// 로그인 && /user
+//		if(userId != null) {
+//			//logger.info("xxxxxxxxxxxxxxxxxxxxxx");
+//			response.sendRedirect("/timeline/timeline_view");
+//			return false;
+//		}
 		return true;	//요청된 path로 컨트롤러 수행
 	}
 }

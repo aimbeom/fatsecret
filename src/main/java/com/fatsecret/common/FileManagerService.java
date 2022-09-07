@@ -15,7 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileManagerService {
 	
 	public final static String FILE_UPLOAD_PATH =  "/Users/jojoonbeom/FatSecret/workspace/images/";
-	 //input : MultipartFile, userLoginId
+
+	//input : MultipartFile, userLoginId
 	 //output : String path
 		public String saveFile(String userNickname, MultipartFile file) {
 			// 파일명이 겹치지 않게 하기 위해 userLoginId, 현재시간을 경로에 붙여준다.

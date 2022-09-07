@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:formatDate var="createdAt" value="${user.createdAt }" pattern="DD" />
+<fmt:formatDate var="updatedAt" value="${user.updatedAt }" pattern="DD" />
 <div class="wrap bg-success">
 	<div class="d-flex align-items-center mr-5 justify-content-end">
 		<c:if test="${not empty userName}">
@@ -8,7 +11,7 @@
 						안녕하세요</span></a> <span style="color: white">| </span> <a
 				href="/post/write_view"><span style="color: white">게시하기</span></a> <span
 				style="color: white">| </span> <span style="color: white">나의
-					체중 ${user.weight}kg</span> <span style="color: white">|</span> 
+					체중 ${user.weight}kg ${updatedAt - createdAt}일전</span> <span style="color: white">|</span> 
 					<a href="/user/my_weight_update_view"><span style="color:white">지금 체중재기</span></a> <span style="color: white">|</span> 
 					<a href="/user/sign_out"><span style="color: white">로그아웃</span></a>
 			</span>

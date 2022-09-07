@@ -4,29 +4,30 @@
 <div class="d-flex justify-content-center">
 	<div class="w-50">
 		<h1>글 상세 / 수정</h1>
-		
-		<input type="text" id="title" class="form-control" placeholder="제목을 입력하세요" value="${post.title}">
-		<textarea id="content" class="form-control" placeholder="내용을 입력하세요" rows="15">${post.content }</textarea>
-	
-		<div class="d-flex justify-content-end my-4">
-			<input type="file" id="file" accept=".jpg,.png,.gif,.jpeg">
-		</div>
-		
-		<%-- 이미지가 있는 경우에만 노출 --%>
-		<c:if test="${not empty post.imagePath}">
-		<div class="image-area mb-3">
-			<img src="${post.imagePath }" alt="" width="400">
-		</div>
-		</c:if>
-		
-		<div class="d-flex justify-content-between my-4">
-			<button type="button" id="postDeleteBtn" class="mx-3 btn btn-secondary">삭제</button>
+		<div class="d-flex">
+			<%-- 이미지가 있는 경우에만 노출 --%>
+			<c:if test="${not empty post.imagePath}">
+			<div class="image-area mb-3 mx-3">
+				<img src="${post.imagePath }" alt="" width="400">
+				<div class="d-flex justify-content-end my-4">
+					<input type="file" id="file" accept=".jpg,.png,.gif,.jpeg">
+				</div>
+			</div>
+			</c:if>
+			<div>
+				<input type="text" id="title" class="form-control" placeholder="제목을 입력하세요" value="${post.title}">
+				<textarea id="content" class="form-control" placeholder="내용을 입력하세요" rows="15">${post.content }</textarea>
 			
-			<div class="d-flex">
-				<a href="/user/my_page_view" id="postListBtn" class="btn btn-secondary">목록</a>
-				<button type="button" id="saveBtn" class="btn btn-success" data-post-id="${post.id}">저장</button>
+				
+				<div class="d-flex my-4">
+					<div class="d-flex justify-content-between">
+						<a href="/user/my_page_view" id="postListBtn" class="btn btn-secondary">목록</a>
+						<button type="button" id="saveBtn" class="btn btn-success" data-post-id="${post.id}">저장</button>
+					</div>
+				</div>
 			</div>
 		</div>
+		
 	</div>
 </div>
 <script>
@@ -85,8 +86,8 @@ $(document).ready(function(){
 			, success : function(data){
 				if(data.result == "success"){
 					alert('수정되었습니다');
-					location.reload(true);
-					location.href = "/user/my_page_view";
+					//location.reload(true);
+					location.href = "/timeline/timeline_view";
 				} else {
 					alert(data.errorMessage);
 				}
