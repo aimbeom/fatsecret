@@ -14,7 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileManagerService {
 	
-	public final static String FILE_UPLOAD_PATH =  "/Users/jojoonbeom/FatSecret/workspace/images/";
+	//public final static String FILE_UPLOAD_PATH =  "/Users/jojoonbeom/FatSecret/workspace/images/";
+	public final static String FILE_UPLOAD_PATH = "/home/ec2-user/upload_images/";
 
 	//input : MultipartFile, userLoginId
 	 //output : String path
