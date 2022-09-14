@@ -22,8 +22,8 @@ FatSecret은 식단을 일기장처럼 매일 기록하며 다른사람들과 sn
 <h1>1. 회원가입 / 권장 일일칼로리</h1>
 <br>
 <div class="d-flex">
-<img src="https://user-images.githubusercontent.com/98947074/190089888-38e875ca-4baf-47fc-b359-75f463803c11.gif" width="50%"/>
-<img src="https://user-images.githubusercontent.com/98947074/190089948-19d2bb5c-a25f-4def-a13c-63656a450e64.gif" width="50%"/>
+<img src="https://user-images.githubusercontent.com/98947074/190089888-38e875ca-4baf-47fc-b359-75f463803c11.gif" width="40%"/>
+<img src="https://user-images.githubusercontent.com/98947074/190089948-19d2bb5c-a25f-4def-a13c-63656a450e64.gif" width="45%"/>
 </div>
 <br>
  - 회원가입시 입력한 키와 체중, 활동량의 정보를 토대로 권장 일일칼로리를 계산받습니다<br>
@@ -33,6 +33,13 @@ FatSecret은 식단을 일기장처럼 매일 기록하며 다른사람들과 sn
 <br>
 
 <h1>2. 음식 / 운동 다이어리</h1>
+<br>
+<h4>음식 다이어리 추가/삭제</h4><br>
+<img src="https://user-images.githubusercontent.com/98947074/190096392-cad0d209-6b65-4979-8caa-b5e39f5fd75f.gif" width="60%"/>
+<h4>운동 다이어리 추가/삭제</h4><br>
+<img src="https://user-images.githubusercontent.com/98947074/190097343-ea53ba03-8681-4f83-aaf3-4a8e0ce28082.gif" width="60%"/>
+
+
 <br>
  - datepicker로 날짜를 선택할 수 있습니다.
  - 항목 추가하기 버튼 클릭시 하단으로 페이지가 펼쳐지며 입력창이 나타납니다<br>
