@@ -22,7 +22,7 @@ FatSecret은 식단을 일기장처럼 매일 기록하며 다른사람들과 sn
 <h1>1. 회원가입 / 권장 일일칼로리</h1>
 <p>
 <img src="/Users/jojoonbeom/Documents/Sep-14-2022 16-06-51.gif">
-
+</p>
 <br>
  - 회원가입시 입력한 키와 체중, 활동량의 정보를 토대로 권장 일일칼로리를 계산받습니다<br>
  - 비밀번호는 EncriptUtils를 사용해 암호화하여 저장합니다<br>
