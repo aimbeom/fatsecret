@@ -19,6 +19,8 @@ FatSecret은 식단을 일기장처럼 매일 기록하며 다른사람들과 sn
 - 식단 데이터를 통하여 탄수화물, 단백질, 지방 함유량이 자동 계산됩니다<br>
 <br><br>
 
+일정표 : https://docs.google.com/spreadsheets/d/1CtJtLa2NB-2CyqH6gTY_iQHzgFjJCcUc/edit#gid=488077327
+
 <h1>1. 회원가입 / 권장 일일칼로리</h1>
 <br>
 <div class="d-flex">
