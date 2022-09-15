@@ -2,25 +2,29 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<div class="d-flex justify-content-center">
+<!-- <div class="d-flex justify-content-center">
 	<div id="calendar" class="w-50"></div>
+</div> -->
+<div class="d-flex justify-content-center mt-5">
+	<div class="d-flex w-50 justify-content-between">
+		<h3>마이 다이어트 캘린더 - 개요</h3>
+		<!-- <a class="btn btn-success" href="/diary/diet_fullCalendar_view">내 일정표</a>	 -->
+	</div>
 </div>
-<div class="d-flex w-50 justify-content-center">
-	<h3>최근 음식 및 운동항목</h3>
-</div>
+<hr>
 <div class="d-flex justify-content-center">
 	<c:choose>
 		<c:when
 			test="${lastTotalFoodList != null && lastTotalActivityList == null}">
-			<span>오늘자 운동 다이어리를 완성해주세요!</span>
+			<span>오늘자 <a href="/diary/exercise_diary_view">운동 다이어리</a>를 완성해주세요!</span>
 		</c:when>
 		<c:when
 			test="${lastTotalFoodList == null && lastTotalActivityList != null}">
-			<span>오늘자 음식 다이어리를 완성해주세요!</span>
+			<span>오늘자 <a href="/diary/food_diary_view">음식 다이어리</a>를 완성해주세요!</span>
 		</c:when>
 		<c:when
 			test="${lastTotalFoodList == null && lastTotalActivityList == null}">
-			<span>운동/음식 다이어리를 입력해 캘린더를 완성해주세요!</span>
+			<span> <a href="/diary/exercise_diary_view">운동</a> / <a href="/diary/food_diary_view">음식</a> 다이어리를 입력해 캘린더를 완성해주세요!</span>
 		</c:when>
 		<%--  	<c:when test="${lastTotalFoodList != null && lastTotalActivityList != null}">
 			테스트

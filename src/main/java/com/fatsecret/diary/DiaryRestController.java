@@ -1,11 +1,13 @@
 package com.fatsecret.diary;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,13 +62,14 @@ public class DiaryRestController {
 			, @RequestParam("protein") int protein
 			, @RequestParam("fat") int fat
 			, @RequestParam("kcal") int kcal
+			, @RequestParam("date") String date
 			, HttpSession session
 			){
 		
 		Map<String, Object> result = new HashMap<>();
 		int userId = (int) session.getAttribute("userId");
 		
-		foodListBO.addFoodList(userId, timeType, foodName, amount, carb, protein, fat, kcal);
+		foodListBO.addFoodList(userId, timeType, foodName, amount, carb, protein, fat, kcal, date);
 		
 		result.put("result", "success");
 		
@@ -109,12 +112,13 @@ public class DiaryRestController {
 			@RequestParam(value="hour", required=false) int hour,
 			@RequestParam(value="minute", required=false) int minute,
 			@RequestParam("kcal") int kcal,
+			@RequestParam("date") String date,
 			HttpSession session){
 		Map<String, Object> result = new HashMap<>();
 		
 		int userId = (int) session.getAttribute("userId");
 		
-		exerciseBO.addExerciseList(userId, name, hour, minute, kcal);
+		exerciseBO.addExerciseList(userId, name, hour, minute, kcal, date);
 		
 		result.put("result", "success");
 		
@@ -153,12 +157,13 @@ public class DiaryRestController {
 			@RequestParam(value="hour", required=false) int hour,
 			@RequestParam(value="minute", required=false) int minute,
 			@RequestParam("kcal") int kcal,
+			@RequestParam("date") String date,
 			HttpSession session){
 		Map<String, Object> result = new HashMap<>();
 		
 		int userId = (int) session.getAttribute("userId");
 		
-		sleepBO.addSleepList(userId, hour, minute, kcal);
+		sleepBO.addSleepList(userId, hour, minute, kcal, date);
 		
 		result.put("result", "success");
 		
@@ -232,13 +237,14 @@ public class DiaryRestController {
 			, @RequestParam("totalFat") int totalFat
 			, @RequestParam("totalKcal") int totalKcal
 			, @RequestParam("kcalPercent") int kcalPercent
+			, @RequestParam("date") String date
 			, HttpSession session
 			){
 		
 		Map<String, Object> result = new HashMap<>();
 		int userId = (int) session.getAttribute("userId");
 		
-		totalFoodListBO.addTotalFoodList(userId, totalCarb, totalProtein, totalFat, totalKcal, kcalPercent);
+		totalFoodListBO.addTotalFoodList(userId, totalCarb, totalProtein, totalFat, totalKcal, kcalPercent, date);
 		
 		result.put("result", "success");
 		
@@ -292,13 +298,14 @@ public class DiaryRestController {
 	@PostMapping("/add_total_activity")
 	public Map<String, Object> addTotalActivity(
 			@RequestParam("kcal") int kcal
+			, @RequestParam("date") String date
 			, HttpSession session
 			){
 		
 		Map<String, Object> result = new HashMap<>();
 		int userId = (int) session.getAttribute("userId");
 		
-		totalActivityListBO.addTotalActivityList(userId, kcal);
+		totalActivityListBO.addTotalActivityList(userId, kcal, date);
 		
 		result.put("result", "success");
 		
@@ -330,4 +337,18 @@ public class DiaryRestController {
 		
 		return result;
 	}
+//	
+//	@RequestMapping("/diet_fullCalendar")
+//	public String fullCalendar(Model model, HttpSession session) {
+//		
+//		Map<String, Object> result = new HashMap<>();
+//		
+//		Integer userId = (Integer) session.getAttribute("userId");
+//		List<TotalFoodList> totalFoodList = totalFoodListBO.getTotalFoodListByUserId(userId);
+//		List<TotalActivityList> totalActivityList = totalActivityListBO.getTotalActivityListByUserId(userId);
+//		
+//		result.put("result", "success");
+//		
+//		return "template/layout2";
+//	}
 }

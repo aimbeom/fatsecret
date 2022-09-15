@@ -20,7 +20,7 @@
 	  		, #{hour}
 	  		, #{minute}
 	  		, #{kcal}
-			, NOW()
+			, #{date}
 			, NOW()
 	  	)	
   </insert>

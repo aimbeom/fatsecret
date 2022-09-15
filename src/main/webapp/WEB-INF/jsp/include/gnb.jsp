@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="d-flex title ml-5 justify-content-between">
-	<a href="/timeline/timeline_view"><span style="font-size:60px; color:green">FatSecret</span></a>
+	<a href="/user/sign_in_view"><span style="font-size:60px; color:green">FatSecret</span></a>
 	<div class="d-flex align-items-center mr-5">
 		<c:if test="${not empty userName}">
 			<span>

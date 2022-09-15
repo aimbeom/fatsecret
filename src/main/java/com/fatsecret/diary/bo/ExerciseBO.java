@@ -19,9 +19,9 @@ public class ExerciseBO {
 	@Autowired
 	private ExerciseDAO exerciseDAO;
 
-	public void addExerciseList(Integer userId, String name, int hour, int minute, int kcal) {
+	public void addExerciseList(Integer userId, String name, int hour, int minute, int kcal, String date) {
 
-		exerciseDAO.addExerciseList(userId, name, hour, minute, kcal);
+		exerciseDAO.addExerciseList(userId, name, hour, minute, kcal, date);
 	}
 
 	// userId로 선택한 날짜 운동 리스트 가져오기

@@ -14,7 +14,7 @@
 		(
 		#{userId}
 		, #{kcal}
-		, NOW()
+		, #{date}
 		, NOW()
 		)
 	</insert>

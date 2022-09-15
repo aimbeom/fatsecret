@@ -15,7 +15,8 @@ public interface ExerciseDAO {
 			@Param("name") String name,
 			@Param("hour") int hour,
 			@Param("minute") int timinuteme,
-			@Param("kcal") int kcal
+			@Param("kcal") int kcal,
+			@Param("date") String date
 			);
 	
 	public List<Exercise> selectExerciseListByUserIdAndDate(

@@ -20,9 +20,9 @@ public class FoodListBO {
 
 	// 음식 추가
 	public void addFoodList(Integer userId, String timeType, String foodName, String amount, int carb, int protein, int fat,
-			int kcal) {
+			int kcal, String date) {
 
-		foodListDAO.addFoodList(userId, timeType, foodName, amount, carb, protein, fat, kcal);
+		foodListDAO.addFoodList(userId, timeType, foodName, amount, carb, protein, fat, kcal, date);
 	}
 
 	// 음식 리스트 가져오기
@@ -114,7 +114,7 @@ public class FoodListBO {
 		int totalProtein = mfoodList.getProtein() + lfoodList.getProtein() + dfoodList.getProtein();
 		int totalFat = mfoodList.getFat() + lfoodList.getFat() + dfoodList.getFat();
 
-		float carbPercent = totalCarb / recommendCarb * 100;
+		float carbPercent = (totalCarb / recommendCarb) * 100;
 		float proteinPercent = totalProtein / recommendProtein * 100;
 		float fatPercent = totalFat / recommendFat * 100;
 

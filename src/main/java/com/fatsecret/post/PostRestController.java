@@ -31,6 +31,14 @@ public class PostRestController {
 	@Autowired
 	UserBO userBO;
 	
+	/**
+	 * 게시글 추가
+	 * @param title
+	 * @param content
+	 * @param file
+	 * @param session
+	 * @return
+	 */
 	@PostMapping("/create")
 	public Map<String, Object> write(
 			@RequestParam("title") String title,
@@ -120,14 +128,4 @@ public class PostRestController {
 		return result;
 	}
 	
-	
-//	http://localhost:8080/post/test
-	//받아온 정보 확인하는 테스트
-	@RequestMapping("/test")
-	public List<Post> test(){
-		
-		List<Post> result = postBO.getPostList();
-		
-		return result;
-	}
 }

@@ -12,7 +12,9 @@ public interface TotalActivityListDAO {
 	
 	public void insertTotalActivityList(
 			@Param("userId") Integer userId,
-			@Param("kcal") int kcal);
+			@Param("kcal") int kcal,
+			@Param("date") String date
+			);
 	
 	public TotalActivityList selectTotalActivityByUserId(
 			@Param("userId") Integer userId);

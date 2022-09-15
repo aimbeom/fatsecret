@@ -112,6 +112,12 @@ public class UserRestController {
 		return result;
 	}
 	
+	/**
+	 * 내 체중 수정
+	 * @param weight
+	 * @param session
+	 * @return
+	 */
 	@PostMapping("/weight_update")
 	public Map<String, Object> weightUpdate(
 			@RequestParam("weight") int weight,
@@ -127,6 +133,13 @@ public class UserRestController {
 		return result;
 	}
 	
+	/**
+	 * 프로필 이미지 수정
+	 * @param id
+	 * @param file
+	 * @param session
+	 * @return
+	 */
 	@PostMapping("/my_image_update")
 	public Map<String, Object> weightUpdate(
 			@RequestParam("id") int id,
@@ -144,6 +157,12 @@ public class UserRestController {
 		return result;
 	}
 	
+	/**
+	 * 프로필 이미지 삭제
+	 * @param id
+	 * @param session
+	 * @return
+	 */
 	@PostMapping("/delete_my_image")
 	public Map<String, Object> deleteMyImage(
 			@RequestParam("id") int id,
@@ -157,30 +176,5 @@ public class UserRestController {
 		result.put("errorMessage", "수정 실패");
 		return result;
 	}
-	
-//	@PostMapping("/update_my_image")
-//	public Map<String, Object> updateMyImage(
-//			@RequestParam("id") int id,
-//			@RequestParam(value="file", required=false) MultipartFile file,
-//			HttpSession session
-//			){
-//		Map<String, Object> result = new HashMap<>();
-//		
-//		userBO.updateMyImageByIdFile(id, file);
-//		
-//		result.put("result", "success");
-//		result.put("errorMessage", "수정 실패");
-//		return result;
-//	}
-	
-	
-////	http://localhost:8080/user/test
-//	@RequestMapping("/test")
-//	public Map<String, Object> test(){
-//		Map<String, Object> result = new HashMap<>();
-//		User user = userBO.getUser();
-//		result.put("result", user);
-//		
-//		return result;
-//	}
+
 }

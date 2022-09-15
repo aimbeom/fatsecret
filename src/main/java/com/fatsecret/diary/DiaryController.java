@@ -50,10 +50,9 @@ public class DiaryController {
 	
 	@Autowired
 	private TotalActivityListBO totalActivityListBO;
-
+	
 	/**
 	 * 다이어트 캘린더
-	 * 
 	 * @param model
 	 * @param session
 	 * @return
@@ -123,6 +122,9 @@ public class DiaryController {
 		// 아점저 탄단지칼 토탈
 		TotalFoodList totalFoodList = totalFoodListBO.getTotalFoodByUserId(userId);
 		
+		//선택한 날짜 토탈 리스트 유무 확인
+		TotalFoodList totalFoodListDate = totalFoodListBO.getTotalFoodByUserIdDate(userId, date);
+		
 		// 당일 섭취량 백분율
 		int kcalPercent = (int) foodListBO.kcalPercent(userId, date, recommendedKcal);
 
@@ -130,6 +132,7 @@ public class DiaryController {
 		FoodList elementPercent = foodListBO.elementPercent(userId, date, recommendedKcal);
 
 		model.addAttribute("viewName", "diary/food_diary");
+		
 		model.addAttribute("morningFoodList", morningFoodList);
 		model.addAttribute("lunchFoodList", lunchFoodList);
 		model.addAttribute("dinnerFoodList", dinnerFoodList);
@@ -139,6 +142,8 @@ public class DiaryController {
 		model.addAttribute("dTotalFoodList", dTotalFoodList);
 		
 		model.addAttribute("totalFoodList", totalFoodList);
+		
+		model.addAttribute("totalFoodListDate", totalFoodListDate);
 
 		model.addAttribute("kcalPercent", kcalPercent);
 
@@ -162,11 +167,6 @@ public class DiaryController {
 	@RequestMapping("/exercise_diary_view")
 	public String exerciseDairy(@RequestParam(value = "date", required = false) String date, Model model,
 			HttpSession session) {
-		
-		//오늘 날짜 가져오기
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		Calendar c1 = Calendar.getInstance();	
-		String strToday = sdf.format(c1.getTime());
 		
 		Integer userId = (Integer) session.getAttribute("userId");
 
@@ -195,7 +195,7 @@ public class DiaryController {
 		model.addAttribute("setDate", date);
 		
 		model.addAttribute("user", user);
-		model.addAttribute("today", strToday);
+		//model.addAttribute("today", strToday);
 		
 		return "template/layout2";
 	}

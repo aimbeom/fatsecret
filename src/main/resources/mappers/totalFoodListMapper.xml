@@ -22,7 +22,7 @@
 		, #{fat}
 		, #{kcal}
 		, #{kcalPercent}
-		, NOW()
+		, #{date}
 		, NOW()
 		)
 	</insert>
@@ -105,4 +105,16 @@
  		AND
  			DATE(`createdAt`) = DATE(NOW());
  	</select>
+ 	
+ 	<select id="selectTotalFoodListByUserIdDate" parameterType="map" resultType="com.fatsecret.diary.model.TotalFoodList">
+ 		SELECT
+ 			*
+ 		FROM
+ 			`total_foodlist`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		AND
+ 			DATE(`createdAt`) = #{date};
+ 	</select>
+
 </mapper>

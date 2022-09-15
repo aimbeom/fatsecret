@@ -29,20 +29,14 @@
 			</table>
 			<div>
 				<div class="d-flex justify-content-end">
-				<fmt:formatDate var="todayDt"
-								value="${today}" pattern="yyyy-MM-dd" />
-					<fmt:formatDate var="resultRegDt"
-						value="${totalFoodList.createdAt }" pattern="yyyy-MM-dd" />
-					 <c:if test="${setDate ==  todayDt}">
-						 <c:choose>
-							<c:when test="${resultRegDt != setDate }">
-								<button class="btn btn-success" id="saveTotalFoodInfo">기록</button>
-							</c:when>
-							<c:when test="${resultRegDt == setDate }">
-								<button class="btn btn-success" id="updateTotalFoodInfo">수정</button>
-							</c:when>
-						</c:choose> 
-					</c:if>	
+					<c:choose>
+						<c:when test="${totalFoodListDate == null}">
+							<button class="btn btn-success" id="saveTotalFoodInfo">기록</button>
+						</c:when>
+						<c:otherwise>
+							<button class="btn btn-success" id="updateTotalFoodInfo">수정</button>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			<div class="input-wrap w-100 mt-5">
@@ -326,7 +320,9 @@
 					let protein = $('#mProtein').val().trim();
 					let fat = $('#mFat').val().trim();
 					let kcal = $('#mKcal').val().trim();
-
+					
+					let date = $('#datepicker').val();
+					
 					//validation
 					if (foodName == "") {
 						alert('음식 이름을 입력해주세요');
@@ -369,7 +365,8 @@
 							"carb" : carb,
 							"protein" : protein,
 							"fat" : fat,
-							"kcal" : kcal
+							"kcal" : kcal,
+							"date" : date
 						}
 						//response
 						,
@@ -393,7 +390,7 @@
 
 					//validation
 					let id = $(this).data('mlist-id');
-					alert(id);
+					//alert(id);
 
 					$.ajax({
 						//request
@@ -446,7 +443,9 @@
 					let protein = $('#lProtein').val().trim();
 					let fat = $('#lFat').val().trim();
 					let kcal = $('#lKcal').val().trim();
-
+					
+					let date = $('#datepicker').val();
+					
 					//validation
 					if (foodName == "") {
 						alert('음식 이름을 입력해주세요');
@@ -489,7 +488,8 @@
 							"carb" : carb,
 							"protein" : protein,
 							"fat" : fat,
-							"kcal" : kcal
+							"kcal" : kcal,
+							"date" : date
 						}
 						//response
 						,
@@ -564,7 +564,9 @@
 					let protein = $('#dProtein').val().trim();
 					let fat = $('#dFat').val().trim();
 					let kcal = $('#dKcal').val().trim();
-
+					
+					let date = $('#datepicker').val();
+					
 					//validation
 					if (foodName == "") {
 						alert('음식 이름을 입력해주세요');
@@ -607,7 +609,8 @@
 							"carb" : carb,
 							"protein" : protein,
 							"fat" : fat,
-							"kcal" : kcal
+							"kcal" : kcal,
+							"date" : date
 						}
 						//response
 						,
@@ -659,7 +662,7 @@
 				//totalFoodList 추가
 				$('#saveTotalFoodInfo').on('click', function(e) {
 							/* $('#saveTotalFoodInfo').addClass('d-none'); */
-
+							
 							let totalFat = ${mTotalFoodList.fat + lTotalFoodList.fat + dTotalFoodList.fat};
 
 							let totalCarb = ${mTotalFoodList.carb + lTotalFoodList.carb+ dTotalFoodList.carb};
@@ -669,7 +672,9 @@
 							let totalKcal = ${mTotalFoodList.kcal + lTotalFoodList.kcal + dTotalFoodList.kcal};
 
 							let kcalPercent = ${kcalPercent};
-
+							
+							let date = $('#datepicker').val();
+							//alert(date)
 							//alert(kcalPercent);
 
 							$.ajax({
@@ -681,7 +686,8 @@
 									"totalCarb" : totalCarb,
 									"totalProtein" : totalProtein,
 									"totalKcal" : totalKcal,
-									"kcalPercent" : kcalPercent
+									"kcalPercent" : kcalPercent,
+									"date" : date
 								}
 
 								//response
@@ -689,7 +695,7 @@
 								success : function(data) {
 									if (data.result == "success") {
 										alert("입력 성공");
-										/* $('#updateTotalFoodInfo').removeClass(
+										 /* $('#updateTotalFoodInfo').removeClass(
 												'd-none'); */
 										location.reload(true);
 									} else {

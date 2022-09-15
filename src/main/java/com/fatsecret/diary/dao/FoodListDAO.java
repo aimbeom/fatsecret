@@ -20,7 +20,8 @@ public interface FoodListDAO {
 			@Param("carb") int carb,
 			@Param("protein") int protein,
 			@Param("fat") int fat,
-			@Param("kcal") int kcal
+			@Param("kcal") int kcal,
+			@Param("date") String date
 			);
 	
 	//음식 리스트 가져오기

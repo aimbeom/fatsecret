@@ -39,7 +39,7 @@ public class FileManagerService {
 				
 				// 이미지 업로드 성공시 Path를 리턴한다.	(WebMvcConfig에서 매핑한 이미지 path)
 				// 예) http://localhost/images/aimbeom_135465413/sun.png
-				return "/images/"+directoryName + file.getOriginalFilename();	//파일명은 path랑 일치하게
+				return "/images/"+ directoryName + file.getOriginalFilename();	//파일명은 path랑 일치하게
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

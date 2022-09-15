@@ -4,8 +4,8 @@
 	<div class="w-25">
 		<div class="idBlock m-2">
 			<div class="d-flex justify-content-between">
-			<span>최근 체중</span>
-			${userWeight }kg
+			<span>현재 체중</span>
+			${user.weight }kg
 			</div>
 		</div>
 		<div class="pwBlock m-2">
@@ -25,7 +25,7 @@
 		$('#weightUpdateBtn').on('click', function(){
 			
 			let weight = $('#weight').val();
-			alert(weight);
+			//alert(weight);
 			
 			if(weight == ""){
 				alert('무게를 입력해주세요');

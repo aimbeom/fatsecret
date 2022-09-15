@@ -14,9 +14,9 @@ public class TotalActivityListBO {
 	@Autowired
 	private TotalActivityListDAO totalActivityListDAO;
 
-	public void addTotalActivityList(Integer userId, int kcal) {
+	public void addTotalActivityList(Integer userId, int kcal, String date) {
 
-		totalActivityListDAO.insertTotalActivityList(userId, kcal);
+		totalActivityListDAO.insertTotalActivityList(userId, kcal, date);
 	}
 
 	public TotalActivityList getTotalActivityByUserId(Integer userId) {

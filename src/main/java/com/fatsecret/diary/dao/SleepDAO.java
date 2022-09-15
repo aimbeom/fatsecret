@@ -16,7 +16,8 @@ public interface SleepDAO {
 			@Param("userId") Integer userId,
 			@Param("hour") int hour,
 			@Param("minute") int minute,
-			@Param("kcal") int kcal
+			@Param("kcal") int kcal,
+			@Param("date") String date
 			);
 	
 	//userId, date를 매개로 선택한 날짜 데이터 뽑아오기

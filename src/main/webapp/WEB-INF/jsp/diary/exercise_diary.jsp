@@ -225,6 +225,7 @@
 			let hour = $('#activityHour').val().trim();
 			let minute = $('#activityMinute').val().trim();
 			let kcal = $('#activitykcal').val();
+			let date = $('#Edatepicker').val();
 
 			//validation
 			if (name == "") {
@@ -259,7 +260,8 @@
 					"name" : name,
 					"hour" : hour,
 					"minute" : minute,
-					"kcal" : kcal
+					"kcal" : kcal,
+					"date" : date
 				}
 				//response
 				,
@@ -329,6 +331,8 @@
 			let minute = $('#sleepMinute').val();
 			let kcal = $('#sleepKcal').val();
 
+			let date = $('#Edatepicker').val();
+
 			//validation
 			if (hour == "") {
 				alert('수면 시간을 입력해주세요');
@@ -355,7 +359,8 @@
 				data : {
 					"hour" : hour,
 					"minute" : minute,
-					"kcal" : kcal
+					"kcal" : kcal,
+					"date" : date
 				}
 				//response
 				,
@@ -444,13 +449,16 @@
 		$('#saveTotalActivityInfo').on('click', function() {
 
 			let kcal = ${2016 - sleep.kcal + exercise.kcal};
-
+			
+			let date = $('#Edatepicker').val();
+			
 			$.ajax({
 				//request
 				url : "/diary/add_total_activity",
 				method : "post",
 				data : {
-					"kcal" : kcal
+					"kcal" : kcal,
+					"date" : date
 				}
 				//response
 				,

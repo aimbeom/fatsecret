@@ -16,7 +16,8 @@ public interface TotalFoodListDAO {
 			@Param("protein") int totalProtein,
 			@Param("fat") int totalFat,
 			@Param("kcal") int totalKcal,
-			@Param("kcalPercent") int kcalPercent
+			@Param("kcalPercent") int kcalPercent,
+			@Param("date") String date
 			);
 	
 	public TotalFoodList selectTotalFoodByUserId(
@@ -37,4 +38,10 @@ public interface TotalFoodListDAO {
 	public TotalFoodList selectTotalFoodByUserIdDESC(Integer userId);
 
 	public TotalFoodList selectTotalFoodListByUserIdCreatedAt(Integer userId);
+	
+	public TotalFoodList selectTotalFoodListByUserIdDate(
+			@Param("userId") Integer userId,
+			@Param("date") String date
+			);
+
 }
