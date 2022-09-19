@@ -267,7 +267,7 @@
 			<div class="d-flex justify-content-between w-100"
 				style="background-color: #d7f0bd;">
 				<div class="bg-warning w-50 m-5 d-flex">
-					<span style="font-size: 40px">${kcalPercent}%</span>
+					<span style="font-size: 40px">${kcalPercent }%</span>
 					<div class="ml-3">
 						<span style="font-size: 30px">RDI 기준</span><br>
 						<div class="small">

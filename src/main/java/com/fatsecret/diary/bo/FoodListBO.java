@@ -80,7 +80,7 @@ public class FoodListBO {
 
 		FoodList mfoodList = totalAmount(userId, "아침", date);
 		FoodList lfoodList = totalAmount(userId, "점심", date);
-		FoodList dfoodList = totalAmount(userId, "점심", date);
+		FoodList dfoodList = totalAmount(userId, "저녁", date);
 
 		float totalKcal = mfoodList.getKcal() + lfoodList.getKcal() + dfoodList.getKcal();
 
@@ -139,7 +139,7 @@ public class FoodListBO {
 
 		FoodList mfoodList = totalAmount(userId, "아침", date);
 		FoodList lfoodList = totalAmount(userId, "점심", date);
-		FoodList dfoodList = totalAmount(userId, "점심", date);
+		FoodList dfoodList = totalAmount(userId, "저녁", date);
 
 		int totalKcal = mfoodList.getKcal() + lfoodList.getKcal() + dfoodList.getKcal();
 

@@ -13,8 +13,6 @@ import com.fatsecret.diary.model.TotalFoodList;
 @Service
 public class TotalFoodListBO {
 	
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
 	@Autowired
 	TotalFoodListDAO totalFoodListDAO;
 

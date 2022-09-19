@@ -21,11 +21,13 @@ public class LikeBO {
 		}
 	}
 	
+	// 좋아요 갯수 가져오기
 	public int getLikeCount(int postId) {
 		
 		return likeDAO.selectLikeByPostIdUserId(postId);
 	}
 	
+	// 좋아요 유무 파악
 	public boolean existLike(int postId, Integer userId) {
 		
 		return likeDAO.existLikeByPostIdAndUserId(postId, userId);

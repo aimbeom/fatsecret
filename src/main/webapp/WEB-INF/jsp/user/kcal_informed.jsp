@@ -7,7 +7,7 @@
 		<div class="genderBlock form-group">
 			내 일일권장 섭취량
 			<div class="d-flex my-4">
-				<h1 style=color:#4aa8d8>${recommendedKcal}
+				<h1 style=color:#4aa8d8>${recommendedKcal}</h1>
 				<h1 style=color:#4aa8d8>  kcal</h1>
 			</div>
 			<div id="recommendedKaclComment" class="small text-secondary">
