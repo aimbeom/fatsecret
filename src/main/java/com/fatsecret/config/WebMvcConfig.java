@@ -28,9 +28,9 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		//인터셉터의 이름을 넣어준다				
-//		"/user/my_page_view" ,"/my_weight_update_view"
+//		"/user/my_page_view" ,"/my_weight_update_view", "/post/detail_view", "/post/write_view"
 		registry.addInterceptor(intereceptor)
 		.addPathPatterns("/**")		//	/** = 아래 패스까지 모두 확인
-		.excludePathPatterns("/error", "/static/**", "/post/detail_view", "/post/write_view",  "/user/sign_out");	//static으로 이어지는 하위 나머지들 전부를 제외한다
+		.excludePathPatterns("/error", "/static/**", "/user/sign_out", "/kcal_informed_view", "/my_page_view", "/my_weight_update_view");	//static으로 이어지는 하위 나머지들 전부를 제외한다
 	}
 }	

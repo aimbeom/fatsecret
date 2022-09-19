@@ -45,4 +45,6 @@ public class PermissionInterceptor implements HandlerInterceptor{
 //		}
 		return true;	//요청된 path로 컨트롤러 수행
 	}
+	
+	
 }
