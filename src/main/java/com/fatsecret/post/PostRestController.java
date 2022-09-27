@@ -85,6 +85,7 @@ public class PostRestController {
 			HttpSession session
 			){
 		
+		//성공여부
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("result", "success");
 		result.put("errorMessage", "실패");

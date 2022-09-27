@@ -47,6 +47,7 @@ public class FileManagerService {
 			return null;
 		}
 		
+		//파일 삭제
 		public void deleteFile(String imagePath) throws IOException {
 			// imagePath: /images/aaaa_1658734800740/화면 캡처 2022-06-09 155425.png
 			// "D:\\jjb2\\memo\\workspace\\images/"    /images/aaaa_1658734800740/화면 캡처 2022-06-09 155425.png

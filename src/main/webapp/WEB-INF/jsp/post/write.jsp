@@ -24,8 +24,7 @@
 </div>
 
 <script>
-	$(document).ready(
-			function() {
+	$(document).ready(function() {
 				//파일업로드 이미지 클릭 -> input type ="file" 숨어있던 창이 열림
 				$('#fileUpLoadBtn').on('click', function(e) {
 					e.preventDefault(); //a태그가 위로 올라가는 현상을 방지
@@ -35,9 +34,7 @@
 				});
 
 				// 파일 업로드를 했을 때, 확장자 이름 노출, 파일 확장자 검증
-				$('#file').on(
-						'change',
-						function(e) {
+				$('#file').on('change',function(e) {
 							let fileName = e.target.files[0].name;
 
 							let arr = fileName.split(".");
@@ -63,8 +60,8 @@
 
 					// form태그를 자바스크립트에서 만든다	.
 					let formData = new FormData();
-					formData.append("title", title); //<input type ="" name="subject"> 를 만들고 name 값을 보낸다
-					formData.append("content", content); //<input type ="" name="subject"> 를 만들고 name 값을 보낸다
+					formData.append("title", title); //<input type ="" name="title"> 를 만들고 name 값을 보낸다
+					formData.append("content", content); //<input type ="" name="content"> 를 만들고 name 값을 보낸다
 					formData.append("file", $('#file')[0].files[0]); //$('#file')[0] : 첫번째 input file 태그, files[0]: 업로드 된 것 중에 첫번째 파일
 
 					//ajax form 데이터 전송

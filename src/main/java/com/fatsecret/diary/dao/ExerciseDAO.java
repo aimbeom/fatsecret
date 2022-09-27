@@ -10,6 +10,7 @@ import com.fatsecret.diary.model.Exercise;
 @Repository
 public interface ExerciseDAO {
 	
+	//활동 리스트 추가
 	public void addExerciseList(
 			@Param("userId") Integer userId,
 			@Param("name") String name,
@@ -19,13 +20,16 @@ public interface ExerciseDAO {
 			@Param("date") String date
 			);
 	
+	// 선택한 날짜 리스트 가져오기
 	public List<Exercise> selectExerciseListByUserIdAndDate(
 			@Param("userId") Integer userId,
 			@Param("date") String date
 			);
 	
+	//리스트 삭제
 	public void deleteExerciseListById(int id);
 	
+	// 유저의 활동 리스트 전부 가져오기
 	public List<Exercise> selectExerciseList(Integer userId);
 	
 }

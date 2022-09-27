@@ -30,6 +30,7 @@ public class TimelineBO {
 	@Autowired
 	private LikeBO likeBO;
 	
+	//타임라인 게시글 카드 생성
 	public List<CardView> generateCardViewList(Integer userId){
 		List<CardView> cardList = new ArrayList<CardView>();
 		

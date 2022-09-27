@@ -19,6 +19,7 @@ public class LikeRestController {
 	@Autowired
 	private LikeBO likeBO;
 	
+	// 선택한 게시글의 번호를 url로 직접 받는다
 	@RequestMapping("/{postId}")
 	public Map<String, Object> like(
 			@PathVariable int postId,
@@ -28,6 +29,7 @@ public class LikeRestController {
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		
+		//유저 정보 불러오기
 		Integer userId = (Integer) session.getAttribute("userId");
 		
 		likeBO.like(userId, postId);

@@ -52,7 +52,7 @@ public class PostBO {
 		return postDAO.selectPostList();
 	}
 	
-	// postId로 리스트 가져오기
+	// 글 수정 페이지에 해당 게시글 가져오기
 	public Post getPostListByPostId(int postId) {
 
 		return postDAO.selectPostListByPostId(postId);
@@ -126,7 +126,7 @@ public class PostBO {
 		return postDAO.updatePostByPostIdAndUserId(postId, userId, title, content, imagePath);
 	}
 	
-	//마이페이지에 뿌려줄 유저 id를 인자로 게시한 게시물의 갯수를 받아온다
+	//마이페이지에 뿌려줄 유저 id를 인자로 게시한 게시물들을 가져온다
 	public List<Post> getPostListByUserId(Integer userId) {
 		
 		return postDAO.getPostListByUserId(userId);

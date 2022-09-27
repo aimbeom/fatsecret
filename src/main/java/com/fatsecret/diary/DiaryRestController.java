@@ -337,18 +337,5 @@ public class DiaryRestController {
 		
 		return result;
 	}
-//	
-//	@RequestMapping("/diet_fullCalendar")
-//	public String fullCalendar(Model model, HttpSession session) {
-//		
-//		Map<String, Object> result = new HashMap<>();
-//		
-//		Integer userId = (Integer) session.getAttribute("userId");
-//		List<TotalFoodList> totalFoodList = totalFoodListBO.getTotalFoodListByUserId(userId);
-//		List<TotalActivityList> totalActivityList = totalActivityListBO.getTotalActivityListByUserId(userId);
-//		
-//		result.put("result", "success");
-//		
-//		return "template/layout2";
-//	}
+
 }

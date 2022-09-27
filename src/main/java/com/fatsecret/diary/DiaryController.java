@@ -62,7 +62,10 @@ public class DiaryController {
 		Integer userId = (Integer) session.getAttribute("userId");
 		int recommendedKcal = (int) session.getAttribute("recommendedKcal");
 		
+		//유저의 전체 음식 리스트 가져오기
 		List<TotalFoodList> totalFoodList = totalFoodListBO.getTotalFoodListByUserId(userId);
+		
+		//유저의 전체 활동 리스트 가져오기
 		List<TotalActivityList> totalActivityList = totalActivityListBO.getTotalActivityListByUserId(userId);
 		User user = userBO.getUserByUserId(userId);
 		
@@ -158,12 +161,15 @@ public class DiaryController {
 	public String exerciseDairy(@RequestParam(value = "date", required = false) String date, Model model,
 			HttpSession session) {
 		
+		//세션에서 유저 id 받아오기
 		Integer userId = (Integer) session.getAttribute("userId");
-
+		
+		//유저의 선택 날짜 운동 리스트 전부 가져오기
 		List<Exercise> exerciseList = exerciseBO.getExerciseListByUserIdAndDate(userId, date);
-
+		
+		
 		Exercise exercise = exerciseBO.calculate(userId, date);
-
+		
 		Sleep sleep = sleepBO.selectSleepListByIdAndDate(userId, date);
 		
 		User user = userBO.getUserByUserId(userId);

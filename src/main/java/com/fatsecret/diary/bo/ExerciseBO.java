@@ -18,7 +18,8 @@ public class ExerciseBO {
 
 	@Autowired
 	private ExerciseDAO exerciseDAO;
-
+	
+	// 운동 리스트 추가
 	public void addExerciseList(Integer userId, String name, int hour, int minute, int kcal, String date) {
 
 		exerciseDAO.addExerciseList(userId, name, hour, minute, kcal, date);
@@ -75,6 +76,7 @@ public class ExerciseBO {
 		return exercise;
 	}
 	
+	// 유저의 운동 리스트 가져오기
 	public List<Exercise> getExerciseList(Integer userId){
 		
 		return exerciseDAO.selectExerciseList(userId);

@@ -101,7 +101,7 @@ public class UserBO {
 		return userDAO.selectCurrentUser();
 	}
 	
-	//내 이미지 업데이트
+	//프로필 이미지 업데이트
 	public void updateMyImageByUserIdFile(int id, String nickname, MultipartFile file) {
 		
 		User user = getUserByUserId(id);
@@ -124,6 +124,7 @@ public class UserBO {
 		userDAO.updateMyImageByUserIdFile(id, imagePath);
 	}
 	
+	//프로필 이미지 삭제
 	public void  updateMyImageNullById(int id) {
 		
 		userDAO.updateMyImageNullById(id);

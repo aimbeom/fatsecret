@@ -91,16 +91,16 @@ public class UserRestController {
 			// 로그인 ok
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", user.getId());
-			session.setAttribute("userEmail", user.getEmail());
-			session.setAttribute("userName", user.getName());
+//			session.setAttribute("userEmail", user.getEmail());
+//			session.setAttribute("userName", user.getName());
 			session.setAttribute("userNickname", user.getNickname());
-			session.setAttribute("userHeight", user.getHeight());
-			session.setAttribute("userStartWeight", user.getStartWeight());
-			session.setAttribute("userBirth", user.getBirth());
-			session.setAttribute("userPurpose", user.getPurpose());
-			session.setAttribute("userTargetWeight", user.getTargetWeight());
-			session.setAttribute("userImage", user.getImagePath());
-			session.setAttribute("userContent", user.getContent());
+//			session.setAttribute("userHeight", user.getHeight());
+//			session.setAttribute("userStartWeight", user.getStartWeight());
+//			session.setAttribute("userBirth", user.getBirth());
+//			session.setAttribute("userPurpose", user.getPurpose());
+//			session.setAttribute("userTargetWeight", user.getTargetWeight());
+//			session.setAttribute("userImage", user.getImagePath());
+//			session.setAttribute("userContent", user.getContent());
 			
 			//권장 칼로리량
 			int recommendedKcal = userBO.calculateKcal(user.getId());

@@ -27,6 +27,12 @@ public class TimelineController {
 	private UserBO userBO;
 	
 	
+	/**
+	 * 커뮤니티 페이지
+	 * @param model
+	 * @param session
+	 * @return
+	 */
 //	http://localhost:8080/timeline/timeline_view
 	@RequestMapping("/timeline_view")
 	public String timelineView(Model model, HttpSession session) {

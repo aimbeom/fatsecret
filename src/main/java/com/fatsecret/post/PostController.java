@@ -31,6 +31,8 @@ public class PostController {
 //	http://localhost:8080/post/write_view	
 	@RequestMapping("/write_view")
 	public String write(Model model, HttpSession session) {
+		
+		//유저 정보 가져오기
 		Integer userId = (Integer) session.getAttribute("userId");
 		User user = userBO.getUserByUserId(userId);
 		
@@ -53,11 +55,13 @@ public class PostController {
 			HttpSession session,
 			Model model) {
 		
+		//유저 정보 가져오기
 		Integer userId = (Integer) session.getAttribute("userId");
 		User user = userBO.getUserByUserId(userId);
 		
 		model.addAttribute("viewName", "post/detail");
 		
+		//수정할 게시글 불러오기
 		Post post = postBO.getPostListByPostId(postId);
 		model.addAttribute("user", user);
 		

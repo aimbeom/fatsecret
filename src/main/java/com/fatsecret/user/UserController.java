@@ -64,6 +64,7 @@ public class UserController {
 		
 //		int userId = (int) session.getAttribute("userId");
 		
+		//방금 회원가입한 유저의 권장 칼로리
 		int recommendedKcal = userBO.calculateKcal(user.getId());
 		
 		model.addAttribute("viewName", "user/kcal_informed");
