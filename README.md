@@ -22,7 +22,7 @@ FatSecret은 식단을 일기장처럼 매일 기록하며 다른사람들과 sn
 포트폴리오 문서 - [Fatsecret Portfolio.pdf](https://github.com/aimbeom/fatsecret/files/9652010/Fatsecret.Portfolio.pdf)<br>
 프로젝트 일정표 : https://docs.google.com/spreadsheets/d/1CtJtLa2NB-2CyqH6gTY_iQHzgFjJCcUc/edit#gid=488077327<br>
 DB 설계표 : https://docs.google.com/spreadsheets/d/1tqH4AeFnApgesBRM40CAfHEfreGO9K_sGmq1fUvM8rU/edit#gid=0<br>
-ERD 다이어그램 : https://drive.google.com/file/d/1UM5gAT3KCG67OSOVEZC4Y8NCTUdRfpEi/view?usp=sharing
+ERD 다이어그램 : https://drive.google.com/file/d/1UM5gAT3KCG67OSOVEZC4Y8NCTUdRfpEi/view?usp=sharing<br>
 url 설계표 : https://docs.google.com/spreadsheets/d/1od3uM4wn3Hz3r-fi1tlRPBCjCM3-6GuM_oJMoM_urCU/edit#gid=0<br>
 
 <h1>1. 회원가입 / 권장 일일칼로리</h1>
