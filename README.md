@@ -6,8 +6,8 @@ FatSecret은 식단을 일기장처럼 매일 기록하며 다른사람들과 sn
 
 
 * 프레임워크 : spring, mybatis, bootstrap
-* 프로그램 언어 : java11, javascript, html, css, jsp, xml
-* 서버 : tomcat.9.0.62
+* 프로그램 언어 : java(JDK11.0.15), javascript, html, css, jsp, xml
+* 서버 : tomcat, apache-tomcat(9.0.62)
 * DB : mysql
 
 
