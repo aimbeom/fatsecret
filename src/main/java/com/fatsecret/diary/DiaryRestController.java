@@ -91,11 +91,7 @@ public class DiaryRestController {
 		
 		return result;
 	}
-	
-//	@PostMapping("update_food"){
-//		public Map
-//	}
-	
+
 	/**
 	 * 운동 리스트 추가
 	 * @param name
@@ -105,7 +101,6 @@ public class DiaryRestController {
 	 * @param session
 	 * @return
 	 */
-	//활동 리스트 추가
 	@PostMapping("/add_exercise")
 	public Map<String, Object> addActivity(
 			@RequestParam("name") String name,

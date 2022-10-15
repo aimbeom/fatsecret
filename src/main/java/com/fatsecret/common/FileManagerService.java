@@ -29,7 +29,7 @@ public class FileManagerService {
 			File directory = new File(filePath);
 			if(directory.mkdir() == false) {
 				return null;
-			}
+			}	
 			
 			//파일 업로드: byte 단위로 업로드 한다.
 			try {
