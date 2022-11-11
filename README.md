@@ -4,13 +4,6 @@ Fatsecret Portfolio
 
 FatSecret은 식단을 일기장처럼 매일 기록하며 다른사람들과 sns형식으로 소통하며 다이어트 정보를 공유할 수 있는 홈페이지입니다.<br>
 
-
-* 프레임워크 : spring, mybatis, bootstrap
-* 프로그램 언어 : java(JDK11.0.15), javascript, html, css, jsp, xml
-* 서버 : tomcat, apache-tomcat(9.0.62)
-* DB : mysql
-
-
 <br>
 주요 기능 5가지<br>
 - 자신의 키와 체중에 따라 권장 섭취칼로리를 자동으로 계산해줍니다<br>
