@@ -19,7 +19,6 @@ FatSecret은 식단을 일기장처럼 매일 기록하며 다른사람들과 sn
 - 식단 데이터를 통하여 탄수화물, 단백질, 지방 함유량이 자동 계산됩니다<br>
 <br><br>
 
-포트폴리오 문서 - [Fatsecret Portfolio.pdf](https://github.com/aimbeom/fatsecret/files/9652010/Fatsecret.Portfolio.pdf)<br>
 프로젝트 일정표 : https://docs.google.com/spreadsheets/d/1CtJtLa2NB-2CyqH6gTY_iQHzgFjJCcUc/edit#gid=488077327<br>
 DB 설계표 : https://docs.google.com/spreadsheets/d/1tqH4AeFnApgesBRM40CAfHEfreGO9K_sGmq1fUvM8rU/edit#gid=0<br>
 ERD 다이어그램 : https://drive.google.com/file/d/1UM5gAT3KCG67OSOVEZC4Y8NCTUdRfpEi/view?usp=sharing<br>
